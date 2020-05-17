@@ -8,11 +8,12 @@ class SiteController
      */
     public function actionIndex()
     {
-        $categories = Category::getCategories();
-        $products = Product::getProducts(4);
-        $featuredItems = Product::getFeaturedProducts();
-
-        require_once ROOT . '/views/site/index.php';
+//        $categories = Category::getCategories();
+//        $products = Product::getProducts(4);
+//        $featuredItems = Product::getFeaturedProducts();
+//
+//        require_once ROOT . '/views/site/index.php';
+        header("Location: /category/1");
         return true;
     }
 
@@ -25,14 +26,13 @@ class SiteController
         $userEmail = '';
         $userText = '';
         $result = false;
+        $errors = false;
 
         if (isset($_POST['submit'])) {
             $userEmail = $_POST['email'];
             $userText = $_POST['message'];
 
-            $errors = false;
-
-            if (!User::checkEmail($userEmail)) $errors[] = 'Email is not valid';
+            if (!User::checkEmail($userEmail)) $errors[] = 1;
 
             if ($errors == false) {
                 $adminEmail = 'vberkoz@gmail.com';

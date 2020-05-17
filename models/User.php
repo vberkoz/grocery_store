@@ -63,6 +63,17 @@ class User
     }
 
     /**
+     * Checks if passwords match
+     * @param $secret
+     * @param $secret2
+     * @return bool
+     */
+    public static function checkSecretMatch($secret, $secret2) {
+        if ($secret === $secret2) return true;
+        return false;
+    }
+
+    /**
      * Checks if user, with provided email and password, exists
      * @param $email
      * @param $secret
@@ -127,17 +138,6 @@ class User
 
             return $result->fetch();
         }
-    }
-
-    /**
-     * Checks if passwords match
-     * @param $secret
-     * @param $secret2
-     * @return bool
-     */
-    public static function checkSecretMatch($secret, $secret2) {
-        if ($secret == $secret2) return true;
-        return false;
     }
 
     public static function edit($userId, $username, $secret) {

@@ -15,15 +15,30 @@ class CabinetController
     }
 
     /**
+     * Cabinet history page
+     * @return bool
+     */
+    public static function actionHistory() {
+        $userId = User::checkLogged();
+        $orders = Order::getUserOrders($userId);
+        $fmt = numfmt_create( 'en_EN', NumberFormatter::CURRENCY );
+
+        require_once ROOT . '/views/cabinet/history.php';
+        return true;
+    }
+
+    /**
      * Cabinet edit user page
      * @return bool
      */
     public function actionEdit() {
         $userId = User::checkLogged();
         $user = User::getUser($userId);
+        $errors = false;
 
-        $username = $user['username'];
-        $secret = $user['secret'];
+        $user_email = $user['email'];
+        $user_name = $user['username'];
+        $secret1 = $user['secret'];
 
         if (array_key_exists('secret2', $user)) {
             $secret2 = $user['secret2'];
@@ -34,19 +49,19 @@ class CabinetController
         $result = false;
 
         if (isset($_POST['submit'])) {
-            $username = $_POST['username'];
+            $user_name = $_POST['user_name'];
+            $old = $_POST['old'];
             $secret = $_POST['secret'];
             $secret2 = $_POST['secret2'];
 
-            $errors = false;
+            if (!User::checkLength($user_name, 2)) $errors[] = 1;
+            if (!User::checkSecretMatch($secret1, $old)) $errors[] = 2;
+            if (!User::checkLength($secret, 6)) $errors[] = 3;
+            if (!User::checkLength($secret2, 6)) $errors[] = 4;
+            if (!User::checkSecretMatch($secret, $secret2)) $errors[] = 5;
 
-            if (!User::checkLength($username, 2)) $errors[] = 'Name has to be at least 2 symbols length';
-            if (!User::checkLength($secret, 6)) $errors[] = 'Password has to be at least 6 symbols length';
-            if (!User::checkLength($secret2, 6)) $errors[] = 'Password has to be at least 6 symbols length';
-            if (!User::checkSecretMatch($secret, $secret2)) $errors[] = 'Passwords does not match';
-
-            if ($errors == false) {
-                $result = User::edit($userId, $username, $secret);
+            if (!$errors) {
+                $result = User::edit($userId, $user_name, $secret);
             }
         }
 
@@ -54,15 +69,12 @@ class CabinetController
         return true;
     }
 
-    /**
-     * Cabinet history page
-     * @return bool
-     */
-    public static function actionHistory() {
+    public function actionLiked()
+    {
         $userId = User::checkLogged();
         $user = User::getUser($userId);
 
-        require_once ROOT . '/views/cabinet/history.php';
+        require_once ROOT . '/views/cabinet/liked.php';
         return true;
     }
 }

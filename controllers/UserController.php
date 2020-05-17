@@ -10,21 +10,22 @@ class UserController
         $name = '';
         $email = '';
         $password = '';
+        $errors = false;
 
         if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $repeat = $_POST['repeat'];
 
-            $errors = false;
-
-            if (!User::checkLength($name, 2)) $errors[] = 'Name has to be at least 2 symbols length';
+            if (!User::checkLength($name, 2)) $errors[] = 1;
             if (!User::checkEmail($email)) {
-                $errors[] = 'Email is not valid';
+                $errors[] = 2;
             } else {
-                if (User::checkEmailExists($email)) $errors[] = 'Email is already exists';
+                if (User::checkEmailExists($email)) $errors[] = 3;
             }
-            if (!User::checkLength($password, 6)) $errors[] = 'Password has to be at least 6 symbols length';
+            if (!User::checkLength($password, 6)) $errors[] = 4;
+            if (!User::checkSecretMatch($password, $repeat)) $errors[] = 5;
 
             if ($errors == false) $result = User::register($name, $email, $password);
         }
@@ -40,27 +41,29 @@ class UserController
     public static function actionSignin() {
         $email = '';
         $password = '';
+        $errors = false;
 
         if (isset($_POST['submit'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $errors = false;
-            if (!User::checkEmail($email)) $errors[] = 'Email is not valid';
-            if (!User::checkLength($password, 6)) $errors[] = 'Password has to be at least 6 symbols length';
+            if (!User::checkEmail($email)) $errors[] = 1;
+//            if (!User::checkLength($password, 6)) $errors[] = 2;
 
             $userId = User::checkUserData($email, $password);
 
-            if ($userId == false) {
-                $errors[] = 'Wrong sign in data';
-            } else {
-                User::auth($userId);
-                $user = User::getUser($userId);
-
-                if ($user['role'] == 'admin') {
-                    header("Location: /admin/");
+            if (!$errors) {
+                if ($userId == false) {
+                    $errors[] = 3;
                 } else {
-                    header("Location: /cabinet/");
+                    User::auth($userId);
+                    $user = User::getUser($userId);
+
+                    if ($user['role'] == 'admin') {
+                        header("Location: /admin/");
+                    } else {
+                        header("Location: /cabinet/history");
+                    }
                 }
             }
         }

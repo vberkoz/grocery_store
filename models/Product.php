@@ -79,10 +79,10 @@ class Product
      * Gets all recommended products
      * @return array
      */
-    public static function getFeaturedProducts() {$db = Db::getConnection();
-
+    public static function getFeaturedProducts()
+    {
+        $db = Db::getConnection();
         $products = [];
-
         $result = $db->query("SELECT id, title, category_id, price, image, is_new 
                                        FROM products
                                        WHERE visibility = 1 AND is_recommended = 1
@@ -127,11 +127,10 @@ class Product
      * @param $idsArray
      * @return array
      */
-    public static function getProductsByIds($idsArray) {
+    public static function getProductsByIds($idsArray, $quantity = false)
+    {
         $db = Db::getConnection();
-
         $idsString = implode(',', $idsArray);
-
         $sql = "SELECT id, product_id, title, category_id, price, brand, image 
                 FROM products 
                 WHERE availability = 1 AND id IN ($idsString)";
@@ -140,7 +139,11 @@ class Product
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         $i = 0;
-        $products = [];
+        if ($quantity) {
+            $products = ['total' => 0];
+        } else {
+            $products = [];
+        }
         while ($row = $result->fetch()) {
             $products[$i]['id'] = $row['id'];
             $products[$i]['product_id'] = $row['product_id'];
@@ -149,6 +152,11 @@ class Product
             $products[$i]['price'] = $row['price'];
             $products[$i]['brand'] = $row['brand'];
             $products[$i]['image'] = $row['image'];
+            if ($quantity) {
+                $products[$i]['quantity'] = $quantity[$i];
+                $products[$i]['item_total'] = $row['price'] * $quantity[$i];
+                $products['total'] += $row['price'] * $quantity[$i];
+            }
             $i ++;
         }
 

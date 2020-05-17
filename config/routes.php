@@ -43,5 +43,6 @@ return array(
 
     'admin' => 'admin/index',
 
+//    '' => 'product/index/1',
     '' => 'site/index',
 );

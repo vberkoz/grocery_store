@@ -3,6 +3,7 @@
 class Order
 {
     const STATUS_CAPTIONS = ['New order', 'In progress', 'Shipping', 'Closed'];
+    const STATUS_CAPTIONS_CSS = ['text-primary', 'text-success', 'text-success', 'text-muted'];
 
     /**
      * Gets orders list
@@ -31,7 +32,7 @@ class Order
     }
 
     /**
-     * Get single order
+     * Get order by id
      * @param $id
      * @return mixed
      */
@@ -44,6 +45,41 @@ class Order
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
         return $result->fetch();
+    }
+
+    /**
+     * Get orders by user id
+     * @param $userId
+     * @return array
+     */
+    public static function getUserOrders($userId)
+    {
+        $db = Db::getConnection();
+        $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC";
+        $result = $db->prepare($sql);
+        $result->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        $i = 0;
+        $orders = [];
+        while ($row = $result->fetch()) {
+            $orders[$i]['id'] = $row['id'];
+            $orders[$i]['user_name'] = $row['user_name'];
+            $orders[$i]['user_phone'] = $row['user_phone'];
+            $orders[$i]['user_comment'] = $row['user_comment'];
+            $orders[$i]['user_id'] = $row['user_id'];
+            $orders[$i]['created_at'] = date("F j, Y, g:i a", strtotime($row['created_at']));
+            $products = json_decode($row['bag'], true);
+            $bag = Product::getProductsByIds(array_keys($products), array_values($products));
+            $orders[$i]['total'] = $bag['total'];
+            unset($bag['total']);
+            $orders[$i]['bag'] = $bag;
+            $orders[$i]['order_status'] = $row['order_status'];
+            $orders[$i]['user_address'] = $row['user_address'];
+            $i++;
+        }
+        return $orders;
     }
 
     /**
