@@ -8,7 +8,7 @@ class SiteController
      */
     public function actionIndex()
     {
-//        $categories = Category::getCategories();
+        $categories = Category::getCategories();
 //        $products = Product::getProducts(4);
 //        $featuredItems = Product::getFeaturedProducts();
 //
@@ -23,6 +23,7 @@ class SiteController
      */
     public function actionContact()
     {
+        $categories = Category::getCategories();
         $userEmail = '';
         $userText = '';
         $result = false;

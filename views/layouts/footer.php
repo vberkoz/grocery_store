@@ -11,6 +11,12 @@
 <!---->
 <!--    <div class="footer"><p>Copyright &copy; 2020</p></div>-->
 
+<footer class="footer bg-white text-dark">
+    <div class="container p-3">
+        <span class="text-muted">&copy; 2020 Вітамінка</span>
+    </div>
+</footer>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- Bootstrap core JavaScript

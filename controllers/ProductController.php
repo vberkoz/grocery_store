@@ -10,10 +10,11 @@ class ProductController
      */
     public function actionIndex($categoryId = 1, $page = 1) {
         $categories = Category::getCategories();
-        $products = Product::getProducts(8, $page, $categoryId);
+        $products = Product::getProducts(24, $page, $categoryId);
         $total = Product::getProductsNumber($categoryId);
-        $pagination = new Pagination($total, $page, 8, 'page-');
-        $fmt = numfmt_create( 'en_EN', NumberFormatter::CURRENCY );
+        $pagination = new Pagination($total, $page, 24, 'page-');
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
+//        echo '<pre>';print_r(json_encode(Bag::getProducts()));die;
 
         require_once ROOT . '/views/product/index.php';
         return true;
@@ -27,7 +28,7 @@ class ProductController
     public function actionShow($productId, $categoryId) {
         $categories = Category::getCategories();
         $product = Product::getProduct($productId);
-        $fmt = numfmt_create( 'en_EN', NumberFormatter::CURRENCY );
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
 
         require_once ROOT . '/views/product/show.php';
         return true;

@@ -1,4 +1,4 @@
-<aside class="col-md-3">
+<aside class="col-md-3 mb-3">
     <div class="list-group">
         <?php foreach ($categories as $category): ?>
             <a href="/category/<?php echo $category['id']; ?>"

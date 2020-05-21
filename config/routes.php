@@ -11,16 +11,21 @@ return array(
 
     'bag/add/([0-9]+)' => 'bag/add/$1',
     'bag/add-ajax/([0-9]+)' => 'bag/addajax/$1',
+    'bag/remove-ajax/([0-9]+)' => 'bag/removeajax/$1',
+    'bag/change-ajax/([0-9]+)' => 'bag/changeajax/$1',
+    'bag/index-ajax' => 'bag/indexajax',
     'bag/checkout' => 'bag/checkout',
     'bag/remove/([0-9]+)' => 'bag/remove/$1',
+    'bag/data' => 'bag/data',
     'bag' => 'bag/index',
 
     'signup' => 'user/signup',
     'signin' => 'user/signin',
     'signout' => 'user/signout',
 
-    'cabinet/edit' => 'cabinet/edit',
     'cabinet/history' => 'cabinet/history',
+    'cabinet/liked' => 'cabinet/liked',
+    'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
 
     'contact' => 'site/contact',

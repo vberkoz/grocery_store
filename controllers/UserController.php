@@ -7,6 +7,7 @@ class UserController
      * @return bool
      */
     public static function actionSignup() {
+        $categories = Category::getCategories();
         $name = '';
         $email = '';
         $password = '';
@@ -39,6 +40,7 @@ class UserController
      * @return bool
      */
     public static function actionSignin() {
+        $categories = Category::getCategories();
         $email = '';
         $password = '';
         $errors = false;

@@ -7,7 +7,8 @@ class Bag
      * @param $id
      * @return int
      */
-    public static function addProduct($id) {
+    public static function addProduct($id)
+    {
         $id = intval($id);
         $bag = [];
 
@@ -17,6 +18,43 @@ class Bag
             $bag[$id] ++;
         } else {
             $bag[$id] = 1;
+        }
+
+        $_SESSION['products'] = $bag;
+
+        return self::countItems();
+    }
+
+    public static function changeProduct($id)
+    {
+        $quantity = $_POST['quantity'];
+        $id = intval($id);
+        $bag = [];
+
+        if (isset($_SESSION['products'])) $bag = $_SESSION['products'];
+
+        if ($quantity) {
+            $bag[$id] = $quantity;
+        } else {
+            unset($bag[$id]);
+        }
+
+        $_SESSION['products'] = $bag;
+
+        return self::countItems();
+    }
+
+    public static function reduceProduct($id)
+    {
+        $id = intval($id);
+        $bag = [];
+
+        if (isset($_SESSION['products'])) $bag = $_SESSION['products'];
+
+        if ($bag[$id] == 1) {
+            unset($bag[$id]);
+        } else {
+            $bag[$id] --;
         }
 
         $_SESSION['products'] = $bag;

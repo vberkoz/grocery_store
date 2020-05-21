@@ -140,13 +140,26 @@ class User
         }
     }
 
-    public static function edit($userId, $username, $secret) {
+    /**
+     * Update user
+     * @param $userId
+     * @param $username
+     * @param $phone
+     * @param $address
+     * @param $secret
+     * @return bool
+     */
+    public static function update($userId, $username, $phone, $address, $secret) {
         $db = Db::getConnection();
-        $sql = 'UPDATE users SET username = :username, secret = :secret WHERE id = :id';
+        $sql = 'UPDATE users
+            SET username = :username, secret = :secret, phone = :phone, address = :address
+            WHERE id = :id';
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $userId, PDO::PARAM_INT);
         $result->bindParam(':username', $username, PDO::PARAM_STR);
+        $result->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $result->bindParam(':address', $address, PDO::PARAM_STR);
         $result->bindParam(':secret', $secret, PDO::PARAM_STR);
 
         return $result->execute();

@@ -2,7 +2,7 @@
 
 class Order
 {
-    const STATUS_CAPTIONS = ['New order', 'In progress', 'Shipping', 'Closed'];
+    const STATUS_CAPTIONS = ['Нове', 'Збирається', 'В дорозі', 'Доставлене'];
     const STATUS_CAPTIONS_CSS = ['text-primary', 'text-success', 'text-success', 'text-muted'];
 
     /**
@@ -87,15 +87,16 @@ class Order
      * @param $userName
      * @param $userPhone
      * @param $userComment
+     * @param $userAddress
      * @param $userId
      * @param $bag
      * @return bool
      */
-    public static function save($userName, $userPhone, $userComment, $userId, $bag)
+    public static function save($userName, $userPhone, $userComment, $userAddress, $userId, $bag)
     {
         $db = Db::getConnection();
-        $sql = 'INSERT INTO orders (user_name, user_phone, user_comment, user_id, bag) 
-                VALUES (:user_name, :user_phone, :user_comment, :user_id, :bag)';
+        $sql = 'INSERT INTO orders (user_name, user_phone, user_comment, user_address, user_id, bag) 
+                VALUES (:user_name, :user_phone, :user_comment, :user_address, :user_id, :bag)';
 
         $bag = json_encode($bag);
 
@@ -103,6 +104,7 @@ class Order
         $result->bindParam(':user_name', $userName, PDO::PARAM_STR);
         $result->bindParam(':user_phone', $userPhone, PDO::PARAM_STR);
         $result->bindParam(':user_comment', $userComment, PDO::PARAM_STR);
+        $result->bindParam(':user_address', $userAddress, PDO::PARAM_STR);
         $result->bindParam(':user_id', $userId, PDO::PARAM_STR);
         $result->bindParam(':bag', $bag, PDO::PARAM_STR);
 

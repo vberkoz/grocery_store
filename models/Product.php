@@ -23,28 +23,15 @@ class Product
 
         $db = Db::getConnection();
 
-        $products = [];
-
-        $result = $db->query("SELECT id, title, category_id, product_id, price, image, is_new 
+        $result = $db->query("SELECT id, title, category_id, product_id, price, image 
                                        FROM products
                                        WHERE visibility = 1 $categorySQL
                                        ORDER BY id DESC
                                        LIMIT $count
                                        OFFSET $offset");
 
-        $i = 0;
-        while ($row = $result->fetch()) {
-            $products[$i]['id'] = $row['id'];
-            $products[$i]['title'] = $row['title'];
-            $products[$i]['category_id'] = $row['category_id'];
-            $products[$i]['product_id'] = $row['product_id'];
-            $products[$i]['price'] = $row['price'];
-            $products[$i]['image'] = $row['image'];
-            $products[$i]['is_new'] = $row['is_new'];
-            $i ++;
-        }
-
-        return $products;
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
     }
 
     /**
@@ -131,7 +118,7 @@ class Product
     {
         $db = Db::getConnection();
         $idsString = implode(',', $idsArray);
-        $sql = "SELECT id, product_id, title, category_id, price, brand, image 
+        $sql = "SELECT id, product_id, title, category_id, price, image 
                 FROM products 
                 WHERE availability = 1 AND id IN ($idsString)";
 
@@ -150,7 +137,6 @@ class Product
             $products[$i]['title'] = $row['title'];
             $products[$i]['category_id'] = $row['category_id'];
             $products[$i]['price'] = $row['price'];
-            $products[$i]['brand'] = $row['brand'];
             $products[$i]['image'] = $row['image'];
             if ($quantity) {
                 $products[$i]['quantity'] = $quantity[$i];

@@ -6,10 +6,12 @@ class BagController
      * Bag page action
      * @return bool
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
+        $categories = Category::getCategories();
         $bag = false;
         $bag = Bag::getProducts();
-        $fmt = numfmt_create( 'en_EN', NumberFormatter::CURRENCY );
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
 
         if ($bag) {
             $productsIds = array_keys($bag);
@@ -25,7 +27,8 @@ class BagController
      * Adds product to bag
      * @param $id
      */
-    public function actionAdd($id) {
+    public function actionAdd($id)
+    {
         Bag::addProduct($id);
         $referrer = $_SERVER['HTTP_REFERER'];
         header("Location: $referrer");
@@ -36,8 +39,50 @@ class BagController
      * @param $id
      * @return bool
      */
-    public function actionAddajax($id) {
+    public function actionAddajax($id)
+    {
         echo Bag::addProduct($id);
+        return true;
+    }
+
+    public function actionRemoveajax($id)
+    {
+        echo Bag::reduceProduct($id);
+        return true;
+    }
+
+    public function actionChangeajax($id)
+    {
+        echo Bag::changeProduct($id);
+        return true;
+    }
+
+    public function actionIndexajax()
+    {
+        echo json_encode(Bag::getProducts());
+        return true;
+    }
+
+    public function actionData()
+    {
+        $products = Bag::getProducts();
+        $details = Product::getProductsByIds(array_keys($products));
+        $bag = [];
+        $i = 0;
+        foreach ($products as $key => $product) {
+            foreach ($details as $item) {
+                if ($item['id'] == array_keys($products)[$i]) {
+                    $bag[] = (object) [
+                        'id' => intval($item['id']),
+                        'quantity' => intval($product),
+                        'price' => floatval($item['price']),
+                        'item_total' => floatval($item['price'] * $product)
+                    ];
+                }
+            }
+            $i ++;
+        }
+        echo json_encode($bag);
         return true;
     }
 
@@ -45,14 +90,17 @@ class BagController
      * Checkout page action
      * @return bool
      */
-    public function actionCheckout() {
+    public function actionCheckout()
+    {
+        $categories = Category::getCategories();
         $result = false;
-        $fmt = numfmt_create( 'en_EN', NumberFormatter::CURRENCY );
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $errors = false;
 
         if (isset($_POST['submit'])) {
             $userName = $_POST['userName'];
             $userPhone = $_POST['userPhone'];
+            $userAddress = $_POST['userAddress'];
             $userComment = $_POST['userComment'];
 //            echo '<pre>';print_r($userName);die;
 
@@ -67,13 +115,33 @@ class BagController
                     $userId = User::checkLogged();
                 }
 
-                $result = Order::save($userName, $userPhone, $userComment, $userId, $bag);
+                $result = Order::save($userName, $userPhone, $userComment, $userAddress, $userId, $bag);
 
                 if ($result) {
+                    $productsIds = array_keys($bag);
+                    $products = Product::getProductsByIds($productsIds);
+                    $totalPrice = Bag::calculateTotalPrice($products);
+                    $totalNumber = Bag::countItems();
+
                     $adminEmail = 'vberkoz@gmail.com';
-                    $subject = 'Shop PHP Zin New Order';
-                    $message = 'http://localhost:4000/admin/orders';
-                    mail($adminEmail, $subject, $message);
+
+                    $subject = 'Замовлення: ' . $userName . ' ' . $userPhone;
+                    $subject = '=?UTF-8?B?'.base64_encode($subject).'?=';
+
+                    $message = '<html><body>';
+                    $message .= '<p style="padding: 5px;">' . $userName . ' ' . $userPhone . ' ' . $userAddress . ' ' . $userComment . '</p>';
+                    $message .= '<p style="padding: 5px;"><b>Товарів ' . $totalNumber . ' на суму ' . $totalPrice . 'грн.</b></p>';
+                    $message .= '<table><tbody>';
+                    foreach ($products as $product) {
+                        $message .= '<tr><td style="padding: 5px;">' . $product['title'] . '</td><td style="padding: 5px;">' . $bag[$product['id']] . '</td></tr>';
+                    }
+                    $message .= '</tbody></table>';
+                    $message .= '</body></html>';
+
+                    $headers  = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+                    mail($adminEmail, $subject, $message, $headers);
 
                     Bag::clear();
                 }
@@ -103,6 +171,8 @@ class BagController
                     $userId = User::checkLogged();
                     $user = User::getUser($userId);
                     $userName = $user['username'];
+                    $userPhone = $user['phone'];
+                    $userAddress = $user['address'];
                 }
             }
         }
@@ -115,7 +185,8 @@ class BagController
      * Remove product action
      * @param $id
      */
-    public function actionRemove($id) {
+    public function actionRemove($id)
+    {
         Bag::removeProduct($id);
         header("Location: /bag/");
     }
