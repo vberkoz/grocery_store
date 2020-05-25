@@ -34,7 +34,7 @@
                                 <option>Повернення коштів</option>
                                 <option>Рекомендація</option>
                             </select>
-                        </div>
+                        </div> <!-- form-group end.// -->
                         <div class="form-group">
                             <label>Ваше повідомлення</label>
                             <textarea class="form-control" style="min-height: 100px;"

@@ -166,6 +166,7 @@ class BagController
                 $userName = false;
                 $userPhone = false;
                 $userComment = false;
+                $userAddress = false;
 
                 if (!User::isGuest()) {
                     $userId = User::checkLogged();

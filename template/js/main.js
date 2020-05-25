@@ -178,6 +178,15 @@ $(document).ready(function () {
         });
     });
 
+    $('.product-card').hover(
+        function () {
+            $(this).find('.add-to-bag-first').removeClass('invisible');
+        },
+        function () {
+            $(this).find('.add-to-bag-first').addClass('invisible');
+        }
+    );
+
     $.get('/bag/index-ajax', {}, function (r) {
         r = JSON.parse(r);
         $("a[data-id]").each(function (i) {

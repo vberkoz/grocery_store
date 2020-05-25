@@ -8,7 +8,9 @@ class AdminProductController extends AdminBase
      */
     public function actionIndex() {
         self::checkAdmin();
+        $categories = Category::getCategories();
         $products = Product::getProductsForAdmin();
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         require_once ROOT . '/views/admin_product/index.php';
         return true;
     }
@@ -30,51 +32,22 @@ class AdminProductController extends AdminBase
 
     /**
      * Create product
-     * @return bool
      */
     public function actionCreate() {
         self::checkAdmin();
-        $categories = Category::getCategories();
 
-        if (isset($_POST['submit'])) {
-            $product['title'] = $_POST['title'];
-            $product['category_id'] = $_POST['category_id'];
-            $product['product_id'] = $_POST['product_id'];
-            $product['price'] = $_POST['price'];
-            $product['availability'] = $_POST['availability'];
-            $product['brand'] = $_POST['brand'];
-            if ($_FILES['image']['name']) {
-                $product['image'] = $_FILES['image']['name'];
-            } else {
-                $product['image'] = 'no-image.jpg';
-            }
-            $product['description'] = $_POST['description'];
-            $product['is_new'] = $_POST['is_new'];
-            $product['is_recommended'] = $_POST['is_recommended'];
-            $product['visibility'] = $_POST['visibility'];
+        $product['title'] = 'Новий Товар';
+        $product['category_id'] = 1;
+        $product['product_id'] = self::generateProductId();
+        $product['price'] = 1;
+        $product['availability'] = 1;
+        $product['visibility'] = 0;
+        $product['image'] = 'no-image.jpg';
+        $product['volume'] = 1;
+        $product['unit'] = 'кг';
 
-            $errors = false;
-
-            if (!isset($product['title']) || empty($product['title'])) {
-                $errors[] = 'Complete form';
-            }
-
-            if (!$errors) {
-                $id = Product::createProduct($product);
-
-                if ($id) {
-                    if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-                        move_uploaded_file($_FILES['image']['tmp_name'],
-                            $_SERVER['DOCUMENT_ROOT'] . "/template/images/{$_FILES['image']['name']}");
-                    }
-                }
-
-                header("Location: /admin/product");
-            }
-        }
-
-        require_once ROOT . '/views/admin_product/create.php';
-        return true;
+        $id = Product::createProduct($product);
+        header("Location: /admin/product");
     }
 
     /**
@@ -87,30 +60,24 @@ class AdminProductController extends AdminBase
         $categories = Category::getCategories();
         $product = Product::getProduct($id);
         $image = '/template/images/' . $product['image'];
+        $errors = false;
 
         if (isset($_POST['submit'])) {
+//            echo '<pre>';print_r($_POST);die;
             $product['title'] = $_POST['title'];
             $product['category_id'] = $_POST['category_id'];
-            $product['product_id'] = $_POST['product_id'];
             $product['price'] = $_POST['price'];
+            $product['volume'] = $_POST['volume'];
+            $product['unit'] = $_POST['unit'];
             $product['availability'] = $_POST['availability'];
-            $product['brand'] = $_POST['brand'];
+            $product['visibility'] = $_POST['visibility'];
 
             if ($_FILES['image']['name']) {
                 $product['image'] = $_FILES['image']['name'];
-            } else {
-                $product['image'] = 'no-image.jpg';
             }
 
-            $product['description'] = $_POST['description'];
-            $product['is_new'] = $_POST['is_new'];
-            $product['is_recommended'] = $_POST['is_recommended'];
-            $product['visibility'] = $_POST['visibility'];
-
-            $errors = false;
-
             if (!isset($product['title']) || empty($product['title'])) {
-                $errors[] = 'Complete form';
+                $errors[] = 1;
             }
 
             if (!$errors) {

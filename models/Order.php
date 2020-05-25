@@ -12,23 +12,9 @@ class Order
     public static function getOrders()
     {
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM orders ORDER BY created_at ASC");
-
-        $i = 0;
-        $orders = [];
-        while ($row = $result->fetch()) {
-            $orders[$i]['id'] = $row['id'];
-            $orders[$i]['user_name'] = $row['user_name'];
-            $orders[$i]['user_phone'] = $row['user_phone'];
-            $orders[$i]['user_comment'] = $row['user_comment'];
-            $orders[$i]['user_id'] = $row['user_id'];
-            $orders[$i]['created_at'] = $row['created_at'];
-            $orders[$i]['bag'] = $row['bag'];
-            $orders[$i]['order_status'] = $row['order_status'];
-            $i++;
-        }
-
-        return $orders;
+        $result = $db->query("SELECT * FROM orders ORDER BY created_at DESC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
     }
 
     /**

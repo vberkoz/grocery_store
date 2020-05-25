@@ -9,7 +9,8 @@ class User
      * @param $secret
      * @return bool
      */
-    public static function register($username, $email, $secret) {
+    public static function register($username, $email, $secret)
+    {
         $db = Db::getConnection();
         $sql = 'INSERT INTO users (username, email, secret, role) VALUES (:username, :email, :secret, :role)';
 
@@ -30,7 +31,8 @@ class User
      * @param $length
      * @return bool
      */
-    public static function checkLength($string, $length) {
+    public static function checkLength($string, $length)
+    {
         if (strlen($string) >= $length) return true;
         return false;
     }
@@ -40,7 +42,8 @@ class User
      * @param $email
      * @return bool
      */
-    public static function checkEmail($email) {
+    public static function checkEmail($email)
+    {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) return true;
         return false;
     }
@@ -50,7 +53,8 @@ class User
      * @param $email
      * @return bool
      */
-    public static function checkEmailExists($email) {
+    public static function checkEmailExists($email)
+    {
         $db = Db::getConnection();
         $sql = 'SELECT COUNT(*) FROM users WHERE email = :email';
 
@@ -68,7 +72,8 @@ class User
      * @param $secret2
      * @return bool
      */
-    public static function checkSecretMatch($secret, $secret2) {
+    public static function checkSecretMatch($secret, $secret2)
+    {
         if ($secret === $secret2) return true;
         return false;
     }
@@ -79,7 +84,8 @@ class User
      * @param $secret
      * @return bool
      */
-    public static function checkUserData($email, $secret) {
+    public static function checkUserData($email, $secret)
+    {
         $db = Db::getConnection();
         $sql = 'SELECT * FROM users WHERE email = :email AND secret = :secret';
 
@@ -97,15 +103,16 @@ class User
      * User authentication
      * @param $userId
      */
-    public static function auth($userId) {
+    public static function auth($userId)
+    {
         $_SESSION['user'] = $userId;
     }
 
     /**
      * Checks if user logged
-     * @return mixed
      */
-    public static function checkLogged() {
+    public static function checkLogged()
+    {
         if ($_SESSION['user']) return $_SESSION['user'];
         header("Location: /signin/");
     }
@@ -114,7 +121,8 @@ class User
      * Checks if user is guest
      * @return bool
      */
-    public static function isGuest() {
+    public static function isGuest()
+    {
         if (isset($_SESSION['user'])) return false;
         return true;
     }
@@ -124,7 +132,8 @@ class User
      * @param $userId
      * @return mixed
      */
-    public static function getUser($userId) {
+    public static function getUser($userId)
+    {
         $userId = intval($userId);
 
         if ($userId) {
@@ -149,7 +158,8 @@ class User
      * @param $secret
      * @return bool
      */
-    public static function update($userId, $username, $phone, $address, $secret) {
+    public static function update($userId, $username, $phone, $address, $secret)
+    {
         $db = Db::getConnection();
         $sql = 'UPDATE users
             SET username = :username, secret = :secret, phone = :phone, address = :address
@@ -163,5 +173,17 @@ class User
         $result->bindParam(':secret', $secret, PDO::PARAM_STR);
 
         return $result->execute();
+    }
+
+    /**
+     * Get users
+     * @return array
+     */
+    public static function getUsers()
+    {
+        $db = Db::getConnection();
+        $result = $db->query("SELECT * FROM users");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
     }
 }

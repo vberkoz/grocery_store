@@ -77,11 +77,12 @@ class Bag
      */
     public static function countItems() {
         if (isset($_SESSION['products'])) {
-            $count = 0;
-            foreach ($_SESSION['products'] as $id => $quantity) {
-                $count += $quantity;
-            }
-            return $count;
+//            $count = 0;
+//            foreach ($_SESSION['products'] as $id => $quantity) {
+//                $count += $quantity;
+//            }
+//            return $count;
+            return count($_SESSION['products']);
         } else {
             return 0;
         }

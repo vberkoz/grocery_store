@@ -14,7 +14,6 @@ class ProductController
         $total = Product::getProductsNumber($categoryId);
         $pagination = new Pagination($total, $page, 24, 'page-');
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
-//        echo '<pre>';print_r(json_encode(Bag::getProducts()));die;
 
         require_once ROOT . '/views/product/index.php';
         return true;

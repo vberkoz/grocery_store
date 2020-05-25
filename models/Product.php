@@ -22,14 +22,8 @@ class Product
         }
 
         $db = Db::getConnection();
-
-        $result = $db->query("SELECT id, title, category_id, product_id, price, image 
-                                       FROM products
-                                       WHERE visibility = 1 $categorySQL
-                                       ORDER BY id DESC
-                                       LIMIT $count
-                                       OFFSET $offset");
-
+        $result = $db->query("SELECT * FROM products WHERE visibility = 1 $categorySQL ORDER BY id DESC 
+                                       LIMIT $count OFFSET $offset");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         return $result->fetchAll();
     }
@@ -40,26 +34,9 @@ class Product
      */
     public static function getProductsForAdmin() {
         $db = Db::getConnection();
-
-        $products = [];
-
-        $result = $db->query("SELECT id, title, category_id, product_id, price, image, is_new 
-                                       FROM products
-                                       ORDER BY id DESC");
-
-        $i = 0;
-        while ($row = $result->fetch()) {
-            $products[$i]['id'] = $row['id'];
-            $products[$i]['title'] = $row['title'];
-            $products[$i]['category_id'] = $row['category_id'];
-            $products[$i]['product_id'] = $row['product_id'];
-            $products[$i]['price'] = $row['price'];
-            $products[$i]['image'] = $row['image'];
-            $products[$i]['is_new'] = $row['is_new'];
-            $i ++;
-        }
-
-        return $products;
+        $result = $db->query("SELECT * FROM products ORDER BY id DESC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
     }
 
     /**
@@ -69,24 +46,9 @@ class Product
     public static function getFeaturedProducts()
     {
         $db = Db::getConnection();
-        $products = [];
-        $result = $db->query("SELECT id, title, category_id, price, image, is_new 
-                                       FROM products
-                                       WHERE visibility = 1 AND is_recommended = 1
-                                       ORDER BY id DESC");
-
-        $i = 0;
-        while ($row = $result->fetch()) {
-            $products[$i]['id'] = $row['id'];
-            $products[$i]['title'] = $row['title'];
-            $products[$i]['category_id'] = $row['category_id'];
-            $products[$i]['price'] = $row['price'];
-            $products[$i]['image'] = $row['image'];
-            $products[$i]['is_new'] = $row['is_new'];
-            $i ++;
-        }
-
-        return $products;
+        $result = $db->query("SELECT * FROM products WHERE visibility = 1 ORDER BY id DESC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
     }
 
     /**
@@ -99,10 +61,8 @@ class Product
 
         if ($productId) {
             $db = Db::getConnection();
-
             $result = $db->query("SELECT * FROM products WHERE id = $productId");
             $result->setFetchMode(PDO::FETCH_ASSOC);
-
             return $result->fetch();
         }
 
@@ -118,10 +78,8 @@ class Product
     {
         $db = Db::getConnection();
         $idsString = implode(',', $idsArray);
-        $sql = "SELECT id, product_id, title, category_id, price, image 
-                FROM products 
-                WHERE availability = 1 AND id IN ($idsString)";
 
+        $sql = "SELECT * FROM products WHERE availability = 1 AND id IN ($idsString)";
         $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -138,6 +96,8 @@ class Product
             $products[$i]['category_id'] = $row['category_id'];
             $products[$i]['price'] = $row['price'];
             $products[$i]['image'] = $row['image'];
+            $products[$i]['volume'] = $row['volume'];
+            $products[$i]['unit'] = $row['unit'];
             if ($quantity) {
                 $products[$i]['quantity'] = $quantity[$i];
                 $products[$i]['item_total'] = $row['price'] * $quantity[$i];
@@ -180,8 +140,8 @@ class Product
      */
     public static function createProduct($product) {
         $db = Db::getConnection();
-        $sql = 'INSERT INTO products (title, category_id, product_id, price, availability, brand, image, description, is_new, is_recommended, visibility)
-                VALUES (:title, :category_id, :product_id, :price, :availability, :brand, :image, :description, :is_new, :is_recommended, :visibility)';
+        $sql = 'INSERT INTO products (title, category_id, product_id, price, availability, visibility, image, volume, unit)
+                VALUES (:title, :category_id, :product_id, :price, :availability, :visibility, :image, :volume, :unit)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':title', $product['title'], PDO::PARAM_STR);
@@ -189,12 +149,10 @@ class Product
         $result->bindParam(':product_id', $product['product_id'], PDO::PARAM_STR);
         $result->bindParam(':price', $product['price'], PDO::PARAM_STR);
         $result->bindParam(':availability', $product['availability'], PDO::PARAM_INT);
-        $result->bindParam(':brand', $product['brand'], PDO::PARAM_STR);
-        $result->bindParam(':image', $product['image'], PDO::PARAM_STR);
-        $result->bindParam(':description', $product['description'], PDO::PARAM_STR);
-        $result->bindParam(':is_new', $product['is_new'], PDO::PARAM_INT);
-        $result->bindParam(':is_recommended', $product['is_recommended'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $product['visibility'], PDO::PARAM_INT);
+        $result->bindParam(':image', $product['image'], PDO::PARAM_STR);
+        $result->bindParam(':volume', $product['volume'], PDO::PARAM_INT);
+        $result->bindParam(':unit', $product['unit'], PDO::PARAM_STR);
 
         if ($result->execute()) return $db->lastInsertId();
         return 0;
@@ -228,31 +186,27 @@ class Product
         $db = Db::getConnection();
         $sql = 'UPDATE products 
                 SET 
+                  image = :image,
                   title = :title,
                   category_id = :category_id,
                   product_id = :product_id,
                   price = :price,
+                  volume = :volume,
+                  unit = :unit,
                   availability = :availability,
-                  brand = :brand,
-                  image = :image,
-                  description = :description,
-                  is_new = :is_new,
-                  is_recommended = :is_recommended,
                   visibility = :visibility
                 WHERE id = :id';
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':image', $product['image'], PDO::PARAM_STR);
         $result->bindParam(':title', $product['title'], PDO::PARAM_STR);
         $result->bindParam(':category_id', $product['category_id'], PDO::PARAM_INT);
         $result->bindParam(':product_id', $product['product_id'], PDO::PARAM_STR);
         $result->bindParam(':price', $product['price'], PDO::PARAM_STR);
+        $result->bindParam(':volume', $product['volume'], PDO::PARAM_INT);
+        $result->bindParam(':unit', $product['unit'], PDO::PARAM_STR);
         $result->bindParam(':availability', $product['availability'], PDO::PARAM_INT);
-        $result->bindParam(':brand', $product['brand'], PDO::PARAM_STR);
-        $result->bindParam(':image', $product['image'], PDO::PARAM_STR);
-        $result->bindParam(':description', $product['description'], PDO::PARAM_STR);
-        $result->bindParam(':is_new', $product['is_new'], PDO::PARAM_INT);
-        $result->bindParam(':is_recommended', $product['is_recommended'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $product['visibility'], PDO::PARAM_INT);
 
         return $result->execute();

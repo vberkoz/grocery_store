@@ -16,22 +16,20 @@
                     <tbody>
                         <?php foreach ($products as $product): ?>
                             <tr class="bag-item" bag-item-id="<?php echo $product['id']; ?>">
-                                <td class="p-3">
+                                <td class="p-3" style="min-width: 280px;">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <a href="/product/<?php echo $product['id']; ?>/<?php echo $product['category_id']; ?>">
-                                                <img class="img-fluid border"
-                                                     src="/template/images/<?php echo $product['image']; ?>"
-                                                     alt="<?php echo $product['title']; ?>">
-                                            </a>
+                                        <div class="col-4">
+                                            <img class="img-fluid border pb-3"
+                                                 src="/template/images/<?php echo $product['image']; ?>"
+                                                 alt="<?php echo $product['title']; ?>">
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-8">
                                             <p class="m-0"><?php echo $product['title']; ?></p>
-                                            <small class="text-muted"><?php echo $product['product_id']; ?></small>
+                                            <small class="text-muted"><?php echo $product['volume'] . ' ' . $product['unit']; ?></small>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-3">
+                                <td class="p-3" style="min-width: 150px;">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-primary bag-minus" type="button" data-id="<?php echo $product['id']; ?>">
@@ -52,7 +50,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-3">
+                                <td class="p-3" style="min-width: 100px;">
                                     <p>
                                         <span class="item-total"></span>
 <!--                                        <span class="item-total1">--><?php //echo numfmt_format_currency($fmt, $product['price'] * $bag[$product['id']], "UAH"); ?><!--</span>-->

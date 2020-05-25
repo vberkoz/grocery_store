@@ -8,8 +8,8 @@
                     <b class="d-inline-block mr-3">Замовлення: <?php echo $order['id']; ?></b>
                     <span>Дата: <?php echo date("m j, Y, G:i", strtotime($order['created_at'])); ?></span>
                     <span class="<?php echo Order::STATUS_CAPTIONS_CSS[$order['order_status']]; ?> float-right">
-                    <?php echo Order::STATUS_CAPTIONS[$order['order_status']]; ?>
-                </span>
+                        <?php echo Order::STATUS_CAPTIONS[$order['order_status']]; ?>
+                    </span>
                 </header>
                 <div class="card-body">
                     <div class="row">
@@ -34,19 +34,22 @@
                             <div class="col-6 col-md-4 mb-2">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <a href="/product/<?php echo $product['id']; ?>/<?php echo $product['category_id']; ?>">
-                                            <img src="/template/images/<?php echo $product['image']; ?>"
-                                                 alt="<?php echo $product['image']; ?>" class="img-fluid border">
-                                        </a>
+                                        <img src="/template/images/<?php echo $product['image']; ?>"
+                                             alt="<?php echo $product['image']; ?>" class="img-fluid border pb-3">
                                     </div>
                                     <div class="col-md-8">
                                         <p class="title mb-0"><?php echo $product['title']; ?></p>
-                                        <div class="text-muted">
-                                            <?php echo $product['quantity'] . ' кг'; ?>
-                                        </div>
-                                        <div class="text-muted">
-                                            <?php echo numfmt_format_currency($fmt, $product['item_total'], "UAH"); ?>
-                                        </div>
+                                        <small>
+                                            <div class="text-muted">
+                                                <span class="py-2">
+                                                    <?php echo numfmt_format_currency($fmt, $product['item_total'], "UAH"); ?>
+                                                </span>
+                                                <span class="p-2">
+                                                    <?php echo $product['quantity'] * $product['volume']; ?>
+                                                    <?php if ($product['unit'] != 'кг') {echo 'г';} else {echo 'кг';} ?>
+                                                </span>
+                                            </div>
+                                        </small>
                                     </div>
                                 </div>
                             </div>

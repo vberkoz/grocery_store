@@ -28,23 +28,9 @@ class Category
      */
     public static function getCategories() {
         $db = Db::getConnection();
-
-        $categories = [];
-
-        $result = $db->query("SELECT *
-                                       FROM categories
-                                       ORDER BY sort_order ASC");
-
-        $i = 0;
-        while ($row = $result->fetch()) {
-            $categories[$i]['id'] = $row['id'];
-            $categories[$i]['title'] = $row['title'];
-            $categories[$i]['sort_order'] = $row['sort_order'];
-            $categories[$i]['visibility'] = $row['visibility'];
-            $i++;
-        }
-
-        return $categories;
+        $result = $db->query("SELECT * FROM categories ORDER BY sort_order ASC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
     }
 
     /**
