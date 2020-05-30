@@ -1,20 +1,14 @@
 <?php
 
-class SiteController
+class SiteController extends PublicBase
 {
     /**
      * Loads main page
-     * @return bool
      */
     public function actionIndex()
     {
         $categories = Category::getCategories();
-//        $products = Product::getProducts(4);
-//        $featuredItems = Product::getFeaturedProducts();
-//
-//        require_once ROOT . '/views/site/index.php';
         header("Location: /category/1");
-        return true;
     }
 
     /**

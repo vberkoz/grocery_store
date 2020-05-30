@@ -134,19 +134,13 @@ class User
      */
     public static function getUser($userId)
     {
-        $userId = intval($userId);
-
-        if ($userId) {
-            $db = Db::getConnection();
-            $sql = "SELECT * FROM users WHERE id = :id";
-
-            $result = $db->prepare($sql);
-            $result->bindParam(':id', $userId, PDO::PARAM_INT);
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-            $result->execute();
-
-            return $result->fetch();
-        }
+        $db = Db::getConnection();
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $userId, PDO::PARAM_INT);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        return $result->fetch();
     }
 
     /**
@@ -173,6 +167,16 @@ class User
         $result->bindParam(':secret', $secret, PDO::PARAM_STR);
 
         return $result->execute();
+    }
+
+    public static function updateUserDiscount($userId, $discount)
+    {
+        $db = Db::getConnection();
+        $sql = 'UPDATE users SET discount = :discount WHERE id = :id';
+        $r = $db->prepare($sql);
+        $r->bindParam(':id',$userId, PDO::PARAM_INT);
+        $r->bindParam(':discount',$discount, PDO::PARAM_INT);
+        return $r->execute();
     }
 
     /**

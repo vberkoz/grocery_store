@@ -23,9 +23,24 @@ class AdminOrderController extends AdminBase
     {
         self::checkAdmin();
         $order = Order::getOrder($id);
+        if ($order['user_id']) {
+            $user = User::getUser($order['user_id']);
+            $discount = $user['discount'];
+        } else {
+            $discount = 0;
+        }
+
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $productsCount = json_decode($order['bag'], true);
         $productsIds = array_keys($productsCount);
-        $products = Product::getProductsByIds($productsIds);
+
+        $products = json_decode($order['bag'], true);
+        $bag = Product::getProductsByIds(array_keys($products), array_values($products));
+        $order['total'] = $bag['total'];
+        $discount = $order['total'] * ($discount * 0.01);
+        $total = $order['total'] - $discount;
+        unset($bag['total']);
+        $order['bag'] = $bag;
 
         if (isset($_POST['submit'])) {
             Order::update($id, $_POST['order_status']);
@@ -37,17 +52,13 @@ class AdminOrderController extends AdminBase
     }
 
     /**
-     * Delete order
-     * @param $id
+     * Updates order status
      * @return bool
      */
-    public function actionDelete($id) {
+    public function actionUpdate()
+    {
         self::checkAdmin();
-        if (isset($_POST['submit'])) {
-            Order::delete($id);
-            header("Location: /admin/order");
-        }
-        require_once ROOT . '/views/admin_order/delete.php';
+        Order::update($_POST['order_id'], $_POST['order_status']);
         return true;
     }
 }

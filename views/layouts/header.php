@@ -53,7 +53,7 @@
     <nav class="navbar navbar-expand-md navbar-light ">
         <div class="container">
             <a class="navbar-brand mb-1" href="/category/1">
-                <img src="/template/images/logo.jpg" height="30" alt="">
+                <img src="/template/images/logo.jpg" height="29" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

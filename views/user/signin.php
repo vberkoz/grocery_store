@@ -6,11 +6,7 @@
     <?php if ($errors): ?>
         <?php if (in_array(3, $errors)): ?>
             <div class="alert alert-danger" role="alert">Невірні дані користувача</div>
-        <?php else: ?>
-<!--            <div style="height: 66px;"></div>-->
         <?php endif; ?>
-    <?php else: ?>
-<!--        <div style="height: 66px;"></div>-->
     <?php endif; ?>
     <div class="card">
         <div class="card-body">
@@ -26,11 +22,7 @@
                     <?php if ($errors): ?>
                         <?php if (in_array(1, $errors)): ?>
                             <div class="invalid-feedback">Невірний формат електронної пошти</div>
-                        <?php else: ?>
-<!--                            <div style="height: 23px;"></div>-->
                         <?php endif; ?>
-                    <?php else: ?>
-<!--                        <div style="height: 23px;"></div>-->
                     <?php endif; ?>
                 </div>
                 <div class="form-group">
@@ -42,11 +34,7 @@
                     <?php if ($errors): ?>
                         <?php if (in_array(2, $errors)): ?>
                             <div class="invalid-feedback">Пароль має бути не менше 6-ти символів</div>
-                        <?php else: ?>
-<!--                            <div style="height: 23px;"></div>-->
                         <?php endif; ?>
-                    <?php else: ?>
-<!--                        <div style="height: 23px;"></div>-->
                     <?php endif; ?>
                 </div>
                 <div class="form-group">

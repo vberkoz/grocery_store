@@ -65,6 +65,14 @@ class BagController
 
     public function actionData()
     {
+        if (!User::isGuest()) {
+            $userId = User::checkLogged();
+            $user = User::getUser($userId);
+            $discount = $user['discount'];
+        } else {
+            $discount = 0;
+        }
+
         $products = Bag::getProducts();
         $details = Product::getProductsByIds(array_keys($products));
         $bag = [];
@@ -82,6 +90,7 @@ class BagController
             }
             $i ++;
         }
+        array_push($bag, $discount);
         echo json_encode($bag);
         return true;
     }
@@ -92,6 +101,14 @@ class BagController
      */
     public function actionCheckout()
     {
+        if (!User::isGuest()) {
+            $userId = User::checkLogged();
+            $user = User::getUser($userId);
+            $discount = $user['discount'];
+        } else {
+            $discount = 0;
+        }
+
         $categories = Category::getCategories();
         $result = false;
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
@@ -121,6 +138,7 @@ class BagController
                     $productsIds = array_keys($bag);
                     $products = Product::getProductsByIds($productsIds);
                     $totalPrice = Bag::calculateTotalPrice($products);
+                    $totalPrice = $totalPrice - ($totalPrice * ($discount * 0.01));
                     $totalNumber = Bag::countItems();
 
                     $adminEmail = 'vberkoz@gmail.com';
@@ -150,6 +168,7 @@ class BagController
                 $productsIds = array_keys($bag);
                 $products = Product::getProductsByIds($productsIds);
                 $totalPrice = Bag::calculateTotalPrice($products);
+                $totalPrice = $totalPrice - ($totalPrice * ($discount * 0.01));
                 $totalNumber = Bag::countItems();
             }
         } else {
@@ -161,6 +180,7 @@ class BagController
                 $productsIds = array_keys($bag);
                 $products = Product::getProductsByIds($productsIds);
                 $totalPrice = Bag::calculateTotalPrice($products);
+                $totalPrice = $totalPrice - ($totalPrice * ($discount * 0.01));
                 $totalNumber = Bag::countItems();
 
                 $userName = false;

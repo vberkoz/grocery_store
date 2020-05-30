@@ -26,9 +26,15 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
+                        <a href="/admin"
+                           class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin') echo 'active'; ?>">
+                            Статистика <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/admin/product"
                            class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/product') echo 'active'; ?>">
-                            Товари <span class="sr-only">(current)</span>
+                            Товари
                         </a>
                     </li>
                     <li class="nav-item">

@@ -90,11 +90,11 @@ class Bag
 
     /**
      * Gets products from bag
-     * @return bool
+     * @return array
      */
     public static function getProducts() {
         if (isset($_SESSION['products'])) return $_SESSION['products'];
-        return false;
+        return [0 => 0];
     }
 
     /**

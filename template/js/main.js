@@ -20,7 +20,11 @@
 $(document).ready(function () {
 
     let bag = [];
+    let discount = 0;
     let bagItemsPrice = 0;
+
+    console.log(screen.width, screen.height);
+    console.log(window);
 
     /**
      * Add product to bag
@@ -66,7 +70,9 @@ $(document).ready(function () {
             bagItemsPrice += i.item_total;
         });
         $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
+        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
+        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
+        // $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
 
         $(`tr[bag-item-id='${id}']`).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
 
@@ -113,7 +119,9 @@ $(document).ready(function () {
             bagItemsPrice += i.item_total;
         });
         $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
+        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
+        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
+        // $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
 
         $(`tr[bag-item-id='${id}']`).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
 
@@ -168,7 +176,9 @@ $(document).ready(function () {
             bagItemsPrice += i.item_total;
         });
         $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
+        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
+        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
+        // $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
 
         $(`tr[bag-item-id='${id}']`).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
 
@@ -206,12 +216,15 @@ $(document).ready(function () {
     $.get('/bag/data', {}, function (r) {
         bag = JSON.parse(r);
 
+        discount = bag.pop();
+
         bagItemsPrice = 0;
         bag.forEach(function (i) {
             bagItemsPrice += i.item_total;
         });
         $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
+        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
+        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
 
         $('.bag-item').each(function () {
             let bagItemId = parseInt($(this).attr('bag-item-id'));

@@ -6,7 +6,8 @@ class UserController
      * Loads user sign up page
      * @return bool
      */
-    public static function actionSignup() {
+    public static function actionSignup()
+    {
         $categories = Category::getCategories();
         $name = '';
         $email = '';
@@ -39,7 +40,8 @@ class UserController
      * Loads user sign in page
      * @return bool
      */
-    public static function actionSignin() {
+    public static function actionSignin()
+    {
         $categories = Category::getCategories();
         $email = '';
         $password = '';
@@ -50,7 +52,6 @@ class UserController
             $password = $_POST['password'];
 
             if (!User::checkEmail($email)) $errors[] = 1;
-//            if (!User::checkLength($password, 6)) $errors[] = 2;
 
             $userId = User::checkUserData($email, $password);
 

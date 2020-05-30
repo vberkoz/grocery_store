@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <?php else: ?>
-                        <span class="text-muted" style="height: 38px;">Немає в наявності</span>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" disabled style="height: 38px;">Немає в наявності</button>
                     <?php endif; ?>
 
                     <p class="card-text pt-2" style="min-height: 48px;">

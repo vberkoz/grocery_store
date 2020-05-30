@@ -43,9 +43,11 @@ return array(
 
     'admin/order/create' => 'adminOrder/create',
     'admin/order/view/([0-9]+)' => 'adminOrder/view/$1',
-    'admin/order/delete/([0-9]+)' => 'adminOrder/delete/$1',
+    'admin/order/update' => 'adminOrder/update',
     'admin/order' => 'adminOrder/index',
 
+    'admin/user/view/([0-9]+)' => 'adminUser/view/$1',
+    'admin/user/update' => 'adminUser/update',
     'admin/user' => 'adminUser/index',
 
     'admin' => 'admin/index',

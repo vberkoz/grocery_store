@@ -65,6 +65,10 @@ class Router
                 // Create object, call method
                 $controllerObject = new $controllerName;
 
+//                echo '<pre>';print_r($GLOBALS);die;
+//                echo '<pre>';print_r($_COOKIE['PHPSESSID']);die;
+                Request::insert();
+
                 $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
 
                 if ($result != null) {

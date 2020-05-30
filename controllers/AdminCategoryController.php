@@ -6,7 +6,8 @@ class AdminCategoryController extends AdminBase
      * Categories list
      * @return bool
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         self::checkAdmin();
         $categories = Category::getCategories();
         require_once ROOT . '/views/admin_category/index.php';
@@ -15,45 +16,33 @@ class AdminCategoryController extends AdminBase
 
     /**
      * Create category
-     * @return bool
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         self::checkAdmin();
+        $categories = Category::getCategories();
 
-        if (isset($_POST['submit'])) {
-            $category['title'] = $_POST['title'];
-            $category['visibility'] = $_POST['visibility'];
-            $category['sort_order'] = $_POST['sort_order'];
-
-            $errors = false;
-
-            if (!isset($category['title']) || empty($category['title'])) {
-                $errors[] = 'Complete form';
-            }
-
-            if (!$errors) {
-                $id = Category::createCategory($category);
-                header("Location: /admin/category");
-            }
+        $sortOrder = 0;
+        foreach ($categories as $item) {
+            if ($sortOrder < $item['sort_order']) $sortOrder = $item['sort_order'];
         }
 
-        require_once ROOT . '/views/admin_category/create.php';
-        return true;
+        $category['title'] = 'Нова категорія';
+        $category['visibility'] = 0;
+        $category['sort_order'] = $sortOrder + 1;
+
+        $id = Category::createCategory($category);
+        header("Location: /admin/category");
     }
 
     /**
      * Remove category
      * @param $id
-     * @return bool
      */
     public function actionDelete($id) {
         self::checkAdmin();
-        if (isset($_POST['submit'])) {
-            Category::deleteCategory($id);
-            header("Location: /admin/category");
-        }
-        require_once ROOT . '/views/admin_category/delete.php';
-        return true;
+        Category::deleteCategory($id);
+        header("Location: /admin/category");
     }
 
     /**
@@ -64,21 +53,18 @@ class AdminCategoryController extends AdminBase
     public function actionUpdate($id) {
         self::checkAdmin();
         $category = Category::getCategory($id);
+        $errors = false;
 
         if (isset($_POST['submit'])) {
             $category['title'] = $_POST['title'];
             $category['visibility'] = $_POST['visibility'];
-            $category['sort_order'] = $_POST['sort_order'];
-
-            $errors = false;
 
             if (!isset($category['title']) || empty($category['title'])) {
-                $errors[] = 'Complete form';
+                $errors[] = 1;
             }
 
             if (!$errors) {
                 Category::updateCategory($id, $category);
-
                 header("Location: /admin/category");
             }
         }

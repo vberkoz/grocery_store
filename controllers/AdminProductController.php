@@ -18,16 +18,11 @@ class AdminProductController extends AdminBase
     /**
      * Remove product
      * @param $id
-     * @return bool
      */
     public function actionDelete($id) {
         self::checkAdmin();
-        if (isset($_POST['submit'])) {
-            Product::deleteProduct($id);
-            header("Location: /admin/product");
-        }
-        require_once ROOT . '/views/admin_product/delete.php';
-        return true;
+        Product::deleteProduct($id);
+        header("Location: /admin/product");
     }
 
     /**
