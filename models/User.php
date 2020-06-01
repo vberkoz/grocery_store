@@ -57,11 +57,9 @@ class User
     {
         $db = Db::getConnection();
         $sql = 'SELECT COUNT(*) FROM users WHERE email = :email';
-
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->execute();
-
         if ($result->fetchColumn()) return true;
         return false;
     }
@@ -165,7 +163,6 @@ class User
         $result->bindParam(':phone', $phone, PDO::PARAM_STR);
         $result->bindParam(':address', $address, PDO::PARAM_STR);
         $result->bindParam(':secret', $secret, PDO::PARAM_STR);
-
         return $result->execute();
     }
 
@@ -173,10 +170,52 @@ class User
     {
         $db = Db::getConnection();
         $sql = 'UPDATE users SET discount = :discount WHERE id = :id';
-        $r = $db->prepare($sql);
-        $r->bindParam(':id',$userId, PDO::PARAM_INT);
-        $r->bindParam(':discount',$discount, PDO::PARAM_INT);
-        return $r->execute();
+        $result = $db->prepare($sql);
+        $result->bindParam(':id',$userId, PDO::PARAM_INT);
+        $result->bindParam(':discount',$discount, PDO::PARAM_INT);
+        return $result->execute();
+    }
+
+    public static function setChangeSecretLink($email, $link)
+    {
+        $db = Db::getConnection();
+        $sql = 'UPDATE users SET change_secret_link = :link WHERE email = :email';
+        $result = $db->prepare($sql);
+        $result->bindParam(':email',$email, PDO::PARAM_STR);
+        $result->bindParam(':link',$link, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public static function changeSecret($link, $password)
+    {
+        $db = Db::getConnection();
+        $sql = 'UPDATE users SET secret = :secret WHERE change_secret_link = :link';
+        $result = $db->prepare($sql);
+        $result->bindParam(':link',$link, PDO::PARAM_STR);
+        $result->bindParam(':secret',$password, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public static function deleteChangeSecretLink($link)
+    {
+        $db = Db::getConnection();
+        $sql = 'UPDATE users SET change_secret_link = :change_secret_link WHERE change_secret_link = :link';
+        $result = $db->prepare($sql);
+        $change_secret_link = '';
+        $result->bindParam(':link',$link, PDO::PARAM_STR);
+        $result->bindParam(':change_secret_link',$change_secret_link, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public static function checkLinkExists($link)
+    {
+        $db = Db::getConnection();
+        $sql = 'SELECT COUNT(*) FROM users WHERE change_secret_link = :link';
+        $result = $db->prepare($sql);
+        $result->bindParam(':link', $link, PDO::PARAM_STR);
+        $result->execute();
+        if ($result->fetchColumn()) return true;
+        return false;
     }
 
     /**

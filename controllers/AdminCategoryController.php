@@ -9,7 +9,7 @@ class AdminCategoryController extends AdminBase
     public function actionIndex()
     {
         self::checkAdmin();
-        $categories = Category::getCategories();
+        $categories = Category::getCategories(true);
         require_once ROOT . '/views/admin_category/index.php';
         return true;
     }
@@ -39,7 +39,8 @@ class AdminCategoryController extends AdminBase
      * Remove category
      * @param $id
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         self::checkAdmin();
         Category::deleteCategory($id);
         header("Location: /admin/category");
@@ -50,16 +51,18 @@ class AdminCategoryController extends AdminBase
      * @param $id
      * @return bool
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         self::checkAdmin();
         $category = Category::getCategory($id);
         $errors = false;
 
         if (isset($_POST['submit'])) {
             $category['title'] = $_POST['title'];
-            $category['visibility'] = $_POST['visibility'];
+            $category['visibility'] = 0;
+            if (array_key_exists('visibility', $_POST)) $category['visibility'] = $_POST['visibility'];
 
-            if (!isset($category['title']) || empty($category['title'])) {
+            if (!isset($category['title']) || empty($category['title']) || !User::checkLength($category['title'], 3)) {
                 $errors[] = 1;
             }
 

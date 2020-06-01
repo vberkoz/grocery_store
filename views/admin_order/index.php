@@ -13,7 +13,7 @@
                                 <th scope="col">Телефон</th>
                                 <th scope="col" style="min-width: 200px;">Адреса</th>
                                 <th scope="col">Статус</th>
-                                <th scope="col" style="min-width: 152px;">Дата</th>
+                                <th scope="col" style="min-width: 110px;">Дата</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                         <?php echo Order::STATUS_CAPTIONS[$order['order_status']]; ?>
                                     </span>
                                     </td>
-                                    <td class="align-middle"><?php echo date("m j, Y, G:i", strtotime($order['created_at'])); ?></td>
+                                    <td class="align-middle"><?php echo date("Y-m-d H:i:s", strtotime($order['created_at'])); ?></td>
                                     <td class="align-middle">
                                         <a class="btn btn-outline-secondary btn-sm border-0" href="/admin/order/view/<?php echo $order['id']; ?>">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" height="1.4em" fill="currentColor" class="align-middle pb-1">

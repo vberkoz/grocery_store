@@ -3,6 +3,11 @@
 <div class="col-md-4">
 </div>
 <div class="col-md-4">
+    <div class="d-none w-100" id="remindSuccess">
+        <div class="alert alert-success" role="alert">
+            На вашу електронну пошту було вислано листа з інструкціями для відновлення паролю.
+        </div>
+    </div>
     <?php if ($errors): ?>
         <?php if (in_array(3, $errors)): ?>
             <div class="alert alert-danger" role="alert">Невірні дані користувача</div>
@@ -14,19 +19,19 @@
             <div style="height: 23px;"></div>
             <form action="#" method="post">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Електронна пошта</label>
+                    <label for="inputEmail">Електронна пошта</label>
                     <input type="email"
                            class="form-control <?php if ($errors) {if (in_array(1, $errors)) echo 'is-invalid';} ?>"
-                           name="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           name="email" id="inputEmail" aria-describedby="emailHelp"
                            placeholder="пр. name@gmail.com" value="<?php echo $email; ?>">
                     <?php if ($errors): ?>
                         <?php if (in_array(1, $errors)): ?>
-                            <div class="invalid-feedback">Невірний формат електронної пошти</div>
+                            <div class="invalid-feedback" id="invalidEmail">Невірний формат електронної пошти</div>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <a class="float-right" href="#">Нагадати</a>
+                    <button type="button" class="btn btn-link float-right p-0" id="remind">Не пам'ятаю</button>
                     <label for="exampleInputPassword1">Пароль</label>
                     <input type="password"
                            class="form-control <?php if ($errors) {if (in_array(2, $errors)) echo 'is-invalid';} ?>"

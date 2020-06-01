@@ -45,4 +45,41 @@
     <?php endif; ?>
 </div>
 
+<div class="col-12">
+    <div class="card mb-3 mx-auto">
+        <div class="card-body">
+            <h5 class="card-title">Запити на сторінку</h5>
+            <table class="table table-sm table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" style="min-width: 100px;">Дата</th>
+                        <th scope="col">Адреса</th>
+                        <th scope="col">Метод</th>
+                        <th scope="col">Запит</th>
+                        <th scope="col">Сесія</th>
+                        <th scope="col">Користувач</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($requests as $request): ?>
+                        <tr>
+                            <td><?php echo $request['REQUEST_TIME_FLOAT']; ?></td>
+                            <td><?php echo $request['REMOTE_ADDR']; ?></td>
+                            <td><?php echo $request['REQUEST_METHOD']; ?></td>
+                            <td><?php echo $request['REQUEST_URI']; ?></td>
+                            <td><?php echo $request['PHPSESSID']; ?></td>
+                            <td><?php echo $request['USER_ID']; ?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="3"><?php echo $request['HTTP_USER_AGENT']; ?></td>
+                            <td colspan="2"><?php echo $request['HTTP_ACCEPT_LANGUAGE']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <?php include_once ROOT . '/views/layouts/admin_footer.php'?>

@@ -7,7 +7,8 @@ class Category
      * @param $categoryId
      * @return mixed
      */
-    public static function getCategory($categoryId) {
+    public static function getCategory($categoryId)
+    {
         $categoryId = intval($categoryId);
 
         if ($categoryId) {
@@ -26,9 +27,16 @@ class Category
      * Get categories list
      * @return array
      */
-    public static function getCategories() {
+    public static function getCategories($adminArea = false)
+    {
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM categories ORDER BY sort_order ASC");
+        if ($adminArea) {
+            $sql = "SELECT * FROM categories ORDER BY sort_order ASC";
+        } else {
+            $sql = "SELECT * FROM categories WHERE visibility = 1 ORDER BY sort_order ASC";
+        }
+
+        $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         return $result->fetchAll();
     }
@@ -38,7 +46,8 @@ class Category
      * @param $category
      * @return int|string
      */
-    public static function createCategory($category) {
+    public static function createCategory($category)
+    {
         $db = Db::getConnection();
         $sql = 'INSERT INTO categories (title, sort_order, visibility)
                 VALUES (:title, :sort_order, :visibility)';
@@ -57,7 +66,8 @@ class Category
      * @param $id
      * @return bool
      */
-    public static function deleteCategory($id) {
+    public static function deleteCategory($id)
+    {
         $id = intval($id);
 
         $db = Db::getConnection();
@@ -76,7 +86,8 @@ class Category
      * @param $category
      * @return bool
      */
-    public static function updateCategory($id, $category) {
+    public static function updateCategory($id, $category)
+    {
         $db = Db::getConnection();
         $sql = 'UPDATE categories 
                 SET 

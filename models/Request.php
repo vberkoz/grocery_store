@@ -2,7 +2,41 @@
 
 class Request
 {
-    public static function insert()
+    /**
+     * Get requests
+     * @return array
+     */
+    public static function index()
+    {
+        $db = Db::getConnection();
+        $result = $db->query('SELECT * FROM requests ORDER BY REQUEST_TIME_FLOAT DESC LIMIT 100');
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $i = 0;
+        $requests = [];
+        while ($row = $result->fetch()) {
+            $time = date('Y-m-d H:i:s', $row['REQUEST_TIME_FLOAT']);
+            $requests[$i]['REQUEST_TIME_FLOAT'] = $time;
+            $requests[$i]['REMOTE_ADDR'] = $row['REMOTE_ADDR'];
+            $requests[$i]['REQUEST_METHOD'] = $row['REQUEST_METHOD'];
+            $requests[$i]['REQUEST_URI'] = $row['REQUEST_URI'];
+            $requests[$i]['HTTP_USER_AGENT'] = $row['HTTP_USER_AGENT'];
+            $requests[$i]['HTTP_ACCEPT_LANGUAGE'] = $row['HTTP_ACCEPT_LANGUAGE'];
+            $requests[$i]['PHPSESSID'] = $row['PHPSESSID'];
+
+            $user = User::getUser($row['USER_ID']);
+            if (!$user) $user['username'] = 'Гість';
+            $requests[$i]['USER_ID'] = $user['username'];
+            $i ++;
+        }
+
+        return $requests;
+    }
+
+    /**
+     * Create request
+     */
+    public static function create()
     {
         $db = Db::getConnection();
 
@@ -11,8 +45,6 @@ class Request
 
         $userId = 0;
         if (array_key_exists('user', $_SESSION)) $userId = $_SESSION['user'];
-
-//        echo '<pre>';print_r($bag);die;
 
         $sql = 'INSERT INTO requests (REQUEST_TIME_FLOAT, REMOTE_ADDR, REQUEST_METHOD, REQUEST_URI, HTTP_USER_AGENT, HTTP_ACCEPT_LANGUAGE, PHPSESSID, USER_ID, BAG)
                 VALUES (:REQUEST_TIME_FLOAT, :REMOTE_ADDR, :REQUEST_METHOD, :REQUEST_URI, :HTTP_USER_AGENT, :HTTP_ACCEPT_LANGUAGE, :PHPSESSID, :USER_ID, :BAG)';

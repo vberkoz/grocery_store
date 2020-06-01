@@ -7,7 +7,7 @@
                 <article class="card mb-3">
                     <header class="card-header bg-white">
                         <b class="d-inline-block mr-3">Замовлення: <?php echo $order['id']; ?></b>
-                        <span>Дата: <?php echo date("m j, Y, G:i", strtotime($order['created_at'])); ?></span>
+                        <span><?php echo date('Y-m-d H:i:s', strtotime($order['created_at'])); ?></span>
                         <span class="<?php echo Order::STATUS_CAPTIONS_CSS[$order['order_status']]; ?> float-right">
                             <?php echo Order::STATUS_CAPTIONS[$order['order_status']]; ?>
                         </span>

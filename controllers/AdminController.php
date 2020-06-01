@@ -6,9 +6,9 @@ class AdminController extends AdminBase
      * Administration area main page
      * @return bool
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         self::checkAdmin();
-//        header("Location: /admin/product");
 
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $products = Order::getUserProducts();
@@ -17,7 +17,7 @@ class AdminController extends AdminBase
             $total += $product['price'];
         }
 
-//        echo '<pre>';print_r($products);die;
+        $requests = Request::index();
 
         require_once ROOT . '/views/admin/index.php';
         return true;

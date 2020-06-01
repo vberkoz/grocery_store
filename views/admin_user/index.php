@@ -12,7 +12,7 @@
                                 <th scope="col">Електронна пошта</th>
                                 <th scope="col">Ім'я</th>
                                 <th scope="col">Телефон</th>
-                                <th scope="col">Адреса</th>
+                                <th scope="col" style="min-width: 200px;">Адреса</th>
                                 <th scope="col">Знижка</th>
                                 <th scope="col"></th>
                             </tr>

@@ -6,7 +6,8 @@ class AdminProductController extends AdminBase
      * Products list
      * @return bool
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         self::checkAdmin();
         $categories = Category::getCategories();
         $products = Product::getProductsForAdmin();
@@ -19,7 +20,8 @@ class AdminProductController extends AdminBase
      * Remove product
      * @param $id
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         self::checkAdmin();
         Product::deleteProduct($id);
         header("Location: /admin/product");
@@ -28,7 +30,8 @@ class AdminProductController extends AdminBase
     /**
      * Create product
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         self::checkAdmin();
 
         $product['title'] = 'Новий Товар';
@@ -50,7 +53,8 @@ class AdminProductController extends AdminBase
      * @param $id
      * @return bool
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         self::checkAdmin();
         $categories = Category::getCategories();
         $product = Product::getProduct($id);
@@ -58,7 +62,6 @@ class AdminProductController extends AdminBase
         $errors = false;
 
         if (isset($_POST['submit'])) {
-//            echo '<pre>';print_r($_POST);die;
             $product['title'] = $_POST['title'];
             $product['category_id'] = $_POST['category_id'];
             $product['price'] = $_POST['price'];

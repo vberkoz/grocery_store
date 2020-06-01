@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-<!--    <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">-->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <title>Вітамін+</title>
@@ -14,10 +13,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/template/css/bootstrap.min.css" rel="stylesheet">
-<!--    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-<!--    <link href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/navbar-top-fixed.css" rel="stylesheet">-->
     <link rel="stylesheet" href="/template/css/public.css">
 </head>
 
@@ -60,13 +57,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="/category/1">Магазин <span class="sr-only">(current)</span></a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="/contact">Зв'язатися</a>-->
-<!--                    </li>-->
-
                     <?php foreach ($categories as $category): ?>
                         <li class="nav-item">
                             <a href="/category/<?php echo $category['id']; ?>"
@@ -82,7 +72,7 @@
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <form class="form-inline mt-2 mt-md-0">
+                <form class="form-inline mt-5 mt-md-0">
                     <?php if (User::isGuest()): ?>
                         <a class="btn btn-outline-primary mr-1" href="/signin">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 515.556 515.556" height="1.2em" fill="currentColor" class="align-middle pb-1">
@@ -114,9 +104,6 @@
                             Акаунт
                         </a>
                     <?php endif; ?>
-<!--                    <a href="/bag" class="btn btn-outline-secondary mr-1">-->
-<!--                        View Bag <span class="badge badge-warning" id="bag-count">--><?php //echo Bag::countItems(); ?><!--</span>-->
-<!--                    </a>-->
                 </form>
             </div>
         </div>

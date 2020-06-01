@@ -22,6 +22,8 @@ return array(
     'signup' => 'user/signup',
     'signin' => 'user/signin',
     'signout' => 'user/signout',
+    'forgot' => 'user/forgot',
+    'change-secret/*' => 'user/changeSecret/$1',
 
     'cabinet/history' => 'cabinet/history',
     'cabinet/liked' => 'cabinet/liked',

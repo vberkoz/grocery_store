@@ -119,7 +119,6 @@ class BagController
             $userPhone = $_POST['userPhone'];
             $userAddress = $_POST['userAddress'];
             $userComment = $_POST['userComment'];
-//            echo '<pre>';print_r($userName);die;
 
             if (!User::checkLength($userName, 2)) $errors[] = 1;
             if (!User::checkLength($userPhone, 10)) $errors[] = 2;

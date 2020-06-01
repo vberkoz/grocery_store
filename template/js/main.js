@@ -23,9 +23,6 @@ $(document).ready(function () {
     let discount = 0;
     let bagItemsPrice = 0;
 
-    console.log(screen.width, screen.height);
-    console.log(window);
-
     /**
      * Add product to bag
      */
@@ -235,7 +232,26 @@ $(document).ready(function () {
             $(this).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
             $(this).find('.item-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.price) + ' ₴');
         });
-    })
+    });
+
+    $('#remind').click(function () {
+        let email = $('#inputEmail').val();
+        if (validateEmail(email)) {
+            $('#inputEmail').removeClass('is-invalid');
+            $('#invalidEmail').remove();
+            $.post('/forgot', {email: email}, function (response) {
+                $('#remindSuccess').removeClass('d-none');
+            });
+        } else {
+            $('#inputEmail').addClass('is-invalid');
+            $('#inputEmail').after('<div class="invalid-feedback">Невірний формат електронної пошти</div>');
+        }
+    });
+
+    function validateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
 });
 
 /**
