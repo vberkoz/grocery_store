@@ -1,13 +1,14 @@
 <?php include_once ROOT . '/views/layouts/header.php'?>
-<?php //include_once ROOT . '/views/layouts/catalog.php'?>
 
 <aside class="col-md-12">
     <div class="row">
     <?php foreach ($products as $key => $product): ?>
         <div class="col-6 col-md-2 pl-1 pr-1 pb-2 product-card">
             <div class="card h-100">
-                <img class="card-img-top" <?php if (!$product['availability']) echo 'style="opacity: 0.5;"'; ?>
-                     src="/template/images/<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>">
+                <div class="px-4 pt-4">
+                    <img class="card-img-top" <?php if (!$product['availability']) echo 'style="opacity: 0.5;"'; ?>
+                         src="/template/images/<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>">
+                </div>
 
                 <div class="card-body d-flex flex-column justify-content-between p-3">
                     <?php if ($product['availability']): ?>

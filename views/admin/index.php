@@ -25,7 +25,7 @@
                             <tr class="product-record">
                                 <th scope="row" class="align-middle"><?php echo $key + 1; ?></th>
                                 <td class="align-middle">
-                                    <img class="img-fluid pb-2" style="width: 3em;"
+                                    <img class="img-fluid" style="width: 3em;"
                                          src="/template/images/<?php echo $product['image']; ?>"
                                          alt="<?php echo $product['title']; ?>">
                                 </td>

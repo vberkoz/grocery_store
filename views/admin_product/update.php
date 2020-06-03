@@ -9,7 +9,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Фото</label>
-                                <img src="<?php echo $image; ?>" alt="<?php echo $image; ?>" class="img-thumbnail img-fluid pb-5 mb-3">
+                                <img src="<?php echo $image; ?>" alt="<?php echo $image; ?>" class="img-thumbnail img-fluid mb-3 w-100">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="image" name="image"
                                            accept="image/jpeg">

@@ -1,13 +1,8 @@
 <?php
 
 return array(
-    'product/([0-9]+)/([0-9]+)' => 'product/show/$1/$2',
-
     'category/([0-9]+)/page-([0-9]+)' => 'product/index/$1/$2',
     'category/([0-9]+)' => 'product/index/$1',
-
-    'posts' => 'post/index',
-    'post/([0-9]+)' => 'post/single/$1',
 
     'bag/add/([0-9]+)' => 'bag/add/$1',
     'bag/add-ajax/([0-9]+)' => 'bag/addajax/$1',

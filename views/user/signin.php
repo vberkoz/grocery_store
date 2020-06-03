@@ -43,12 +43,6 @@
                     <?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" checked="">
-                        <div class="custom-control-label">Запам'ятати мене</div>
-                    </label>
-                </div>
-                <div class="form-group">
                     <button type="submit" name="submit" class="btn btn-primary btn-block">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 515.556 515.556" height="1.2em" fill="currentColor" class="align-middle pb-1">
                             <path d="m96.667 0v96.667h64.444v-32.223h257.778v386.667h-257.778v-32.222h-64.444v96.667h386.667v-515.556z"/>

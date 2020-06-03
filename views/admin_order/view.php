@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <img src="/template/images/<?php echo $product['image']; ?>"
-                                         alt="<?php echo $product['image']; ?>" class="img-fluid border pb-3">
+                                         alt="<?php echo $product['image']; ?>" class="img-fluid">
                                 </div>
                                 <div class="col-md-8">
                                     <p class="title mb-0"><?php echo $product['title']; ?></p>

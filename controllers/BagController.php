@@ -150,7 +150,7 @@ class BagController
                     $message .= '<p style="padding: 5px;"><b>Товарів ' . $totalNumber . ' на суму ' . $totalPrice . 'грн.</b></p>';
                     $message .= '<table><tbody>';
                     foreach ($products as $product) {
-                        $message .= '<tr><td style="padding: 5px;">' . $product['title'] . '</td><td style="padding: 5px;">' . $bag[$product['id']] . '</td></tr>';
+                        $message .= '<tr><td style="padding: 5px;">' . $product['title'] . '</td><td style="padding: 5px;">' . $bag[$product['id']] * $product['volume'] . ' ' . $product['unit'] . '</td></tr>';
                     }
                     $message .= '</tbody></table>';
                     $message .= '</body></html>';

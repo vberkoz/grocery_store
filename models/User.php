@@ -85,15 +85,15 @@ class User
     public static function checkUserData($email, $secret)
     {
         $db = Db::getConnection();
-        $sql = 'SELECT * FROM users WHERE email = :email AND secret = :secret';
+        $sql = 'SELECT * FROM users WHERE email = :email';
 
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
-        $result->bindParam(':secret', $secret, PDO::PARAM_STR);
         $result->execute();
-
         $user = $result->fetch();
-        if ($user) return $user['id'];
+        $hash = $user['secret'];
+
+        if (password_verify($secret, $hash)) return $user['id'];
         return false;
     }
 
@@ -150,19 +150,23 @@ class User
      * @param $secret
      * @return bool
      */
-    public static function update($userId, $username, $phone, $address, $secret)
+    public static function update($userId, $username, $phone, $address, $secret = 0)
     {
         $db = Db::getConnection();
-        $sql = 'UPDATE users
-            SET username = :username, secret = :secret, phone = :phone, address = :address
-            WHERE id = :id';
+        if ($secret) {
+            $sql = 'UPDATE users SET username = :username, secret = :secret, phone = :phone, address = :address WHERE id = :id';
+        } else {
+            $sql = 'UPDATE users SET username = :username, phone = :phone, address = :address WHERE id = :id';
+        }
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $userId, PDO::PARAM_INT);
         $result->bindParam(':username', $username, PDO::PARAM_STR);
         $result->bindParam(':phone', $phone, PDO::PARAM_STR);
         $result->bindParam(':address', $address, PDO::PARAM_STR);
-        $result->bindParam(':secret', $secret, PDO::PARAM_STR);
+        if ($secret) {
+            $result->bindParam(':secret', $secret, PDO::PARAM_STR);
+        }
         return $result->execute();
     }
 

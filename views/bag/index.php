@@ -19,7 +19,7 @@
                                 <td class="p-3" style="min-width: 280px;">
                                     <div class="row">
                                         <div class="col-4">
-                                            <img class="img-fluid border pb-3"
+                                            <img class="img-fluid"
                                                  src="/template/images/<?php echo $product['image']; ?>"
                                                  alt="<?php echo $product['title']; ?>">
                                         </div>

@@ -56,7 +56,7 @@ class CabinetController
         $user_name = $user['username'];
         $user_phone = $user['phone'];
         $user_address = $user['address'];
-        $secret1 = $user['secret'];
+        $hash = $user['secret'];
 
         if (array_key_exists('secret2', $user)) {
             $secret2 = $user['secret2'];
@@ -75,7 +75,7 @@ class CabinetController
             if (!User::checkLength($user_phone, 10)) $errors[] = 6;
 
             if (!$errors) {
-                $result = User::update($userId, $user_name, $user_phone, $user_address, $secret1);
+                $result = User::update($userId, $user_name, $user_phone, $user_address);
             }
         }
 
@@ -84,13 +84,13 @@ class CabinetController
             $secret = $_POST['secret'];
             $secret2 = $_POST['secret2'];
 
-            if (!User::checkSecretMatch($secret1, $old)) $errors[] = 2;
+            if (!password_verify($old, $hash)) $errors[] = 2;
             if (!User::checkLength($secret, 6)) $errors[] = 3;
             if (!User::checkLength($secret2, 6)) $errors[] = 4;
             if (!User::checkSecretMatch($secret, $secret2)) $errors[] = 5;
 
             if (!$errors) {
-                $result = User::update($userId, $user_name, $user_phone, $user_address, $secret);
+                $result = User::update($userId, $user_name, $user_phone, $user_address, password_hash($secret, PASSWORD_DEFAULT));
             }
         }
 
