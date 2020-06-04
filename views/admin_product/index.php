@@ -9,17 +9,30 @@
                     <table class="table table-responsive-sm">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Фото</th>
-                            <th scope="col">Назва</th>
-                            <th scope="col">Категорія</th>
-                            <th scope="col">Код</th>
-                            <th scope="col">Наявність</th>
-                            <th scope="col">Показувати</th>
-                            <th scope="col">Об'єм</th>
-                            <th scope="col">Одиниці</th>
-                            <th scope="col" class="text-right">Ціна</th>
-                            <th scope="col"></th>
+                            <th class="align-middle" scope="col">#</th>
+                            <th class="align-middle" scope="col">Фото</th>
+                            <th class="align-middle" scope="col">Назва</th>
+                            <th class="align-middle" scope="col">
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Категорія
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <?php foreach ($categories as $category): ?>
+                                            <a class="dropdown-item" href="/admin/product/<?php echo $category['id']; ?>">
+                                                <?php echo $category['title']; ?>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="align-middle" scope="col">Код</th>
+                            <th class="align-middle" scope="col">Наявність</th>
+                            <th class="align-middle" scope="col">Показувати</th>
+                            <th class="align-middle" scope="col">Об'єм</th>
+                            <th class="align-middle" scope="col">Одиниці</th>
+                            <th class="align-middle text-right" scope="col">Ціна</th>
+                            <th class="align-middle" scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>

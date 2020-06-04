@@ -25,6 +25,8 @@ class CabinetController
     {
         $categories = Category::getCategories();
         $userId = User::checkLogged();
+        $products = Like::userLikes($userId);
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         require_once ROOT . '/views/cabinet/liked.php';
         return true;
     }

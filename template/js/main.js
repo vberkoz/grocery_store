@@ -20,8 +20,10 @@
 $(document).ready(function () {
 
     let bag = [];
+    let likes = [];
     let discount = 0;
     let bagItemsPrice = 0;
+    let logged = 0;
 
     /**
      * Add product to bag
@@ -188,11 +190,29 @@ $(document).ready(function () {
     $('.product-card').hover(
         function () {
             $(this).find('.add-to-bag-first').removeClass('invisible');
+            $(this).find('.like').removeClass('invisible');
         },
         function () {
             $(this).find('.add-to-bag-first').addClass('invisible');
+            if (!likes.includes($(this).attr('data-id'))) $(this).find('.like').addClass('invisible');
         }
     );
+
+    $('.like').click(function () {
+        if (logged) {
+            let productId = $(this).attr('data-id');
+            if (likes.includes(productId)) {
+                let index = likes.indexOf(productId);
+                likes.splice(index, 1);
+                $.post('/likes/remove', {id: productId});
+            } else {
+                likes.push(productId);
+                $.post('/likes/add', {id: productId});
+            }
+        } else {
+            window.location.href = "/signin";
+        }
+    });
 
     $.get('/bag/index-ajax', {}, function (r) {
         r = JSON.parse(r);
@@ -232,6 +252,19 @@ $(document).ready(function () {
             $(this).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
             $(this).find('.item-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.price) + ' ₴');
         });
+    });
+
+    $.get('/likes', {}, function (r) {
+        if (JSON.parse(r)) {
+            logged = 1;
+            likes = JSON.parse(r);
+            likes.forEach(function (i) {
+                $('#products').children('.product-card').each(function () {
+                    let elementId = $(this).attr("data-id");
+                    if (elementId == i) $(this).find('.like').removeClass('invisible');
+                });
+            });
+        }
     });
 
     $('#remind').click(function () {

@@ -32,10 +32,16 @@ class Product
      * Gets products list for admin panel
      * @return array
      */
-    public static function getProductsForAdmin() {
+    public static function getProductsForAdmin($categoryId) {
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM products ORDER BY id DESC");
+        if ($categoryId > 1) {
+            $sql = "SELECT * FROM products WHERE category_id = $categoryId ORDER BY id DESC";
+        } else {
+            $sql = "SELECT * FROM products ORDER BY id DESC";
+        }
+        $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
+//        echo '<pre>';print_r($result->fetchAll());die;
         return $result->fetchAll();
     }
 
@@ -57,16 +63,10 @@ class Product
      * @return mixed
      */
     public static function getProduct($productId) {
-        $productId = intval($productId);
-
-        if ($productId) {
-            $db = Db::getConnection();
-            $result = $db->query("SELECT * FROM products WHERE id = $productId");
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-            return $result->fetch();
-        }
-
-        return false;
+        $db = Db::getConnection();
+        $result = $db->query("SELECT * FROM products WHERE id = $productId");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetch();
     }
 
     /**

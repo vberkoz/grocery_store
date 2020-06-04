@@ -6,11 +6,11 @@ class AdminProductController extends AdminBase
      * Products list
      * @return bool
      */
-    public function actionIndex()
+    public function actionIndex($categoryId)
     {
         self::checkAdmin();
         $categories = Category::getCategories();
-        $products = Product::getProductsForAdmin();
+        $products = Product::getProductsForAdmin($categoryId);
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         require_once ROOT . '/views/admin_product/index.php';
         return true;
