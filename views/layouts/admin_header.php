@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/category"
+                        <a href="/admin/category/1"
                            class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/category') echo 'active'; ?>">
                             Категорії
                         </a>
