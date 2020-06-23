@@ -9,7 +9,8 @@ class AdminOrderController extends AdminBase
     public function actionIndex()
     {
         self::checkAdmin();
-        $orders = Order::getOrders();
+        $yesterdayOrders = Order::yesterdayOrders();
+        $yesterdayProducts = Order::yesterdayProducts();
         require_once ROOT . '/views/admin_order/index.php';
         return true;
     }
@@ -48,17 +49,6 @@ class AdminOrderController extends AdminBase
         }
 
         require_once ROOT . '/views/admin_order/view.php';
-        return true;
-    }
-
-    /**
-     * Updates order status
-     * @return bool
-     */
-    public function actionUpdate()
-    {
-        self::checkAdmin();
-        Order::update($_POST['order_id'], $_POST['order_status']);
         return true;
     }
 }

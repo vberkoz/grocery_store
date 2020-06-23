@@ -12,12 +12,8 @@ class AdminController extends AdminBase
 
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $products = Order::getUserProducts();
-        $total = 0;
-        foreach ($products as $product) {
-            $total += $product['price'];
-        }
-
-        $requests = Request::index();
+        $yesterdayOrders = Order::yesterdayOrders();
+        $yesterdayProducts = Order::yesterdayProducts();
 
         require_once ROOT . '/views/admin/index.php';
         return true;
