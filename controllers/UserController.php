@@ -63,7 +63,7 @@ class UserController extends PublicBase
                     $user = User::getUser($userId);
 
                     if ($user['role'] == 'admin') {
-                        header("Location: /admin/");
+                        header("Location: /admin/order");
                     } else {
                         header("Location: /cabinet/history");
                     }
@@ -92,7 +92,7 @@ class UserController extends PublicBase
     {
         $email = $_POST['email'];
         if (User::checkEmailExists($email)) {
-            $link = self::generateChangeSecretLink();
+            $link = self::makeHash();
             User::setChangeSecretLink($email, $link);
 
             $subject = 'Vitamin+ невдала спроба доступу';
