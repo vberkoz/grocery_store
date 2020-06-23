@@ -4,17 +4,7 @@
         <div class="card mb-3">
             <header class="card-header bg-white">
                 <b class="d-inline-block mr-3">Замовлення: <?php echo $order['id']; ?></b>
-                <span><?php echo date('Y-m-d H:i:s', strtotime($order['created_at'])); ?></span>
-                <div class="form-group d-inline-block float-right m-0">
-                    <select class="form-control form-control-sm order-status" name="order_status" order-id="<?php echo $order['id']; ?>">
-                        <?php foreach (Order::STATUS_CAPTIONS as $key => $value): ?>
-                            <option value="<?php echo $key; ?>"
-                                <?php if ($key == $order['order_status']) echo ' selected="selected"'; ?>>
-                                <?php echo $value; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div> <!-- form-group end.// -->
+                <span class="float-right"><?php echo date('Y-m-d H:i:s', strtotime($order['created_at'])); ?></span>
             </header>
             <div class="card-body">
                 <div class="row">

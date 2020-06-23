@@ -11,7 +11,8 @@ class Product
      * @param int $categoryId
      * @return array
      */
-    public static function getProducts($count = self::SHOW_BY_DEFAULT, $page = 1, $categoryId = 1) {
+    public static function getProducts($count = self::SHOW_BY_DEFAULT, $page = 1, $categoryId = 1)
+    {
         $count = intval($count);
         $categoryId = intval($categoryId);
         $offset = ($page - 1) * $count;
@@ -32,7 +33,8 @@ class Product
      * Gets products list for admin panel
      * @return array
      */
-    public static function getProductsForAdmin($categoryId) {
+    public static function getProductsForAdmin($categoryId)
+    {
         $db = Db::getConnection();
         if ($categoryId > 1) {
             $sql = "SELECT * FROM products WHERE category_id = $categoryId ORDER BY id DESC";
@@ -41,7 +43,6 @@ class Product
         }
         $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
-//        echo '<pre>';print_r($result->fetchAll());die;
         return $result->fetchAll();
     }
 
@@ -97,6 +98,7 @@ class Product
             $products[$i]['price'] = $row['price'];
             $products[$i]['image'] = $row['image'];
             $products[$i]['volume'] = $row['volume'];
+            $products[$i]['volume_min'] = $row['volume_min'];
             $products[$i]['unit'] = $row['unit'];
             if ($quantity) {
                 $products[$i]['quantity'] = $quantity[$i];
@@ -114,7 +116,8 @@ class Product
      * @param $categoryId
      * @return mixed
      */
-    public static function getProductsNumber($categoryId) {
+    public static function getProductsNumber($categoryId)
+    {
         $categoryId = intval($categoryId);
 
         $db = Db::getConnection();
@@ -138,10 +141,32 @@ class Product
      * @param $product
      * @return int|string
      */
-    public static function createProduct($product) {
+    public static function createProduct($product)
+    {
         $db = Db::getConnection();
-        $sql = 'INSERT INTO products (title, category_id, product_id, price, availability, visibility, image, volume, unit)
-                VALUES (:title, :category_id, :product_id, :price, :availability, :visibility, :image, :volume, :unit)';
+        $sql = 'INSERT INTO products (
+                    title, 
+                    category_id, 
+                    product_id, 
+                    price, 
+                    availability, 
+                    visibility, 
+                    image, 
+                    volume, 
+                    volume_min, 
+                    unit
+                ) VALUES (
+                    :title, 
+                    :category_id, 
+                    :product_id, 
+                    :price, 
+                    :availability, 
+                    :visibility, 
+                    :image,
+                    :volume, 
+                    :volume_min, 
+                    :unit
+                )';
 
         $result = $db->prepare($sql);
         $result->bindParam(':title', $product['title'], PDO::PARAM_STR);
@@ -151,7 +176,8 @@ class Product
         $result->bindParam(':availability', $product['availability'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $product['visibility'], PDO::PARAM_INT);
         $result->bindParam(':image', $product['image'], PDO::PARAM_STR);
-        $result->bindParam(':volume', $product['volume'], PDO::PARAM_INT);
+        $result->bindParam(':volume', $product['volume'], PDO::PARAM_STR);
+        $result->bindParam(':volume_min', $product['volume_min'], PDO::PARAM_STR);
         $result->bindParam(':unit', $product['unit'], PDO::PARAM_STR);
 
         if ($result->execute()) return $db->lastInsertId();
@@ -163,7 +189,8 @@ class Product
      * @param $id
      * @return bool
      */
-    public static function deleteProduct($id) {
+    public static function deleteProduct($id)
+    {
         $id = intval($id);
 
         $db = Db::getConnection();
@@ -182,7 +209,8 @@ class Product
      * @param $product
      * @return bool
      */
-    public static function updateProduct($id, $product) {
+    public static function updateProduct($id, $product)
+    {
         $db = Db::getConnection();
         $sql = 'UPDATE products 
                 SET 
@@ -192,6 +220,7 @@ class Product
                   product_id = :product_id,
                   price = :price,
                   volume = :volume,
+                  volume_min = :volume_min,
                   unit = :unit,
                   availability = :availability,
                   visibility = :visibility
@@ -204,7 +233,8 @@ class Product
         $result->bindParam(':category_id', $product['category_id'], PDO::PARAM_INT);
         $result->bindParam(':product_id', $product['product_id'], PDO::PARAM_STR);
         $result->bindParam(':price', $product['price'], PDO::PARAM_STR);
-        $result->bindParam(':volume', $product['volume'], PDO::PARAM_INT);
+        $result->bindParam(':volume', $product['volume'], PDO::PARAM_STR);
+        $result->bindParam(':volume_min', $product['volume_min'], PDO::PARAM_STR);
         $result->bindParam(':unit', $product['unit'], PDO::PARAM_STR);
         $result->bindParam(':availability', $product['availability'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $product['visibility'], PDO::PARAM_INT);

@@ -14,6 +14,7 @@ class Like
                   visibility, 
                   image, 
                   volume, 
+                  volume_min, 
                   unit 
                 FROM likes 
                 LEFT JOIN products 

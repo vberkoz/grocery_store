@@ -42,6 +42,7 @@ class AdminProductController extends AdminBase
         $product['visibility'] = 0;
         $product['image'] = 'no-image.jpg';
         $product['volume'] = 1;
+        $product['volume_min'] = 0.1;
         $product['unit'] = 'кг';
 
         $id = Product::createProduct($product);
@@ -66,6 +67,7 @@ class AdminProductController extends AdminBase
             $product['category_id'] = $_POST['category_id'];
             $product['price'] = $_POST['price'];
             $product['volume'] = $_POST['volume'];
+            $product['volume_min'] = $_POST['volume_min'];
             $product['unit'] = $_POST['unit'];
             $product['availability'] = $_POST['availability'];
             $product['visibility'] = $_POST['visibility'];
@@ -86,7 +88,7 @@ class AdminProductController extends AdminBase
                     }
                 }
 
-                header("Location: /admin/product");
+                header("Location: /admin/product/1");
             }
         }
 
