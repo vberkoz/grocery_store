@@ -4,7 +4,7 @@
         <?php if ($result): ?>
             <div class="d-flex justify-content-center w-100">
                 <div class="alert alert-success" role="alert">
-                    Ваше замовлення було успішно оформлено. Ми незабаром зв'яжемось з вами. Дякуємо за покупку!
+                    Ваше замовлення успішно оформлено і буде доставлено завтра. Дякуємо за покупку!
                 </div>
             </div>
         <?php else: ?>
