@@ -64,7 +64,6 @@ class Router
 
                 // Create object, call method
                 $controllerObject = new $controllerName;
-                Request::create();
 
                 $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
 
