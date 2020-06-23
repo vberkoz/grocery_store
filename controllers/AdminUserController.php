@@ -17,20 +17,20 @@ class AdminUserController extends AdminBase
     /**
      * Show user
      * @param $userId
+     * @param $categoryId
      * @return bool
      */
-    public function actionView($userId)
+    public function actionView($userId, $categoryId)
     {
         self::checkAdmin();
         $user = User::getUser($userId);
-        $orders = Order::getUserOrders($userId);
+
+        $discounts = Discount::index(8);
+        $categories = Category::getCategories();
+        $products = Product::getProductsForAdmin($categoryId);
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
-        $products = Order::getUserProducts($userId);
-        $total = 0;
-        foreach ($products as $product) {
-            $total += $product['price'];
-        }
-//        echo '<pre>';print_r($products);die;
+        $discountValue = 0;
+
         require_once ROOT . '/views/admin_user/view.php';
         return true;
     }

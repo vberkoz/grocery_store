@@ -1,9 +1,27 @@
 
-// Restricts input for the set of matched elements to the given inputFilter function.
-(function($) {
+$(document).ready(function () {
+
+    let bag = [];
+    let likes = [];
+    let bagItemsPrice = 0;
+    let logged = 0;
+
     $.fn.inputFilter = function(inputFilter) {
         return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-            if (inputFilter(this.value)) {
+            let unit = $(this).attr("data-unit");
+            if (unit === 'г') unit = 'шт';
+            unit = ' ' + unit;
+            let volume = this.value;
+
+            if (volume.includes(unit)) {
+                volume = this.value.slice(0, -3);
+            }
+
+            if (this.selectionStart > this.value.length - 3) {
+                this.setSelectionRange(this.value.length - 3, this.value.length - 3);
+            }
+
+            if (inputFilter(volume)) {
                 this.oldValue = this.value;
                 this.oldSelectionStart = this.selectionStart;
                 this.oldSelectionEnd = this.selectionEnd;
@@ -15,26 +33,38 @@
             }
         });
     };
-}(jQuery));
 
-$(document).ready(function () {
+    /**
+     * Allow float only
+     */
+    $(".input-float, .bag-input-float").inputFilter(function(value) {
+        return /^[0-9]{0,3}([\.][0-9]{0,1})??$/.test(value);
+    });
 
-    let bag = [];
-    let likes = [];
-    let discount = 0;
-    let bagItemsPrice = 0;
-    let logged = 0;
+    /**
+     * Allow integer only
+     */
+    $(".input-int, .bag-input-int").inputFilter(function(value) {
+        return /^[0-9]{0,2}?$/.test(value);
+    });
 
     /**
      * Add product to bag
      */
     $(".add-to-bag-first").click(function (e) {
         let id = $(this).attr("data-id");
+        let volume = 1;
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
         $(this).get(0).classList.add("d-none");
         $(this).get(0).nextSibling.nextSibling.classList.remove("d-none");
-        $(this).get(0).nextSibling.nextSibling.children[1].value = 1;
-        $.post(`/bag/add-ajax/${id}`, {}, function (res) {
-            $("#bag-count").html(res);
+        $(this).get(0).nextSibling.nextSibling.children[1].value = volume + unit;
+        $.post('/bag/add', {
+            id: id,
+            volume: volume
+        }, function (r) {
+            $("#bag-count").html(r);
         });
         return false;
     });
@@ -44,38 +74,73 @@ $(document).ready(function () {
      */
     $(".add-to-bag-second").click(function (e) {
         let id = $(this).attr("data-id");
-        $(this).get(0).parentElement.previousSibling.previousSibling.value++;
-        $.post(`/bag/add-ajax/${id}`, {}, function (res) {
-            $("#bag-count").html(res);
+        let volumeMin = parseFloat($(this).attr("data-volume_min"));
+        let volumePrev = $(this).get(0).parentElement.previousSibling.previousSibling.value;
+        volumePrev = volumePrev.slice(0, -3);
+        volumePrev = parseFloat(volumePrev);
+        let volume = Math.round((volumePrev + volumeMin) * 10) / 10;
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
+        $(this).get(0).parentElement.previousSibling.previousSibling.value = volume + unit;
+        $.post('/bag/add', {
+            id: id,
+            volume: volume
+        }, function (r) {
+            $("#bag-count").html(r);
         });
         return false;
     });
 
     $(".bag-plus").click(function () {
         let id = parseInt($(this).attr("data-id"));
-        $(this).get(0).parentElement.previousSibling.previousSibling.value++;
+        let volumeMin = parseFloat($(this).attr("data-volume_min"));
+        let volumePrev = $(this).get(0).parentElement.previousSibling.previousSibling.value;
+        volumePrev = volumePrev.slice(0, -3);
+        volumePrev = parseFloat(volumePrev);
+        let volume = Math.round((volumePrev + volumeMin) * 10) / 10;
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
+        $(this).get(0).parentElement.previousSibling.previousSibling.value = volume + unit;
 
         let bagItemData;
+        let discount = 0;
         bag.forEach(function (i) {
             if (i.id === id) {
-                i.quantity = i.quantity + 1;
-                i.item_total = i.item_total + i.price;
+                i.quantity = volume;
+                i.item_total = volume * i.price;
                 bagItemData = i;
             }
+            discount += i.quantity * i.discount;
         });
 
         bagItemsPrice = 0;
         bag.forEach(function (i) {
             bagItemsPrice += i.item_total;
         });
-        $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
-        // $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
+        $('.bag-items-price').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(bagItemsPrice) + ' ₴'
+            );
+        $('.bag-discount').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(discount) + ' ₴'
+            );
+        $('.bag-total').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(bagItemsPrice - discount) + ' ₴'
+            );
 
-        $(`tr[bag-item-id='${id}']`).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
+        $(`tr[bag-item-id='${id}']`).find('.item-total').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(bagItemData.item_total) + ' ₴'
+            );
 
-        $.post(`/bag/add-ajax/${id}`, {}, function (res) {
+        $.post('/bag/add', {
+            id: id,
+            volume: volume
+        }, function (res) {
             $("#bag-count").html(res);
         });
         return false;
@@ -86,45 +151,86 @@ $(document).ready(function () {
      */
     $(".remove-from-bag").click(function (e) {
         let id = $(this).attr("data-id");
-        $(this).get(0).parentElement.nextSibling.nextSibling.value--;
-        if ($(this).get(0).parentElement.nextSibling.nextSibling.value < 1) {
+        let volumeMin = parseFloat($(this).attr("data-volume_min"));
+        let volumePrev = $(this).get(0).parentElement.nextSibling.nextSibling.value;
+        volumePrev = volumePrev.slice(0, -3);
+        volumePrev = parseFloat(volumePrev);
+        let volume = Math.round((volumePrev - volumeMin) * 10) / 10;
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
+
+        $(this).get(0).parentElement.nextSibling.nextSibling.value = volume + unit;
+
+        if (volume < volumeMin) {
             $(this).get(0).parentElement.parentElement.classList.add("d-none");
             $(this).get(0).parentElement.parentElement.previousSibling.previousSibling.classList.remove("d-none");
         }
-        $.post(`/bag/remove-ajax/${id}`, {}, function (r) {
+
+        $.post('/bag/reduce', {
+            id: id,
+            volume: volume
+        }, function (r) {
             $('#bag-count').html(r);
         });
+
         return false;
     });
 
     $(".bag-minus").click(function () {
         let id = parseInt($(this).attr("data-id"));
-        $(this).get(0).parentElement.nextSibling.nextSibling.value--;
-        if ($(this).get(0).parentElement.nextSibling.nextSibling.value < 1) {
+        let volumeMin = parseFloat($(this).attr("data-volume_min"));
+        let volumePrev = $(this).get(0).parentElement.nextSibling.nextSibling.value;
+        volumePrev = volumePrev.slice(0, -3);
+        volumePrev = parseFloat(volumePrev);
+        let volume = Math.round((volumePrev - volumeMin) * 10) / 10;
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
+
+        $(this).get(0).parentElement.nextSibling.nextSibling.value = volume + unit;
+
+        if (volume < volumeMin) {
             $(this).get(0).parentElement.parentElement.parentElement.parentElement.remove();
         }
 
         let bagItemData;
+        let discount = 0;
         bag.forEach(function (i) {
             if (i.id === id) {
-                i.quantity = i.quantity - 1;
-                i.item_total = i.item_total - i.price;
+                i.quantity = volume;
+                i.item_total = volume * i.price;
                 bagItemData = i;
             }
+            discount += i.quantity * i.discount;
         });
 
         bagItemsPrice = 0;
         bag.forEach(function (i) {
             bagItemsPrice += i.item_total;
         });
-        $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
-        // $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
+        $('.bag-items-price').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(bagItemsPrice) + ' ₴'
+        );
+        $('.bag-discount').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(discount) + ' ₴'
+        );
+        $('.bag-total').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(bagItemsPrice - discount) + ' ₴'
+        );
 
-        $(`tr[bag-item-id='${id}']`).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
+        $(`tr[bag-item-id='${id}']`).find('.item-total').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(bagItemData.item_total) + ' ₴'
+        );
 
-        $.post(`/bag/remove-ajax/${id}`, {}, function (r) {
+        $.post('/bag/reduce', {
+            id: id,
+            volume: volume
+        }, function (r) {
             $('#bag-count').html(r);
             if (r === '' || r === '0') window.location.href = "/bag";
         });
@@ -132,56 +238,93 @@ $(document).ready(function () {
     });
 
     /**
-     * Allow digits only
-     */
-    $(".change-bag").inputFilter(function(value) {
-        return /^\d*$/.test(value);
-    });
-
-    /**
      * Change products quantity
      */
-    $(".change-bag").keyup(function () {
+    $(".input-int, .input-float").change(function () {
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
+        let volume = $(this).get(0).value;
+
+        if (volume.includes(unit)) {
+            volume = volume.slice(0, -3);
+        }
+
         let id = parseInt($(this).attr("data-id"));
-        let quantity = $(this).get(0).value;
-        if (quantity === '' || quantity === '0') {
+        let quantity = parseFloat(volume);
+        $(this).get(0).value = quantity + unit;
+
+        if (!quantity) {
+            quantity = 0;
             $(this).get(0).parentElement.classList.add("d-none");
             $(this).get(0).parentElement.previousSibling.previousSibling.classList.remove("d-none");
         }
-        $.post(`/bag/change-ajax/${id}`, {quantity: quantity}, function (r) {
+
+        $.post('/bag/change', {
+            id: id,
+            quantity: quantity
+        }, function (r) {
             $('#bag-count').html(r);
         });
     });
 
-    $(".bag-change").keyup(function () {
+    $(".bag-input-float, .bag-input-int").change(function () {
+        let unit = $(this).attr("data-unit");
+        if (unit === 'г') unit = 'шт';
+        unit = ' ' + unit;
+        let volume = $(this).get(0).value;
+
+        if (volume.includes(unit)) {
+            volume = volume.slice(0, -3);
+        }
+
         let id = parseInt($(this).attr("data-id"));
-        let quantity = $(this).get(0).value;
-        if (quantity === '' || quantity === '0') {
+        let quantity = parseFloat(volume);
+        $(this).get(0).value = quantity + unit;
+
+        if (!quantity) {
             quantity = 0;
             $(`tr[bag-item-id='${id}']`).remove();
         }
 
         let bagItemData;
+        let discount = 0;
         bag.forEach(function (i) {
             if (i.id === id) {
                 i.quantity = parseInt(quantity);
                 i.item_total = parseInt(quantity) * i.price;
                 bagItemData = i;
             }
+            discount += i.quantity * i.discount;
         });
 
         bagItemsPrice = 0;
         bag.forEach(function (i) {
             bagItemsPrice += i.item_total;
         });
-        $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
-        // $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
 
-        $(`tr[bag-item-id='${id}']`).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
+        $('.bag-items-price').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(bagItemsPrice) + ' ₴'
+        );
+        $('.bag-discount').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(discount) + ' ₴'
+        );
+        $('.bag-total').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(bagItemsPrice - discount) + ' ₴'
+        );
 
-        $.post(`/bag/change-ajax/${id}`, {quantity: quantity}, function (r) {
+        $(`tr[bag-item-id='${id}']`).find('.item-total').text(
+            new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                .format(bagItemData.item_total) + ' ₴'
+        );
+
+        $.post('/bag/change', {
+            id: id,
+            quantity: quantity
+        }, function (r) {
             $('#bag-count').html(r);
             if (r === '' || r === '0') window.location.href = "/bag";
         });
@@ -214,44 +357,71 @@ $(document).ready(function () {
         }
     });
 
-    $.get('/bag/index-ajax', {}, function (r) {
-        r = JSON.parse(r);
-        $("a[data-id]").each(function (i) {
-            for (const p in r) {
-                if (parseInt($(this).attr("data-id")) === parseInt(p)) {
-                    if (r[p] > 0) {
-                        $(this).get(0).classList.add("d-none");
-                        let inputGroup = $(this).get(0).nextSibling.nextSibling;
-                        inputGroup.classList.remove("d-none");
-                        inputGroup.children[1].value = r[p];
+    $.get('/bag/list', {}, function (r) {
+        if (r) {
+            r = JSON.parse(r);
+            $("a[data-id]").each(function (i) {
+                for (const p in r) {
+                    if (parseInt($(this).attr("data-id")) === parseInt(p)) {
+                        if (r[p] > 0) {
+                            $(this).get(0).classList.add("d-none");
+                            let inputGroup = $(this).get(0).nextSibling.nextSibling;
+                            inputGroup.classList.remove("d-none");
+                            let unit = 'кг';
+                            if ($(this).attr("data-unit") === 'г') unit = 'шт';
+                            inputGroup.children[1].value = r[p] + ' ' + unit;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     });
 
     $.get('/bag/data', {}, function (r) {
-        bag = JSON.parse(r);
-
-        discount = bag.pop();
-
-        bagItemsPrice = 0;
-        bag.forEach(function (i) {
-            bagItemsPrice += i.item_total;
-        });
-        $('.bag-items-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice) + ' ₴');
-        $('.bag-discount').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice * (discount * 0.01)) + ' ₴');
-        $('.bag-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemsPrice - (bagItemsPrice * (discount * 0.01))) + ' ₴');
-
-        $('.bag-item').each(function () {
-            let bagItemId = parseInt($(this).attr('bag-item-id'));
-            let bagItemData;
+        if (r) {
+            bag = JSON.parse(r);
+            let discount = bag.pop();
+            bagItemsPrice = 0;
             bag.forEach(function (i) {
-                if (i.id === bagItemId) bagItemData = i;
+                bagItemsPrice += i.item_total;
             });
-            $(this).find('.item-total').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.item_total) + ' ₴');
-            $(this).find('.item-price').text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(bagItemData.price) + ' ₴');
-        });
+
+            $('.bag-items-price').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(bagItemsPrice) + ' ₴'
+            );
+            $('.bag-discount').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(discount) + ' ₴'
+            );
+            $('.bag-total').text(
+                new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                    .format(bagItemsPrice - discount) + ' ₴'
+            );
+
+            $('.bag-item').each(function () {
+                let element = $(this);
+                let bagItemId = parseInt($(this).attr('bag-item-id'));
+                let bagItemData;
+                bag.forEach(function (i) {
+                    if (i.id === bagItemId) {
+                        bagItemData = i;
+                        let unit = 'кг';
+                        let inputField = element.find('.bag-change');
+                        if (inputField.attr("data-unit") === 'г') unit = 'шт';
+                        element.find('.bag-change').get(0).value = i.quantity + ' ' + unit;
+                    }
+                });
+                $(this).find('.item-total').text(
+                    new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                        .format(bagItemData.item_total) + ' ₴'
+                );
+                $(this).find('.item-price').text(
+                    new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 })
+                        .format(bagItemData.price) + ' ₴'
+                );
+            });
+        }
     });
 
     $.get('/likes', {}, function (r) {

@@ -26,27 +26,21 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="/admin"
-                           class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin') echo 'active'; ?>">
-                            Статистика <span class="sr-only">(current)</span>
+                        <a href="/admin/order"
+                           class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/order') echo 'active'; ?>">
+                            Замовлення <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/product"
+                        <a href="/admin/product/1"
                            class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/product') echo 'active'; ?>">
                             Товари
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/category/1"
+                        <a href="/admin/category"
                            class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/category') echo 'active'; ?>">
                             Категорії
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/admin/order"
-                           class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/order') echo 'active'; ?>">
-                            Замовлення
                         </a>
                     </li>
                     <li class="nav-item">

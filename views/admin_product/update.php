@@ -30,6 +30,7 @@
                                     <?php endif; ?>
                                 <?php endif; ?>
                             </div> <!-- form-group end.// -->
+
                             <div class="form-group">
                                 <label>Категорія</label>
                                 <select class="form-control" name="category_id">
@@ -41,12 +42,14 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div> <!-- form-group end.// -->
+
                             <div class="form-group">
                                 <label>Код</label>
                                 <input type="text" name="product_id"
                                        class="form-control"
                                        value="<?php echo $product['product_id']; ?>" disabled>
                             </div> <!-- form-group end.// -->
+
                             <div class="form-group">
                                 <label>Ціна, грн</label>
                                 <input type="text" name="price" placeholder="пр. 40"
@@ -57,27 +60,46 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Об'єм</label>
+                                <label id="admin_product_volume">Об'єм</label>
                                 <input type="text" name="volume" placeholder="пр. 100"
                                        class="form-control digits-only"
                                        value="<?php echo $product['volume']; ?>">
                             </div> <!-- form-group end.// -->
+
+                            <div class="form-group">
+                                <label id="admin_product_volume_min">Мінімальний об'єм</label>
+                                <input type="text" name="volume_min" placeholder="пр. 100"
+                                       class="form-control digits-only"
+                                       value="<?php echo $product['volume_min']; ?>">
+                            </div> <!-- form-group end.// -->
+
                             <div class="form-group">
                                 <label>Одиниці виміру</label>
-                                <input type="text" name="unit" placeholder="пр. г"
-                                       class="form-control"
-                                       value="<?php echo $product['unit']; ?>">
+                                <select class="form-control" name="unit" id="admin_product_unit">
+                                    <option value="кг"
+                                        <?php if ($product['unit'] == 'кг') echo "selected='selected'"; ?>>
+                                        кілограм, кг
+                                    </option>
+                                    <option value="г"
+                                        <?php if ($product['unit'] == 'г') echo "selected='selected'"; ?>>
+                                        грам, г
+                                    </option>
+                                </select>
                             </div> <!-- form-group end.// -->
+
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="availability" name="availability" value="1"
+                                    <input type="checkbox" class="custom-control-input" id="availability"
+                                           name="availability" value="1"
                                         <?php if ($product['availability']) echo 'checked'; ?>>
                                     <label class="custom-control-label" for="availability">Є в наявності</label>
                                 </div>
                             </div> <!-- form-group end.// -->
+
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="visibility" name="visibility" value="1"
+                                    <input type="checkbox" class="custom-control-input" id="visibility"
+                                           name="visibility" value="1"
                                         <?php if ($product['visibility']) echo 'checked'; ?>>
                                     <label class="custom-control-label" for="visibility">Показувати</label>
                                 </div>
@@ -112,41 +134,5 @@
             </div>
         </div>
     </div>
-
-<span class="d-none">
-
-    <?php if (isset($errors) && is_array($errors)): ?>
-        <ul>
-            <?php foreach ($errors as $error): ?>
-                <li><p><?php echo $error; ?></p></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-
-    <form action="#" method="post" style="width: 291px;" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Title" value="<?php echo $product['title']; ?>"><br>
-        <select name="category_id">
-            <?php foreach ($categories as $category): ?>
-                <option value="<?php echo $category['id']; ?>"
-                        <?php if ($category['id'] == $product['category_id']) echo " selected='selected'"; ?>>
-                    <?php echo $category['title']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br>
-        <input type="text" name="product_id" placeholder="Product Id" value="<?php echo $product['product_id']; ?>"><br>
-        <input type="number" name="price" placeholder="Price" value="<?php echo $product['price']; ?>"><br>
-        <select name="availability">
-            <option value="1" <?php if ($product['availability'] == 1) echo " selected='selected'"; ?>>Available</option>
-            <option value="0" <?php if ($product['availability'] == 0) echo " selected='selected'"; ?>>Not Available</option>
-        </select><br>
-        <img src="<?php echo $image; ?>" alt="<?php echo $image; ?>" style="width: 291px;">
-        <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg"><br>
-        <select name="visibility">
-            <option value="1" <?php if ($product['visibility'] == 1) echo " selected='selected'"; ?>>Visible</option>
-            <option value="0" <?php if ($product['visibility'] == 0) echo " selected='selected'"; ?>>Not Visible</option>
-        </select><br>
-        <input type="submit" name="submit" value="Save">
-    </form>
-</span>
 
 <?php include_once ROOT . '/views/layouts/admin_footer.php'?>

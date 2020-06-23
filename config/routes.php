@@ -4,11 +4,10 @@ return array(
     'category/([0-9]+)/page-([0-9]+)' => 'product/index/$1/$2',
     'category/([0-9]+)' => 'product/index/$1',
 
-    'bag/add/([0-9]+)' => 'bag/add/$1',
-    'bag/add-ajax/([0-9]+)' => 'bag/addajax/$1',
-    'bag/remove-ajax/([0-9]+)' => 'bag/removeajax/$1',
-    'bag/change-ajax/([0-9]+)' => 'bag/changeajax/$1',
-    'bag/index-ajax' => 'bag/indexajax',
+    'bag/add' => 'bag/add',
+    'bag/reduce' => 'bag/reduce',
+    'bag/change' => 'bag/change',
+    'bag/list' => 'bag/list',
     'bag/checkout' => 'bag/checkout',
     'bag/remove/([0-9]+)' => 'bag/remove/$1',
     'bag/data' => 'bag/data',
@@ -44,15 +43,14 @@ return array(
 
     'admin/order/create' => 'adminOrder/create',
     'admin/order/view/([0-9]+)' => 'adminOrder/view/$1',
-    'admin/order/update' => 'adminOrder/update',
     'admin/order' => 'adminOrder/index',
 
-    'admin/user/view/([0-9]+)' => 'adminUser/view/$1',
+    'admin/user/view/([0-9]+)/([0-9]+)' => 'adminUser/view/$1/$2',
     'admin/user/update' => 'adminUser/update',
     'admin/user' => 'adminUser/index',
 
-    'admin' => 'admin/index',
+    'admin/discount/index' => 'adminDiscount/index',
+    'admin/discount/update' => 'adminDiscount/update',
 
-//    '' => 'product/index/1',
     '' => 'site/index',
 );

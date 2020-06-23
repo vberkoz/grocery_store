@@ -17,6 +17,18 @@ class BagController
             $productsIds = array_keys($bag);
             $products = Product::getProductsByIds($productsIds);
             $totalPrice = Bag::calculateTotalPrice($products);
+
+            if (!User::isGuest()) {
+                $userId = User::checkLogged();
+                $discounts = Discount::index($userId);
+                foreach ($discounts as $discount) {
+                    foreach ($products as $key => $product) {
+                        if ($discount['product_id'] == $product['id']) {
+                            $products[$key]['discount'] = $discount['discount'];
+                        }
+                    }
+                }
+            }
         }
 
         require_once ROOT . '/views/bag/index.php';
@@ -24,40 +36,28 @@ class BagController
     }
 
     /**
-     * Adds product to bag
-     * @param $id
-     */
-    public function actionAdd($id)
-    {
-        Bag::addProduct($id);
-        $referrer = $_SERVER['HTTP_REFERER'];
-        header("Location: $referrer");
-    }
-
-    /**
      * Adds product to bag using ajax
-     * @param $id
      * @return bool
      */
-    public function actionAddajax($id)
+    public function actionAdd()
     {
-        echo Bag::addProduct($id);
+        echo Bag::addProduct($_POST['id'], $_POST['volume']);
         return true;
     }
 
-    public function actionRemoveajax($id)
+    public function actionReduce()
     {
-        echo Bag::reduceProduct($id);
+        echo Bag::reduceProduct($_POST['id'], $_POST['volume']);
         return true;
     }
 
-    public function actionChangeajax($id)
+    public function actionChange()
     {
-        echo Bag::changeProduct($id);
+        echo Bag::changeProduct($_POST['id'], $_POST['quantity']);
         return true;
     }
 
-    public function actionIndexajax()
+    public function actionList()
     {
         echo json_encode(Bag::getProducts());
         return true;
@@ -65,33 +65,43 @@ class BagController
 
     public function actionData()
     {
-        if (!User::isGuest()) {
-            $userId = User::checkLogged();
-            $user = User::getUser($userId);
-            $discount = $user['discount'];
-        } else {
-            $discount = 0;
-        }
-
         $products = Bag::getProducts();
-        $details = Product::getProductsByIds(array_keys($products));
-        $bag = [];
-        $i = 0;
-        foreach ($products as $key => $product) {
-            foreach ($details as $item) {
-                if ($item['id'] == array_keys($products)[$i]) {
-                    $bag[] = (object) [
-                        'id' => intval($item['id']),
-                        'quantity' => intval($product),
-                        'price' => floatval($item['price']),
-                        'item_total' => floatval($item['price'] * $product)
-                    ];
+        if ($products) {
+            $details = Product::getProductsByIds(array_keys($products));
+            $bag = [];
+            $i = 0;
+            foreach ($products as $key => $product) {
+                foreach ($details as $item) {
+                    if ($item['id'] == array_keys($products)[$i]) {
+                        $bag[] = (object) [
+                            'id' => intval($item['id']),
+                            'quantity' => floatval($product),
+                            'price' => floatval($item['price']),
+                            'item_total' => floatval($item['price'] * $product),
+                            'discount' => 0
+                        ];
+                    }
+                }
+                $i ++;
+            }
+
+            $totalDiscount = 0;
+
+            if (!User::isGuest()) {
+                $userId = User::checkLogged();
+                $discounts = Discount::index($userId);
+                foreach ($discounts as $discount) {
+                    foreach ($bag as $key => $item) {
+                        if ($discount['product_id'] == $item->id) {
+                            $bag[$key]->discount = floatval($discount['discount']);
+                            $totalDiscount += $discount['discount'] * $item->quantity;
+                        }
+                    }
                 }
             }
-            $i ++;
+            array_push($bag, $totalDiscount);
+            echo json_encode($bag);
         }
-        array_push($bag, $discount);
-        echo json_encode($bag);
         return true;
     }
 
@@ -101,14 +111,6 @@ class BagController
      */
     public function actionCheckout()
     {
-        if (!User::isGuest()) {
-            $userId = User::checkLogged();
-            $user = User::getUser($userId);
-            $discount = $user['discount'];
-        } else {
-            $discount = 0;
-        }
-
         $categories = Category::getCategories();
         $result = false;
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
@@ -131,13 +133,27 @@ class BagController
                     $userId = User::checkLogged();
                 }
 
-                $result = Order::save($userName, $userPhone, $userComment, $userAddress, $userId, $bag);
+                $discountValue = 0;
+                if (!User::isGuest()) {
+                    $userId = User::checkLogged();
+                    $discounts = Discount::index($userId);
+                    foreach ($discounts as $discount) {
+                        foreach ($bag as $key => $item) {
+                            if ($discount['product_id'] == $key) {
+                                $discountValue += ($discount['discount'] * $item);
+                            }
+                        }
+                    }
+                }
+
+                $result = Order::save($userName, $userPhone, $userComment, $userAddress, $userId, $bag, $discountValue);
 
                 if ($result) {
                     $productsIds = array_keys($bag);
                     $products = Product::getProductsByIds($productsIds);
                     $totalPrice = Bag::calculateTotalPrice($products);
-                    $totalPrice = $totalPrice - ($totalPrice * ($discount * 0.01));
+
+                    $totalPrice = $totalPrice - $discountValue;
                     $totalNumber = Bag::countItems();
 
                     $adminEmail = 'vberkoz@gmail.com';
@@ -147,7 +163,7 @@ class BagController
 
                     $message = '<html><body>';
                     $message .= '<p style="padding: 5px;">' . $userName . ' ' . $userPhone . ' ' . $userAddress . ' ' . $userComment . '</p>';
-                    $message .= '<p style="padding: 5px;"><b>Товарів ' . $totalNumber . ' на суму ' . $totalPrice . 'грн.</b></p>';
+                    $message .= '<p style="padding: 5px;"><b>Товарів ' . $totalNumber . ' на суму ' . $totalPrice . ' грн.</b></p>';
                     $message .= '<table><tbody>';
                     foreach ($products as $product) {
                         $message .= '<tr><td style="padding: 5px;">' . $product['title'] . '</td><td style="padding: 5px;">' . $bag[$product['id']] * $product['volume'] . ' ' . $product['unit'] . '</td></tr>';
@@ -167,7 +183,21 @@ class BagController
                 $productsIds = array_keys($bag);
                 $products = Product::getProductsByIds($productsIds);
                 $totalPrice = Bag::calculateTotalPrice($products);
-                $totalPrice = $totalPrice - ($totalPrice * ($discount * 0.01));
+
+                $discountValue = 0;
+                if (!User::isGuest()) {
+                    $userId = User::checkLogged();
+                    $discounts = Discount::index($userId);
+                    foreach ($discounts as $discount) {
+                        foreach ($bag as $key => $item) {
+                            if ($discount['product_id'] == $key) {
+                                $discountValue += ($discount['discount'] * $item);
+                            }
+                        }
+                    }
+                }
+
+                $totalPrice = $totalPrice - $discountValue;
                 $totalNumber = Bag::countItems();
             }
         } else {
@@ -179,7 +209,21 @@ class BagController
                 $productsIds = array_keys($bag);
                 $products = Product::getProductsByIds($productsIds);
                 $totalPrice = Bag::calculateTotalPrice($products);
-                $totalPrice = $totalPrice - ($totalPrice * ($discount * 0.01));
+
+                $discountValue = 0;
+                if (!User::isGuest()) {
+                    $userId = User::checkLogged();
+                    $discounts = Discount::index($userId);
+                    foreach ($discounts as $discount) {
+                        foreach ($bag as $key => $item) {
+                            if ($discount['product_id'] == $key) {
+                                $discountValue += ($discount['discount'] * $item);
+                            }
+                        }
+                    }
+                }
+
+                $totalPrice = $totalPrice - $discountValue;
                 $totalNumber = Bag::countItems();
 
                 $userName = false;

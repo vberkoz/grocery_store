@@ -23,43 +23,35 @@ $(document).ready(function () {
      * Allow digits only
      */
     $('.digits-only').inputFilter(function(value) {
-        return /^\d*$/.test(value);
+        return /^[0-9]{0,3}([\.][0-9]{0,2})??$/.test(value);
     });
 
-    /**
-     * Save order status
-     */
-    $('.order-status').change(function () {
-        let order_id = $(this).attr('order-id');
-        let order_status = $(this).val();
-        $.post('/admin/order/update',
-            {
-                order_id: order_id,
-                order_status: order_status
-            }
-        );
+    let volumeElement = $('#admin_product_volume');
+    let volumeMinElement = $('#admin_product_volume_min');
+    let unit = $('#admin_product_unit').val();
+    volumeElement.text("Об'єм, " + unit);
+
+    if ($('#admin_product_unit').val() === "г") unit = "шт";
+    volumeMinElement.text("Мінімальний об'єм, " + unit);
+
+    $('#admin_product_unit').change(function (e) {
+        unit = $(this).val();
+        volumeElement.text("Об'єм, " + unit);
+        if (unit === "г") unit = "шт";
+        volumeMinElement.text("Мінімальний об'єм, " + unit);
     });
 
-    /**
-     * Save user discount
-     */
-    $('.discount').change(function () {
-        let user_id = $(this).attr('user-id');
-        let user_discount = $(this).val();
-        $.post('/admin/user/update',
-            {
-                user_id: user_id,
-                user_discount: user_discount
-            }
-        );
-    });
+    $('.input-discount').keyup(function (e) {
+        let discount = $(this).val();
+        let userId = $(this).attr('data-user-id');
+        let productId = $(this).attr('data-product-id');
 
-    // $('.product-record').hover(
-    //     function () {
-    //         $(this).find('.primary-actions').removeClass('invisible');
-    //     },
-    //     function () {
-    //         $(this).find('.primary-actions').addClass('invisible');
-    //     }
-    // );
+        $.post('/admin/discount/update', {
+            userId: userId,
+            productId: productId,
+            discount: discount
+        }, function (r) {
+            console.log(JSON.parse(r));
+        });
+    });
 });
