@@ -34,6 +34,7 @@ return array(
     'admin/product/create' => 'adminProduct/create',
     'admin/product/update/([0-9]+)' => 'adminProduct/update/$1',
     'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1',
+    'admin/product/([0-9]+)/page-([0-9]+)' => 'adminProduct/index/$1/$2',
     'admin/product/([0-9]+)' => 'adminProduct/index/$1',
 
     'admin/category/create' => 'adminCategory/create',

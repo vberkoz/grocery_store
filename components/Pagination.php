@@ -56,7 +56,7 @@ class Pagination
         $html = '<nav aria-label="Page navigation"><ul class="pagination">';
         for ($page = $limits[0]; $page <= $limits[1]; $page++) {
             if ($page == $this->current_page) {
-                $links .= '<li class="page-item">
+                $links .= '<li class="page-item active">
                                 <a href="#" class="page-link">' . $page . '</a>
                            </li>';
             } else {

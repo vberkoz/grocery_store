@@ -33,13 +33,14 @@ class Product
      * Gets products list for admin panel
      * @return array
      */
-    public static function getProductsForAdmin($categoryId)
+    public static function getProductsForAdmin($count = self::SHOW_BY_DEFAULT, $page = 1, $categoryId = 1)
     {
+        $offset = ($page - 1) * $count;
         $db = Db::getConnection();
         if ($categoryId > 1) {
-            $sql = "SELECT * FROM products WHERE category_id = $categoryId ORDER BY id DESC";
+            $sql = "SELECT * FROM products WHERE category_id = $categoryId ORDER BY id DESC LIMIT $count OFFSET $offset";
         } else {
-            $sql = "SELECT * FROM products ORDER BY id DESC";
+            $sql = "SELECT * FROM products ORDER BY id DESC LIMIT $count OFFSET $offset";
         }
         $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -131,6 +132,23 @@ class Product
                                        FROM products 
                                        WHERE availability = 1 $categorySQL");
 
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+        return $row['count'];
+    }
+
+    public static function adminProductsCount($categoryId)
+    {
+        $db = Db::getConnection();
+        switch ($categoryId) {
+            case 0:
+            case 1:
+                $sql = "SELECT COUNT(id) AS count FROM products";
+                break;
+            default:
+                $sql = "SELECT COUNT(id) AS count FROM products WHERE category_id = $categoryId";
+        }
+        $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $row = $result->fetch();
         return $row['count'];

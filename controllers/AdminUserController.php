@@ -27,7 +27,7 @@ class AdminUserController extends AdminBase
 
         $discounts = Discount::index(8);
         $categories = Category::getCategories();
-        $products = Product::getProductsForAdmin($categoryId);
+        $products = Product::getProductsForAdmin(20, 1, $categoryId);
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $discountValue = 0;
 

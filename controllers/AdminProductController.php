@@ -6,11 +6,13 @@ class AdminProductController extends AdminBase
      * Products list
      * @return bool
      */
-    public function actionIndex($categoryId)
+    public function actionIndex($categoryId = 1, $page = 1)
     {
         self::checkAdmin();
         $categories = Category::getCategories();
-        $products = Product::getProductsForAdmin($categoryId);
+        $products = Product::getProductsForAdmin(20, $page, $categoryId);
+        $total = Product::adminProductsCount($categoryId);
+        $pagination = new Pagination($total, $page, 20, 'page-');
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         require_once ROOT . '/views/admin_product/index.php';
         return true;
@@ -24,7 +26,7 @@ class AdminProductController extends AdminBase
     {
         self::checkAdmin();
         Product::deleteProduct($id);
-        header("Location: /admin/product");
+        header("Location: /admin/product/1");
     }
 
     /**
@@ -46,7 +48,7 @@ class AdminProductController extends AdminBase
         $product['unit'] = 'кг';
 
         $id = Product::createProduct($product);
-        header("Location: /admin/product");
+        header("Location: /admin/product/1");
     }
 
     /**

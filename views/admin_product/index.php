@@ -77,6 +77,10 @@
                         <?php endforeach; ?>
                         </tbody>
                     </table>
+
+                    <div>
+                        <?php echo $pagination->get(); ?>
+                    </div>
                 </div>
             <?php else: ?>
                 <p>Тут ще немає жодного товару</p>

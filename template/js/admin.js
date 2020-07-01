@@ -23,7 +23,7 @@ $(document).ready(function () {
      * Allow digits only
      */
     $('.digits-only').inputFilter(function(value) {
-        return /^[0-9]{0,3}([\.][0-9]{0,2})??$/.test(value);
+        return /^[0-9]{0,4}([\.][0-9]{0,2})??$/.test(value);
     });
 
     let volumeElement = $('#admin_product_volume');
