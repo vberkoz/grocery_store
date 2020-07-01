@@ -48,7 +48,7 @@ class AdminProductController extends AdminBase
         $product['unit'] = 'кг';
 
         $id = Product::createProduct($product);
-        header("Location: /admin/product/1");
+        header("Location: /admin/product/update/$id");
     }
 
     /**
