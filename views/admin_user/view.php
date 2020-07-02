@@ -6,8 +6,8 @@
                 <h5 class="card-title">
                     <?php echo $user['username']; ?>
                     <small class="text-muted">
-                        <?php echo $user['email']; ?>,
-                        <?php echo $user['phone']; ?>,
+                        <?php echo $user['email']; ?>
+                        <?php echo $user['phone']; ?>
                         <?php echo $user['address']; ?>
                     </small>
                 </h5>
@@ -83,6 +83,10 @@
                             <?php endforeach; ?>
                             </tbody>
                         </table>
+                    </div>
+                    
+                    <div>
+                        <?php echo $pagination->get(); ?>
                     </div>
                 <?php else: ?>
                     <p>Тут ще немає жодного товару</p>
