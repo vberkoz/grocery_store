@@ -19,7 +19,8 @@ class Like
                 FROM likes 
                 LEFT JOIN products 
                 ON likes.product_id = products.id 
-                WHERE user_id = :user_id");
+                WHERE user_id = :user_id
+                AND visibility = 1");
         $result = $db->prepare($sql);
         $result->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $result->setFetchMode(PDO::FETCH_ASSOC);
