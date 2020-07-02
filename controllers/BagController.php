@@ -131,6 +131,7 @@ class BagController
                     $userId = false;
                 } else {
                     $userId = User::checkLogged();
+                    $user = User::getUser($userId);
                 }
 
                 $discountValue = 0;
@@ -158,7 +159,7 @@ class BagController
 
                     $adminEmail = 'vberkoz@gmail.com';
 
-                    $subject = 'Замовлення: ' . $userName . ' ' . $userPhone;
+                    $subject = 'Vitamin+ замовлення: ' . $result;
                     $subject = '=?UTF-8?B?'.base64_encode($subject).'?=';
 
                     $message = '<html><body>';
@@ -174,6 +175,9 @@ class BagController
                     $headers  = 'MIME-Version: 1.0' . "\r\n";
                     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
+                    if ($user['email']) {
+                        mail($user['email'], $subject, $message, $headers);
+                    }
                     mail($adminEmail, $subject, $message, $headers);
 
                     Bag::clear();

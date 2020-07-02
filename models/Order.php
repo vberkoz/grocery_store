@@ -193,7 +193,8 @@ class Order
         $result->bindParam(':bag', $bag, PDO::PARAM_STR);
         $result->bindParam(':discount', $discount, PDO::PARAM_STR);
 
-        return $result->execute();
+        $result->execute();
+        return $orderId;
     }
 
     /**
