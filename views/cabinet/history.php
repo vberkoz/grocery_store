@@ -6,7 +6,7 @@
             <?php foreach ($orders as $order): ?>
                 <article class="card mb-3">
                     <header class="card-header bg-white">
-                        <b class="d-inline-block mr-3">Замовлення: <?php echo $order['id']; ?></b>
+                        <b class="d-inline-block mr-3">Замовлення: <?php echo $order['order_id']; ?></b>
                         <span class="float-right"><?php echo date('Y-m-d H:i:s', strtotime($order['created_at'])); ?></span>
                     </header>
                     <div class="card-body">
