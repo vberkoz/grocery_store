@@ -52,6 +52,7 @@ class Order
             $orders[$i]['user_phone'] = $row['user_phone'];
             $orders[$i]['user_comment'] = $row['user_comment'];
             $orders[$i]['user_id'] = $row['user_id'];
+            $orders[$i]['discount'] = $row['discount'];
             $orders[$i]['created_at'] = date('Y-m-d H:i:s', strtotime($row['created_at']));
             $products = json_decode($row['bag'], true);
             $bag = Product::getProductsByIds(array_keys($products), array_values($products));

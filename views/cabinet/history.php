@@ -13,8 +13,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <h6 class="text-muted">Оплата</h6>
-                                <p>Товари: <?php echo numfmt_format_currency($fmt, $order['total'], "UAH"); ?><br>
-                                    <span class="b">Всього: <?php echo numfmt_format_currency($fmt, $order['total'], "UAH"); ?></span>
+                                <p>
+                                    Товари: <?php echo numfmt_format_currency($fmt, $order['total'], "UAH"); ?><br>
+                                    Знижка: <span class="text-danger"><?php echo numfmt_format_currency($fmt, $order['discount'], "UAH"); ?></span><br>
+                                    <span class="b">Всього: <?php echo numfmt_format_currency($fmt, $order['total'] - $order['discount'], "UAH"); ?></span>
                                 </p>
                             </div>
                             <div class="col-md-4">
