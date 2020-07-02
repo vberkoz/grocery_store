@@ -3,6 +3,15 @@
     <div class="col-md-12">
         <div class="card mb-3 mx-auto">
             <div class="card-body">
+                <h5 class="card-title">
+                    <?php echo $user['username']; ?>
+                    <small class="text-muted">
+                        <?php echo $user['email']; ?>,
+                        <?php echo $user['phone']; ?>,
+                        <?php echo $user['address']; ?>
+                    </small>
+                </h5>
+
                 <?php if ($products): ?>
                     <div class="row px-3">
                         <table class="table table-responsive-sm">
