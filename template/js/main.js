@@ -9,7 +9,6 @@ $(document).ready(function () {
     $.fn.inputFilter = function(inputFilter) {
         return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
             let unit = $(this).attr("data-unit");
-            if (unit === 'г') unit = 'шт';
             unit = ' ' + unit;
             let volume = this.value;
 
@@ -55,7 +54,6 @@ $(document).ready(function () {
         let id = $(this).attr("data-id");
         let volume = 1;
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
         $(this).get(0).classList.add("d-none");
         $(this).get(0).nextSibling.nextSibling.classList.remove("d-none");
@@ -80,7 +78,6 @@ $(document).ready(function () {
         volumePrev = parseFloat(volumePrev);
         let volume = Math.round((volumePrev + volumeMin) * 10) / 10;
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
         $(this).get(0).parentElement.previousSibling.previousSibling.value = volume + unit;
         $.post('/bag/add', {
@@ -100,7 +97,6 @@ $(document).ready(function () {
         volumePrev = parseFloat(volumePrev);
         let volume = Math.round((volumePrev + volumeMin) * 10) / 10;
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
         $(this).get(0).parentElement.previousSibling.previousSibling.value = volume + unit;
 
@@ -157,7 +153,6 @@ $(document).ready(function () {
         volumePrev = parseFloat(volumePrev);
         let volume = Math.round((volumePrev - volumeMin) * 10) / 10;
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
 
         $(this).get(0).parentElement.nextSibling.nextSibling.value = volume + unit;
@@ -185,7 +180,6 @@ $(document).ready(function () {
         volumePrev = parseFloat(volumePrev);
         let volume = Math.round((volumePrev - volumeMin) * 10) / 10;
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
 
         $(this).get(0).parentElement.nextSibling.nextSibling.value = volume + unit;
@@ -242,7 +236,6 @@ $(document).ready(function () {
      */
     $(".input-int, .input-float").change(function () {
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
         let volume = $(this).get(0).value;
 
@@ -270,7 +263,6 @@ $(document).ready(function () {
 
     $(".bag-input-float, .bag-input-int").change(function () {
         let unit = $(this).attr("data-unit");
-        if (unit === 'г') unit = 'шт';
         unit = ' ' + unit;
         let volume = $(this).get(0).value;
 
@@ -367,8 +359,7 @@ $(document).ready(function () {
                             $(this).get(0).classList.add("d-none");
                             let inputGroup = $(this).get(0).nextSibling.nextSibling;
                             inputGroup.classList.remove("d-none");
-                            let unit = 'кг';
-                            if ($(this).attr("data-unit") === 'г') unit = 'шт';
+                            let unit = $(this).attr("data-unit");
                             inputGroup.children[1].value = r[p] + ' ' + unit;
                         }
                     }
@@ -406,9 +397,8 @@ $(document).ready(function () {
                 bag.forEach(function (i) {
                     if (i.id === bagItemId) {
                         bagItemData = i;
-                        let unit = 'кг';
                         let inputField = element.find('.bag-change');
-                        if (inputField.attr("data-unit") === 'г') unit = 'шт';
+                        let unit = inputField.attr("data-unit");
                         element.find('.bag-change').get(0).value = i.quantity + ' ' + unit;
                     }
                 });

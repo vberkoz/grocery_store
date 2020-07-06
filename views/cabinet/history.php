@@ -46,7 +46,7 @@
                                                     </span>
                                                     <span class="p-2">
                                                         <?php echo $product['quantity'] * $product['volume']; ?>
-                                                        <?php if ($product['unit'] != 'кг') {echo 'г';} else {echo 'кг';} ?>
+                                                        <?php echo $product['unit']; ?>
                                                     </span>
                                                 </div>
                                             </small>

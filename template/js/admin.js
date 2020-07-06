@@ -31,13 +31,11 @@ $(document).ready(function () {
     let unit = $('#admin_product_unit').val();
     volumeElement.text("Об'єм, " + unit);
 
-    if ($('#admin_product_unit').val() === "г") unit = "шт";
     volumeMinElement.text("Мінімальний об'єм, " + unit);
 
     $('#admin_product_unit').change(function (e) {
         unit = $(this).val();
         volumeElement.text("Об'єм, " + unit);
-        if (unit === "г") unit = "шт";
         volumeMinElement.text("Мінімальний об'єм, " + unit);
     });
 
@@ -50,8 +48,6 @@ $(document).ready(function () {
             userId: userId,
             productId: productId,
             discount: discount
-        }, function (r) {
-            console.log(JSON.parse(r));
         });
     });
 });

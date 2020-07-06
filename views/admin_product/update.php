@@ -80,9 +80,9 @@
                                         <?php if ($product['unit'] == 'кг') echo "selected='selected'"; ?>>
                                         кілограм, кг
                                     </option>
-                                    <option value="г"
-                                        <?php if ($product['unit'] == 'г') echo "selected='selected'"; ?>>
-                                        грам, г
+                                    <option value="шт"
+                                        <?php if ($product['unit'] == 'шт') echo "selected='selected'"; ?>>
+                                        штуки, шт
                                     </option>
                                 </select>
                             </div> <!-- form-group end.// -->

@@ -36,7 +36,7 @@
                                     </div>
 
                                     <input type="text" class="form-control text-center
-                                           <?php if ($product['unit'] == 'г') {
+                                           <?php if ($product['unit'] == 'шт') {
                                                 echo 'input-int';
                                             } else {
                                                 echo 'input-float';

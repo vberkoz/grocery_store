@@ -45,7 +45,7 @@
                                         </div>
 
                                         <input type="text" class="form-control text-center bag-change
-                                                <?php if ($product['unit'] == 'г') {
+                                                <?php if ($product['unit'] == 'шт') {
                                                     echo 'bag-input-int';
                                                 } else {
                                                     echo 'bag-input-float';
