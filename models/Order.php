@@ -2,6 +2,15 @@
 
 class Order
 {
+    private static $orders_sql = [
+        "SELECT * FROM orders
+        WHERE created_at > CONCAT(CURDATE(), ' 4:00:00');",
+        "SELECT * FROM orders
+        WHERE created_at >= CONCAT(SUBDATE(CURDATE(), INTERVAL 1 DAY), ' 4:00:00')
+        AND created_at < CONCAT(CURDATE(), ' 4:00:00');",
+        "SELECT * FROM orders ORDER BY created_at DESC"
+    ];
+
     /**
      * Gets orders list
      * @return array
@@ -66,15 +75,10 @@ class Order
         return $orders;
     }
 
-    public static function yesterdayOrders()
+    public static function orders($period)
     {
         $db = Db::getConnection();
-        $result = $db->query("
-            SELECT *
-            FROM orders
-            WHERE created_at >= CONCAT(SUBDATE(CURDATE(), INTERVAL 1 DAY), ' 4:00:00')
-            AND created_at < CONCAT(CURDATE(), ' 4:00:00');
-        ");
+        $result = $db->query(self::$orders_sql[$period]);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $orders = $result->fetchAll();
         $products = [];
@@ -87,9 +91,18 @@ class Order
         return $orders;
     }
 
-    public static function yesterdayProducts()
+    public static function ordersCount($period)
     {
-        $orders = self::yesterdayOrders();
+        $db = Db::getConnection();
+        $result = $db->query(self::$orders_sql[$period]);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $orders = $result->fetchAll();
+        return count($orders);
+    }
+
+    public static function distinctProducts($period)
+    {
+        $orders = self::orders($period);
         $products = [];
         foreach ($orders as $order) {
             $orderProducts = json_decode($order['bag'], true);

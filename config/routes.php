@@ -44,6 +44,8 @@ return array(
 
     'admin/order/create' => 'adminOrder/create',
     'admin/order/view/([0-9]+)' => 'adminOrder/view/$1',
+    'admin/order/today' => 'adminOrder/today',
+    'admin/order/all' => 'adminOrder/all',
     'admin/order' => 'adminOrder/index',
 
     'admin/user/view/([0-9]+)/([0-9]+)' => 'adminUser/view/$1/$2',

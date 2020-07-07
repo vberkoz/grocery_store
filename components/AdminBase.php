@@ -26,4 +26,13 @@ abstract class AdminBase
     {
         return sprintf( '%04x%04x', mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ));
     }
+
+    public static function ordersBadges()
+    {
+        return [
+            Order::ordersCount(0),
+            Order::ordersCount(1),
+            Order::ordersCount(2),
+        ];
+    }
 }
