@@ -55,7 +55,8 @@ return array(
     'admin/user' => 'adminUser/index',
 
     'admin/discount/index' => 'adminDiscount/index',
-    'admin/discount/update' => 'adminDiscount/update',
+    'admin/discount/currency' => 'adminDiscount/currency',
+    'admin/discount/percent' => 'adminDiscount/percent',
 
     '' => 'site/index',
 );

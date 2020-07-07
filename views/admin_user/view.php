@@ -62,22 +62,35 @@
                                         <?php echo numfmt_format_currency($fmt, $product['price'], "UAH"); ?>
                                     </td>
                                     <td class="align-middle text-right">
-                                        <input type="text" name="discount"
-                                               value="<?php
-                                               $discountValue = 0;
-                                               foreach ($discounts as $discount) {
-                                                    if ($product['id'] == $discount['product_id']) {
-                                                        $discountValue = $discount['discount'];
+                                        <input type="text"
+                                               value="<?php $discountValue = '';
+                                                    foreach ($discounts as $discount) {
+                                                            if ($product['id'] == $discount['product_id']) {
+                                                                $discountValue = $discount['currency'];
+                                                            }
                                                     }
-                                               }
-                                               echo $discountValue;
-                                               $discountValue = 0;
-                                               ?>"
-                                               class="form-control text-right digits-only input-discount"
+                                                    if ($discountValue) echo $discountValue;
+                                                    $discountValue = ''; ?>"
+                                               class="form-control text-right digits-only input-discount-currency"
                                                data-user-id="<?php echo $userId; ?>"
                                                data-product-id="<?php echo $product['id']; ?>"
-                                               style="width: 100px;display: inline;">
-                                        <span style="display: inline;">₴</span>
+                                               style="width: 50px;display: inline;">
+                                        <span style="display: inline;" class="mr-2">₴</span>
+
+                                        <input type="text"
+                                               value="<?php $discountValue = '';
+                                                    foreach ($discounts as $discount) {
+                                                            if ($product['id'] == $discount['product_id']) {
+                                                                $discountValue = $discount['percent'];
+                                                            }
+                                                    }
+                                                    if ($discountValue) echo $discountValue;
+                                                    $discountValue = ''; ?>"
+                                               class="form-control text-right digits-only input-discount-percent"
+                                               data-user-id="<?php echo $userId; ?>"
+                                               data-product-id="<?php echo $product['id']; ?>"
+                                               style="width: 50px;display: inline;">
+                                        <span style="display: inline;">%</span>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

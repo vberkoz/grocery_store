@@ -39,15 +39,27 @@ $(document).ready(function () {
         volumeMinElement.text("Мінімальний об'єм, " + unit);
     });
 
-    $('.input-discount').keyup(function (e) {
-        let discount = $(this).val();
+    $('.input-discount-currency').keyup(function (e) {
+        let currency = $(this).val();
         let userId = $(this).attr('data-user-id');
         let productId = $(this).attr('data-product-id');
 
-        $.post('/admin/discount/update', {
+        $.post('/admin/discount/currency', {
             userId: userId,
             productId: productId,
-            discount: discount
+            currency: currency
+        });
+    });
+
+    $('.input-discount-percent').keyup(function (e) {
+        let percent = $(this).val();
+        let userId = $(this).attr('data-user-id');
+        let productId = $(this).attr('data-product-id');
+
+        $.post('/admin/discount/percent', {
+            userId: userId,
+            productId: productId,
+            percent: percent
         });
     });
 
