@@ -49,6 +49,7 @@ return array(
     'admin/user/view/([0-9]+)/([0-9]+)' => 'adminUser/view/$1/$2',
     'admin/user/view/([0-9]+)/([0-9]+)/page-([0-9]+)' => 'adminUser/view/$1/$2/$3',
     'admin/user/update' => 'adminUser/update',
+    'admin/user/restaurant' => 'adminUser/restaurant',
     'admin/user' => 'adminUser/index',
 
     'admin/discount/index' => 'adminDiscount/index',

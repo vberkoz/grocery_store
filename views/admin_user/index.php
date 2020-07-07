@@ -13,6 +13,7 @@
                                 <th scope="col">Електронна пошта</th>
                                 <th scope="col">Телефон</th>
                                 <th scope="col" style="min-width: 200px;">Адреса</th>
+                                <th scope="col">Ресторан</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -24,6 +25,18 @@
                                     <td class="align-middle"><?php echo $user['email']; ?></td>
                                     <td class="align-middle"><?php echo $user['phone']; ?></td>
                                     <td class="align-middle"><?php echo $user['address']; ?></td>
+                                    <td class="align-middle">
+                                        <div class="form-group m-0">
+                                            <div class="custom-control custom-checkbox ml-4">
+                                                <input type="checkbox" 
+                                                       class="custom-control-input restaurant" 
+                                                       id="<?php echo 'restaurant' . ($key + 1); ?>"
+                                                       data-user-id="<?php echo $user['id']; ?>"
+                                                    <?php if ($user['role'] == 'restaurant') echo 'checked'; ?>>
+                                                <label class="custom-control-label" for="<?php echo 'restaurant' . ($key + 1); ?>"></label>
+                                            </div>
+                                        </div> <!-- form-group end.// -->
+                                    </td>
                                     <td class="align-middle">
                                         <a class="btn btn-outline-secondary btn-sm border-0"
                                            href="/admin/user/view/<?php echo $user['id']; ?>/1">

@@ -45,4 +45,10 @@ class AdminUserController extends AdminBase
         User::updateUserDiscount($_POST['user_id'], $_POST['user_discount']);
         return true;
     }
+
+    public function actionRestaurant()
+    {
+        User::restaurant($_POST['userId'], $_POST['role']);
+        return true;
+    }
 }

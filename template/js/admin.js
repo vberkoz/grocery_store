@@ -50,4 +50,13 @@ $(document).ready(function () {
             discount: discount
         });
     });
+
+    $('.restaurant').change(function() {
+        let userId = $(this).attr('data-user-id')
+        let role = $(this).prop("checked") ? 'restaurant' : 'client'
+        $.post('/admin/user/restaurant', {
+            userId: userId,
+            role: role
+        })
+    })
 });

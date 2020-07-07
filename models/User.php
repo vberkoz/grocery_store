@@ -170,6 +170,16 @@ class User
         return $result->execute();
     }
 
+    public static function restaurant($userId, $role)
+    {
+        $db = Db::getConnection();
+        $sql = 'UPDATE users SET role = :role WHERE id = :id';
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $userId, PDO::PARAM_INT);
+        $result->bindParam(':role', $role, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
     public static function updateUserDiscount($userId, $discount)
     {
         $db = Db::getConnection();
@@ -229,7 +239,7 @@ class User
     public static function getUsers()
     {
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM users");
+        $result = $db->query("SELECT * FROM users WHERE role <> 'admin'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         return $result->fetchAll();
     }
