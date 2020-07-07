@@ -1,5 +1,12 @@
 <?php
 
+$maintaining = 0;
+
+if ($maintaining) {
+    include_once 'maintaining.php';
+    die;
+}
+
 // FRONT CONTROLLER
 
 // 1. Common settings
