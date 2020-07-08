@@ -77,9 +77,17 @@
                         <?php echo $product['title']; ?>
                     </p>
 
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-end">
                         <?php echo $product['volume'] . ' ' . $product['unit']; ?>
-                        <strong><?php echo numfmt_format_currency($fmt, $product['price'], "UAH"); ?></strong>
+                        <div>
+                            <div>
+                                <?php $discount = $product['currency'] + ($product['price'] / 100 * $product['percent']);
+                                    if ($discount) echo '<strike>' . numfmt_format_currency($fmt, $product['price'], "UAH") . '</strike>'; ?>
+                            </div>
+                            <div>
+                                <strong><?php echo numfmt_format_currency($fmt, $product['price'] - $discount, "UAH"); ?></strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

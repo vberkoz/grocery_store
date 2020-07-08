@@ -11,8 +11,12 @@ class Product
      * @param int $categoryId
      * @return array
      */
-    public static function getProducts($count = self::SHOW_BY_DEFAULT, $page = 1, $categoryId = 1)
-    {
+    public static function getProducts(
+        $count = self::SHOW_BY_DEFAULT, 
+        $page = 1, 
+        $categoryId = 1,
+        $userId = 0
+    ) {
         $count = intval($count);
         $categoryId = intval($categoryId);
         $offset = ($page - 1) * $count;
@@ -23,8 +27,31 @@ class Product
         }
 
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM products WHERE visibility = 1 $categorySQL ORDER BY id DESC 
-                                       LIMIT $count OFFSET $offset");
+
+        $sql = "SELECT 
+                    products.id AS id,
+                    products.title, 
+                    products.category_id,
+                    products.product_id,
+                    products.price,
+                    products.availability,
+                    products.visibility,
+                    products.image,
+                    products.volume,
+                    products.volume_min,
+                    products.unit,
+                    discounts.currency,
+                    discounts.percent,
+                    discounts.user_id
+                FROM products 
+                LEFT JOIN 
+                    (SELECT * FROM discounts WHERE user_id = $userId) AS discounts 
+                    ON products.id = discounts.product_id
+                WHERE visibility = 1 $categorySQL
+                ORDER BY id DESC
+                LIMIT $count OFFSET $offset";
+
+        $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         return $result->fetchAll();
     }

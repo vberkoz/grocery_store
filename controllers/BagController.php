@@ -24,7 +24,7 @@ class BagController
                 foreach ($discounts as $discount) {
                     foreach ($products as $key => $product) {
                         if ($discount['product_id'] == $product['id']) {
-                            $products[$key]['discount'] = $discount['discount'];
+                            $products[$key]['discount'] = $discount['currency'] + $product['price'] / 100 * $discount['percent'];
                         }
                     }
                 }
@@ -93,8 +93,9 @@ class BagController
                 foreach ($discounts as $discount) {
                     foreach ($bag as $key => $item) {
                         if ($discount['product_id'] == $item->id) {
-                            $bag[$key]->discount = floatval($discount['discount']);
-                            $totalDiscount += $discount['discount'] * $item->quantity;
+                            $discountVal = $discount['currency'] + $item->price / 100 * $discount['percent'];
+                            $bag[$key]->discount = floatval($discountVal);
+                            $totalDiscount += $discountVal * $item->quantity;
                         }
                     }
                 }
@@ -134,6 +135,9 @@ class BagController
                     $user = User::getUser($userId);
                 }
 
+                $productsIds = array_keys($bag);
+                $products = Product::getProductsByIds($productsIds);
+
                 $discountValue = 0;
                 if (!User::isGuest()) {
                     $userId = User::checkLogged();
@@ -141,7 +145,11 @@ class BagController
                     foreach ($discounts as $discount) {
                         foreach ($bag as $key => $item) {
                             if ($discount['product_id'] == $key) {
-                                $discountValue += ($discount['discount'] * $item);
+                                foreach ($products as $product) {
+                                    if ($discount['product_id'] == $product['id']) {
+                                        $discountValue += (($discount['currency'] + $product['price'] / 100 * $discount['percent']) * $item);
+                                    }
+                                }
                             }
                         }
                     }
@@ -150,8 +158,6 @@ class BagController
                 $result = Order::save($userName, $userPhone, $userComment, $userAddress, $userId, $bag, $discountValue);
 
                 if ($result) {
-                    $productsIds = array_keys($bag);
-                    $products = Product::getProductsByIds($productsIds);
                     $totalPrice = Bag::calculateTotalPrice($products);
 
                     $totalPrice = $totalPrice - $discountValue;
@@ -195,7 +201,11 @@ class BagController
                     foreach ($discounts as $discount) {
                         foreach ($bag as $key => $item) {
                             if ($discount['product_id'] == $key) {
-                                $discountValue += ($discount['discount'] * $item);
+                                foreach ($products as $product) {
+                                    if ($discount['product_id'] == $product['id']) {
+                                        $discountValue += (($discount['currency'] + $product['price'] / 100 * $discount['percent']) * $item);
+                                    }
+                                }
                             }
                         }
                     }
@@ -221,7 +231,11 @@ class BagController
                     foreach ($discounts as $discount) {
                         foreach ($bag as $key => $item) {
                             if ($discount['product_id'] == $key) {
-                                $discountValue += ($discount['discount'] * $item);
+                                foreach ($products as $product) {
+                                    if ($discount['product_id'] == $product['id']) {
+                                        $discountValue += (($discount['currency'] + $product['price'] / 100 * $discount['percent']) * $item);
+                                    }
+                                }
                             }
                         }
                     }
