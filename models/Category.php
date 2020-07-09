@@ -31,7 +31,7 @@ class Category
     {
         $db = Db::getConnection();
         if ($adminArea) {
-            $sql = "SELECT * FROM categories ORDER BY sort_order ASC";
+            $sql = "SELECT * FROM categories WHERE id <> 1 ORDER BY sort_order ASC";
         } else {
             $sql = "SELECT * FROM categories WHERE visibility = 1 ORDER BY sort_order ASC";
         }

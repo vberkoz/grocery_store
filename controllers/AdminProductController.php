@@ -59,7 +59,7 @@ class AdminProductController extends AdminBase
     public function actionUpdate($id)
     {
         self::checkAdmin();
-        $categories = Category::getCategories();
+        $categories = Category::getCategories(true);
         $product = Product::getProduct($id);
         $image = '/template/images/' . $product['image'];
         $errors = false;
