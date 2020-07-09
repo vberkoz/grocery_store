@@ -22,7 +22,8 @@ class User
         $result->bindParam(':secret', $secret, PDO::PARAM_STR);
         $result->bindParam(':role', $role, PDO::PARAM_STR);
 
-        return $result->execute();
+        $result->execute();
+        return $db->lastInsertId();
     }
 
     /**

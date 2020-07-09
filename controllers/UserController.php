@@ -29,7 +29,11 @@ class UserController extends PublicBase
             if (!User::checkLength($password, 6)) $errors[] = 4;
             if (!User::checkSecretMatch($password, $repeat)) $errors[] = 5;
 
-            if ($errors == false) $result = User::register($name, $email, password_hash($password, PASSWORD_DEFAULT));
+            if ($errors == false) {
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                $result = User::register($name, $email, $password);
+                User::auth($result);
+            }
         }
 
         require_once ROOT . '/views/user/signup.php';
