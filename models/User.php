@@ -110,9 +110,9 @@ class User
     /**
      * Checks if user logged
      */
-    public static function checkLogged()
+    public static function checkLogged(): int
     {
-        if ($_SESSION['user']) return $_SESSION['user'];
+        if ($_SESSION['user']) return intval($_SESSION['user']);
         header("Location: /signin/");
     }
 

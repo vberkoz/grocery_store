@@ -38,8 +38,11 @@ CREATE TABLE `discounts` (
 INSERT INTO `discounts` (`id`, `user_id`, `product_id`, `currency`, `percent`) VALUES
 (20,	9,	214,	2,	1),
 (24,	9,	213,	1,	1),
-(25,	1,	214,	5,	10),
-(26,	1,	213,	0,	10);
+(27,	18,	212,	3,	10),
+(28,	18,	213,	0,	10),
+(29,	10,	214,	0,	0),
+(30,	10,	213,	20,	0),
+(31,	10,	209,	5,	0);
 
 DROP TABLE IF EXISTS `likes`;
 CREATE TABLE `likes` (
@@ -56,7 +59,34 @@ INSERT INTO `likes` (`id`, `user_id`, `product_id`) VALUES
 (3,	8,	36),
 (5,	8,	25),
 (6,	8,	23),
-(7,	8,	173);
+(7,	8,	173),
+(8,	18,	212),
+(9,	18,	194);
+
+DROP TABLE IF EXISTS `ordered_products`;
+CREATE TABLE `ordered_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `quantity` float NOT NULL,
+  `discount_client` float NOT NULL DEFAULT '0',
+  `discount_restaurant` float NOT NULL DEFAULT '0',
+  `price` float NOT NULL,
+  `unit` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `ordered_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ordered_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `ordered_products` (`id`, `order_id`, `product_id`, `title`, `quantity`, `discount_client`, `discount_restaurant`, `price`, `unit`) VALUES
+(10,	97,	213,	'Ягоди Годжі',	1.1,	0,	10,	315,	'кг'),
+(11,	97,	212,	'Яблуко червоне',	1.2,	3,	10,	33,	'кг'),
+(12,	97,	211,	'Яблуко Домашнє',	1,	0,	0,	18,	'кг'),
+(13,	98,	209,	'Шпинат',	1,	5,	0,	45,	'кг'),
+(14,	98,	213,	'Ягоди Годжі',	1,	20,	0,	315,	'кг');
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
@@ -75,22 +105,8 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `orders` (`id`, `order_id`, `user_id`, `user_name`, `user_phone`, `user_address`, `user_comment`, `bag`, `discount`, `created_at`) VALUES
-(37,	'5eb3b39c-2e05-46f2-964f-e9a524e25040',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"32\":\"1.2\",\"31\":\"1.1\"}',	0,	'2020-07-01 13:42:39'),
-(38,	'0bb72ea8-c7ac-4532-b784-67c81a34594d',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"24\":\"1\",\"23\":\"1.1\",\"22\":\"1\"}',	31,	'2020-07-01 13:49:38'),
-(39,	'bc8ab39b-1f02-4fb2-a06d-2526cf9b0e09',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"213\":\"1\",\"212\":\"1\",\"211\":\"1\"}',	10,	'2020-07-02 15:00:10'),
-(40,	'39175271-d8f8-44a0-b98e-5d314ec2ebc7',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"205\":\"1\",\"204\":\"1\"}',	0,	'2020-07-02 17:44:45'),
-(41,	'cca6a055-1183-4e21-8cdb-f3339c95a392',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"205\":\"1.2\",\"204\":\"1.1\"}',	0,	'2020-07-02 17:46:34'),
-(42,	'dbb69227-8ade-4ff7-9766-6c7a99fd0540',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"205\":\"1.2\",\"204\":\"1.5\"}',	0,	'2020-07-02 17:52:08'),
-(43,	'bb4597c7-98d7-4bcc-8fca-8218f6db4ddd',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"211\":\"2\"}',	20,	'2020-07-02 17:58:47'),
-(44,	'a7e83880-0d69-4dc2-90e9-0ebb565c7d58',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"214\":\"1\"}',	0,	'2020-07-02 17:59:46'),
-(45,	'be0078b4-50d1-4603-8a43-4c0679087cec',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"207\":\"1.1\",\"109\":\"1.1\"}',	0,	'2020-07-02 18:11:45'),
-(46,	'f5888e7b-6912-4c4b-9b31-7f1c32b26115',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"103\":\"1\",\"77\":\"1\",\"74\":\"1\"}',	0,	'2020-07-07 18:14:27'),
-(47,	'9013b9b7-399d-466a-9274-837e2495f728',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"173\":\"1\"}',	0,	'2020-07-06 09:58:22'),
-(48,	'c5a832d3-1370-4688-9e8c-11114189ad27',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"212\":\"1\",\"204\":\"1\"}',	0,	'2020-07-07 02:28:02'),
-(49,	'6d2b1aa3-a7f3-4d11-b6d5-1e77d5585a67',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'',	'{\"213\":\"1\",\"206\":\"1\",\"207\":\"1.1\"}',	0,	'2020-07-07 10:01:48'),
-(50,	'1d13deb0-9649-4698-897b-487c1a2b8124',	8,	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	'Покладіть в різні пакети',	'{\"209\":\"1\",\"203\":\"1\",\"200\":\"1\"}',	0,	'2020-07-07 10:24:43'),
-(51,	'0d63c39d-1625-4e9e-92af-2473b8003d0b',	1,	'vberkoz',	'0668132356',	'Kutuzova st. 4/90',	'',	'{\"211\":\"1\",\"168\":\"1\"}',	0,	'2020-07-08 13:02:46'),
-(52,	'89589ca4-b328-4729-90b0-dc454a39622d',	1,	'Василь',	'0668132356',	'Kutuzova st. 4/90',	'',	'{\"214\":\"1\",\"213\":\"1\"}',	39.3,	'2020-07-08 15:01:03');
+(97,	'b85a3eb7-fb09-42a6-801f-e2fa5833f040',	18,	'Basil Sergius',	'0956543211',	'',	'',	'{\"213\":\"1.1\",\"212\":\"1.2\",\"211\":\"1\"}',	42.21,	'2020-07-12 10:16:39'),
+(98,	'48d8b43a-3d9b-467c-a445-f2e9e50dad88',	10,	'Олександр',	'0956543211',	'',	'',	'{\"209\":\"1\",\"213\":\"1\"}',	25,	'2020-07-12 12:33:10');
 
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
@@ -281,7 +297,7 @@ INSERT INTO `products` (`id`, `title`, `category_id`, `product_id`, `price`, `av
 (191,	'Салат Фрізе',	3,	'34b2bbf5',	30,	1,	1,	'34b2bbf5.jpg',	1,	0.1,	'кг'),
 (192,	'Фундук чиш',	7,	'2762dd1f',	334,	1,	1,	'2762dd1f.jpg',	1,	0.1,	'кг'),
 (193,	'Халва',	11,	'b318cb8f',	128,	1,	1,	'b318cb8f.jpg',	1,	0.1,	'кг'),
-(194,	'Халва Узбецька',	11,	'ab4b9900',	46,	1,	1,	'ab4b9900.jpg',	1,	0.1,	'кг'),
+(194,	'Халва Узбецька',	11,	'ab4b9900',	46,	1,	0,	'ab4b9900.jpg',	1,	0.1,	'кг'),
 (195,	'Цибуля',	3,	'4e9d3a7d',	13,	1,	1,	'4e9d3a7d.jpg',	1,	0.1,	'кг'),
 (196,	'Цибуля Біла',	3,	'3e43a441',	1,	0,	0,	'3e43a441.jpg',	1,	0.1,	'кг'),
 (197,	'Цибуля Марс',	3,	'1174b925',	21,	1,	1,	'1174b925.jpg',	1,	0.1,	'кг'),
@@ -319,9 +335,9 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `email`, `username`, `phone`, `address`, `discount`, `secret`, `role`, `change_secret_link`) VALUES
-(1,	'vasylberkoz@icloud.com',	'Василь',	'0668132356',	'Kutuzova st. 4/90',	0,	'$2y$10$HMbDuTqYze64hWC18kTHOerTFuXMEg.nybM3ZKe13QA.9DFS1Dms.',	'client',	NULL),
 (8,	'vberkoz@gmail.com',	'Микола',	'1234567899',	'1-й провулок Герцена, 13',	0,	'$2y$10$p5Gh.8gunmx.G4J5mA8dVehjUV8M3bvtq.IP.2VmQUU0ZgTEfxlU2',	'admin',	''),
 (9,	'vberkoz2@gmail.com',	'Євген',	'0668132356',	'Фучика, 71',	30,	'$2y$10$.DMJGzmLYo6OzZLFlv.EDu8qgPQMWw3.cQT5g23h2KuzAyvSDKaMW',	'restaurant',	NULL),
-(10,	'alex@mail.com',	'Олександр',	NULL,	NULL,	0,	'$2y$10$Ja6adhjFQJoE2mFC5ElNBuO8hjovdh7K2yDPBjWOp0BBclTNwsiMi',	'client',	'');
+(10,	'alex@mail.com',	'Олександр',	NULL,	NULL,	0,	'$2y$10$Ja6adhjFQJoE2mFC5ElNBuO8hjovdh7K2yDPBjWOp0BBclTNwsiMi',	'client',	''),
+(18,	'vasylberkoz@icloud.com',	'Basil Sergius',	NULL,	NULL,	0,	'$2y$10$uBQZxQXGHFOrTpg38yLGTuh.NEEK/EHvNavKHmG2Wlprt1JsR.MpK',	'restaurant',	NULL);
 
--- 2020-07-09 08:51:57
+-- 2020-07-12 12:39:26

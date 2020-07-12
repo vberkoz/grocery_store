@@ -155,7 +155,15 @@ class BagController
                     }
                 }
 
-                $result = Order::save($userName, $userPhone, $userComment, $userAddress, $userId, $bag, $discountValue);
+                $result = Order::save(
+                    $userName, 
+                    $userPhone, 
+                    $userComment, 
+                    $userAddress, 
+                    $bag, 
+                    $discountValue, 
+                    $userId
+                );
 
                 if ($result) {
                     $totalPrice = Bag::calculateTotalPrice($products);
@@ -181,8 +189,10 @@ class BagController
                     $headers  = 'MIME-Version: 1.0' . "\r\n";
                     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-                    if ($user['email']) {
-                        mail($user['email'], $subject, $message, $headers);
+                    if (!User::isGuest()) {
+                        if ($user['email']) {
+                            mail($user['email'], $subject, $message, $headers);
+                        }
                     }
                     mail($adminEmail, $subject, $message, $headers);
 

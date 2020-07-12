@@ -76,9 +76,9 @@
                                                data-product-id="<?php echo $product['id']; ?>"
                                                style="width: 50px;display: inline;">
                                         <span style="display: inline;" class="mr-2">₴</span>
-
-                                        <input type="text"
-                                               value="<?php $discountValue = '';
+                                        
+                                        <?php if ($user['role'] == 'restaurant'): ?>
+                                            <input type="text" value="<?php $discountValue = '';
                                                     foreach ($discounts as $discount) {
                                                             if ($product['id'] == $discount['product_id']) {
                                                                 $discountValue = $discount['percent'];
@@ -86,11 +86,12 @@
                                                     }
                                                     if ($discountValue) echo $discountValue;
                                                     $discountValue = ''; ?>"
-                                               class="form-control text-right digits-only input-discount-percent"
-                                               data-user-id="<?php echo $userId; ?>"
-                                               data-product-id="<?php echo $product['id']; ?>"
-                                               style="width: 50px;display: inline;">
-                                        <span style="display: inline;">%</span>
+                                                class="form-control text-right digits-only input-discount-percent"
+                                                data-user-id="<?php echo $userId; ?>"
+                                                data-product-id="<?php echo $product['id']; ?>"
+                                                style="width: 50px;display: inline;">
+                                            <span style="display: inline;">%</span>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -32,19 +32,6 @@ class CabinetController
     }
 
     /**
-     * Cabinet
-     * @return bool
-     */
-    public function actionIndex() {
-        $categories = Category::getCategories();
-        $userId = User::checkLogged();
-        $user = User::getUser($userId);
-
-        require_once ROOT . '/views/cabinet/index.php';
-        return true;
-    }
-
-    /**
      * Settings page
      * @return bool
      */

@@ -88,9 +88,11 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Назва</th>
                                             <th scope="col" class="text-left">Об'єм</th>
+                                            <th scope="col" class="text-left">Ціна</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $sum = 0; ?>
                                         <?php foreach ($order['products'] as $key => $product) : ?>
                                             <tr class="product-record">
                                                 <th scope="row" class="align-middle"><?php echo $key + 1; ?></th>
@@ -103,8 +105,24 @@
                                                         echo 'кг';
                                                     } ?>
                                                 </td>
+                                                <td>
+                                                    <?php
+                                                        $price = $product['price'] * $product['quantity'];
+                                                        $discount_client = $product['discount_client'] * $product['quantity'];
+                                                        $discount_restaurant = ($product['price'] / 100 * $product['discount_restaurant']) * $product['quantity'];
+                                                        $total = $price - ($discount_client + $discount_restaurant);
+                                                        $sum += $total;
+                                                        echo numfmt_format_currency($fmt, $total, "UAH");
+                                                    ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
+                                        <tr>
+                                            <th></th>
+                                            <td><b>Разом</b></td>
+                                            <td></td>
+                                            <td><b><?php echo numfmt_format_currency($fmt, $sum, "UAH"); ?></b></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

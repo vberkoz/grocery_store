@@ -12,6 +12,7 @@ class AdminOrderController extends AdminBase
         $badge = self::ordersBadges();
         $orders = Order::orders(1);
         $products = Order::distinctProducts(1);
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $tableTitle = 'Всього товарів з 04:00 '
             . (date('j') - 1)
             . date('-n')
@@ -30,6 +31,7 @@ class AdminOrderController extends AdminBase
         $badge = self::ordersBadges();
         $orders = Order::orders(0);
         $products = Order::distinctProducts(0);
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $tableTitle = 'Всього товарів з 04:00 ' 
             . (date('j')) 
             . date('-n') 
@@ -44,6 +46,7 @@ class AdminOrderController extends AdminBase
         $badge = self::ordersBadges();
         $orders = Order::orders(2);
         $products = Order::distinctProducts(2);
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         $tableTitle = 'Всього товарів за весь час';
         require_once ROOT . '/views/admin_order/index.php';
         return true;

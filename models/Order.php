@@ -81,12 +81,10 @@ class Order
         $result = $db->query(self::$orders_sql[$period]);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $orders = $result->fetchAll();
+
         $products = [];
         foreach ($orders as $key => $order) {
-            $orderProducts = json_decode($order['bag'], true);
-            $bagProducts = Product::getProductsByIds(array_keys($orderProducts), array_values($orderProducts));
-            unset($bagProducts['total']);
-            $orders[$key]['products'] = $bagProducts;
+            $orders[$key]['products'] = OrderedProduct::list($order['id']);
         }
         return $orders;
     }
@@ -182,31 +180,42 @@ class Order
      * @param $userPhone
      * @param $userComment
      * @param $userAddress
-     * @param $userId
      * @param $bag
      * @param $discount
+     * @param $userId
      * @return bool
      */
-    public static function save($userName, $userPhone, $userComment, $userAddress, $userId, $bag, $discount)
-    {
+    public static function save(
+        $userName, 
+        $userPhone, 
+        $userComment, 
+        $userAddress, 
+        $products, 
+        $discount, 
+        $userId
+    ) {
+        $userId = intval($userId);
         $db = Db::getConnection();
         $sql = 'INSERT INTO orders (order_id, user_name, user_phone, user_comment, user_address, user_id, bag, discount) 
                 VALUES (:order_id, :user_name, :user_phone, :user_comment, :user_address, :user_id, :bag, :discount)';
 
-        $bag = json_encode($bag);
-        $orderId = PublicBase::makeHash();
+        $bag = json_encode($products);
+        $orderHash = PublicBase::makeHash();
 
         $result = $db->prepare($sql);
-        $result->bindParam(':order_id', $orderId, PDO::PARAM_STR);
+        $result->bindParam(':order_id', $orderHash, PDO::PARAM_STR);
         $result->bindParam(':user_name', $userName, PDO::PARAM_STR);
         $result->bindParam(':user_phone', $userPhone, PDO::PARAM_STR);
         $result->bindParam(':user_comment', $userComment, PDO::PARAM_STR);
         $result->bindParam(':user_address', $userAddress, PDO::PARAM_STR);
-        $result->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $result->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $result->bindParam(':bag', $bag, PDO::PARAM_STR);
         $result->bindParam(':discount', $discount, PDO::PARAM_STR);
-
         $result->execute();
+        $orderId = $db->lastInsertId();
+        
+        OrderedProduct::saveBunch($userId, $orderId, $products);
+
         return $orderId;
     }
 
