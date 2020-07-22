@@ -86,6 +86,37 @@ class Product
         return $result->fetchAll();
     }
 
+    public static function find($searchTerm, $userId = 0)
+    {
+        $db = Db::getConnection();
+        $result = $db->query("SELECT 
+            products.id AS id,
+            products.title, 
+            products.category_id,
+            products.product_id,
+            products.price,
+            products.availability,
+            products.visibility,
+            products.image,
+            products.volume,
+            products.volume_min,
+            products.unit,
+            discounts.currency,
+            discounts.percent,
+            discounts.user_id
+        FROM products 
+        LEFT JOIN 
+            (SELECT * FROM discounts WHERE user_id = $userId) AS discounts 
+            ON products.id = discounts.product_id
+        WHERE 
+            visibility = 1 AND 
+            availability = 1 AND 
+            title LIKE '$searchTerm%'
+        ORDER BY title DESC");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetchAll();
+    }
+
     /**
      * Gets single product by id
      * @param $productId

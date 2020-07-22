@@ -3,6 +3,7 @@
 return array(
     'category/([0-9]+)/page-([0-9]+)' => 'product/index/$1/$2',
     'category/([0-9]+)' => 'product/index/$1',
+    'search' => 'product/search',
 
     'bag/add' => 'bag/add',
     'bag/reduce' => 'bag/reduce',

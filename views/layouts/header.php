@@ -55,22 +55,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <?php foreach ($categories as $category): ?>
-                        <li class="nav-item">
-                            <a href="/category/<?php echo $category['id']; ?>"
-                               class="nav-link
-                                <?php if (isset($categoryId)): ?>
-                                    <?php if ($categoryId == $category['id']): ?>
-                                        <?php $currentCategoryName = $category['title']; ?>active
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                            ">
-                                <?php echo $category['title']; ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                <ul class="navbar-nav mr-auto"></ul>
                 <form class="form-inline mt-5 mt-md-0">
                     <?php if (User::isGuest()): ?>
                         <a class="btn btn-outline-primary mr-1" href="/signin">

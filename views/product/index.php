@@ -1,12 +1,38 @@
 <?php include_once ROOT . '/views/layouts/header.php'?>
-
-<aside class="col-md-12">
+<div class="col-md-12 px-1 pt-1 pb-0">
     <div class="alert alert-info" role="alert">
         Сьогодні ми доставляємо замовлення які були здійснені вчора і сьогодні до 4-ї години ранку. Решта замовлень будуть оброблені завтра.
     </div>
+</div>
+<aside class="col-md-3 px-1 pb-2 pt-0">
+    <div class="card mb-2">
+        <div class="card-body">
+            <form class="form-inline">
+                <input class="form-control w-100 product-index-search" type="search" placeholder="Пошук" data-user-id="<?php echo $userId; ?>">
+            </form>
+        </div>
+    </div>
+    
+    <div class="list-group">
+        <?php foreach ($categories as $category): ?>
+            <a href="/category/<?php echo $category['id']; ?>"
+                class="list-group-item list-group-item-action
+                <?php if (isset($categoryId)): ?>
+                    <?php if ($categoryId == $category['id']): ?>
+                        <?php $currentCategoryName = $category['title']; ?>active
+                    <?php endif; ?>
+                <?php endif; ?>
+            ">
+                <?php echo $category['title']; ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</aside>
+
+<aside class="col-md-9">
     <div class="row" id="products">
     <?php foreach ($products as $key => $product): ?>
-        <div class="col-6 col-md-2 pl-1 pr-1 pb-2 product-card" data-id="<?php echo $product['id']; ?>">
+        <div class="col-6 col-md-3 pl-1 pr-1 pb-2 product-card" data-id="<?php echo $product['id']; ?>">
             <div class="card h-100">
                 <button class="btn btn-outline-primary border-0 btn-sm position-absolute float-right m-2 invisible like"
                         style="right: 0;z-index: 1;" data-id="<?php echo $product['id']; ?>">
@@ -94,7 +120,7 @@
         </div>
     <?php endforeach; ?>
     </div>
-    <div style="margin-left: -11px;">
+    <div class="pager" style="margin-left: -11px;">
         <?php echo $pagination->get(); ?>
     </div>
 </aside>

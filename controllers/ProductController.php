@@ -13,6 +13,7 @@ class ProductController
         $categories = Category::getCategories();
         if (User::isGuest()) {
             $products = Product::getProducts(24, $page, $categoryId);
+            $userId = 0;
         } else {
             $userId = User::checkLogged();
             $products = Product::getProducts(24, $page, $categoryId, $userId);
@@ -23,6 +24,12 @@ class ProductController
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
 
         require_once ROOT . '/views/product/index.php';
+        return true;
+    }
+
+    public function actionSearch()
+    {
+        echo json_encode(Product::find($_POST['search_term'], $_POST['user_id']));
         return true;
     }
 }
