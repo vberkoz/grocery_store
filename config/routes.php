@@ -20,6 +20,9 @@ return array(
     'forgot' => 'user/forgot',
     'change-secret/*' => 'user/changeSecret/$1',
 
+    'cabinet/order/update' => 'cabinet/orderUpdate',
+    'cabinet/order/remove' => 'cabinet/orderRemove',
+    'cabinet/orders' => 'cabinet/orders',
     'cabinet/history' => 'cabinet/history',
     'cabinet/liked' => 'cabinet/liked',
     'cabinet/edit' => 'cabinet/edit',

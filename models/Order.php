@@ -39,39 +39,36 @@ class Order
         return $result->fetch();
     }
 
-    /**
-     * Get orders by user id
-     * @param $userId
-     * @return array
-     */
-    public static function getUserOrders($userId)
+    public static function history(int $userId): array
     {
         $db = Db::getConnection();
-        $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC";
-        $result = $db->prepare($sql);
-        $result->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $result = $db->query("SELECT
+            id,
+            order_id,
+            user_name,
+            user_phone,
+            user_address,
+            created_at,
+            IF(orders.created_at > CONCAT(CURDATE(), ' 4:00:00'), TRUE, FALSE) as editable
+        FROM orders WHERE user_id = $userId ORDER BY created_at DESC");
         $result->setFetchMode(PDO::FETCH_ASSOC);
-        $result->execute();
+        $orders = $result->fetchAll();
 
-        $i = 0;
-        $orders = [];
-        while ($row = $result->fetch()) {
-            $orders[$i]['id'] = $row['id'];
-            $orders[$i]['user_name'] = $row['user_name'];
-            $orders[$i]['user_phone'] = $row['user_phone'];
-            $orders[$i]['user_comment'] = $row['user_comment'];
-            $orders[$i]['user_id'] = $row['user_id'];
-            $orders[$i]['order_id'] = $row['order_id'];
-            $orders[$i]['discount'] = $row['discount'];
-            $orders[$i]['created_at'] = date('Y-m-d H:i:s', strtotime($row['created_at']));
-            $products = json_decode($row['bag'], true);
-            $bag = Product::getProductsByIds(array_keys($products), array_values($products));
-            $orders[$i]['total'] = $bag['total'];
-            unset($bag['total']);
-            $orders[$i]['bag'] = $bag;
-            $orders[$i]['user_address'] = $row['user_address'];
-            $i++;
+        foreach ($orders as $key => $order) {
+            $orderId = $order['id'];
+            $result = $db->query("SELECT
+                ordered_products.*,
+                products.image,
+                products.volume,
+                products.volume_min
+            FROM ordered_products
+            LEFT JOIN products
+            ON ordered_products.product_id = products.id
+            WHERE order_id = $orderId");
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $orders[$key]['products'] = $result->fetchAll();
         }
+
         return $orders;
     }
 
@@ -227,7 +224,8 @@ class Order
     public static function delete($id)
     {
         $db = Db::getConnection();
-        $sql = 'DELETE FROM orders WHERE id = :id';
+        $sql = 'DELETE FROM orders WHERE id = :id;
+        DELETE FROM ordered_products WHERE order_id = :id;';
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         return $result->execute();

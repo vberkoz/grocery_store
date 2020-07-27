@@ -8,12 +8,33 @@ class CabinetController
      */
     public function actionHistory()
     {
-        $categories = Category::getCategories();
-        $userId = User::checkLogged();
-        $orders = Order::getUserOrders($userId);
-        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
-
         require_once ROOT . '/views/cabinet/history.php';
+        return true;
+    }
+
+    public function actionOrders()
+    {
+        echo json_encode(
+            Order::history(
+                User:: checkLogged()
+            )
+        );
+        return true;
+    }
+
+    public function actionOrderUpdate()
+    {
+        if (floatval($_POST['quantity'])) {
+            echo json_encode(OrderedProduct::update($_POST['order_id'], $_POST['product_id'], $_POST['quantity']));
+        } else {
+            echo json_encode(OrderedProduct::remove($_POST['order_id'], $_POST['product_id']));
+        }
+        return true;
+    }
+
+    public function actionOrderRemove()
+    {
+        Order::delete($_POST['order_id']);
         return true;
     }
 

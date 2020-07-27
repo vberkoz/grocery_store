@@ -67,4 +67,25 @@ class OrderedProduct
         
         return $result->fetchAll();
     }
+
+    public static function update(int $orderId, int $productId, float $quantity):bool
+    {
+        $db = Db::getConnection();
+        $result = $db->prepare('UPDATE ordered_products 
+            SET quantity = :quantity 
+            WHERE order_id = :order_id AND product_id = :product_id');
+        $result->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+        $result->bindParam(':product_id', $productId, PDO::PARAM_INT);
+        $result->bindParam(':quantity', $quantity, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    public static function remove(int $orderId, int $productId): bool
+    {
+        $db = Db::getConnection();
+        $r = $db->prepare('DELETE FROM ordered_products WHERE order_id = :order_id AND product_id = :product_id');
+        $r->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+        $r->bindParam(':product_id', $productId, PDO::PARAM_INT);
+        return $r->execute();
+    }
 }
