@@ -7,8 +7,12 @@ class SiteController extends PublicBase
      */
     public function actionIndex()
     {
-        $categories = Category::getCategories();
-        header("Location: /category/1");
+        if (User::isGuest()) {
+            $categories = Category::getCategories();
+            header("Location: /category/1");
+        } else {
+            header("Location: /cabinet/history");
+        }
     }
 
     /**

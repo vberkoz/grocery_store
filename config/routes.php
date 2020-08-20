@@ -22,6 +22,8 @@ return array(
 
     'cabinet/order/update' => 'cabinet/orderUpdate',
     'cabinet/order/remove' => 'cabinet/orderRemove',
+    'cabinet/order/copy' => 'cabinet/orderCopy',
+    'cabinet/order/product/add' => 'cabinet/orderProductAdd',
     'cabinet/orders' => 'cabinet/orders',
     'cabinet/history' => 'cabinet/history',
     'cabinet/liked' => 'cabinet/liked',

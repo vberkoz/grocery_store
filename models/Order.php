@@ -216,6 +216,75 @@ class Order
         return $orderId;
     }
 
+    public static function copy(int $orderId): array
+    {
+        $db = Db::getConnection();
+        $r = $db->prepare("SELECT * FROM orders WHERE id = :id");
+        $r->bindParam(':id', $orderId, PDO::PARAM_INT);
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+        $r->execute();
+        $order = $r->fetch();
+
+        $r = $db->query("SELECT
+            ordered_products.*,
+            products.image,
+            products.volume,
+            products.volume_min
+        FROM ordered_products
+        LEFT JOIN products
+        ON ordered_products.product_id = products.id
+        WHERE order_id = $orderId");
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+        $order['products'] = $r->fetchAll();
+
+        $r = $db->prepare('INSERT INTO orders (order_id, user_name, user_phone, user_comment, user_address, user_id) 
+        VALUES (:order_id, :user_name, :user_phone, :user_comment, :user_address, :user_id)');
+        $orderHash = PublicBase::makeHash();
+        $r->bindParam(':order_id', $orderHash, PDO::PARAM_STR);
+        $r->bindParam(':user_name', $order['user_name'], PDO::PARAM_STR);
+        $r->bindParam(':user_phone', $order['user_phone'], PDO::PARAM_STR);
+        $r->bindParam(':user_comment', $order['user_comment'], PDO::PARAM_STR);
+        $r->bindParam(':user_address', $order['user_address'], PDO::PARAM_STR);
+        $r->bindParam(':user_id', $order['user_id'], PDO::PARAM_INT);
+        $r->execute();
+        $order['id'] = $db->lastInsertId();
+
+        $sql = '';
+        foreach ($order['products'] as $key => $orderProduct) {
+            $order['products'][$key]['order_id'] = $order['id'];
+            $order_id = $order['id'];
+            $product_id = $orderProduct['product_id'];
+            $title = $orderProduct['title'];
+            $quantity = $orderProduct['quantity'];
+            $discount_client = $orderProduct['discount_client'];
+            $discount_restaurant = $orderProduct['discount_restaurant'];
+            $price = $orderProduct['price'];
+            $unit = $orderProduct['unit'];
+            $sql .= "INSERT INTO ordered_products (
+                order_id, 
+                product_id, 
+                title, 
+                quantity, 
+                discount_client, 
+                discount_restaurant, 
+                price, 
+                unit
+            ) VALUES (
+                $order_id,
+                $product_id,
+                '$title',
+                $quantity,
+                $discount_client,
+                $discount_restaurant,
+                $price,
+                '$unit'
+            );";
+        }
+        $r = $db->query($sql);
+        
+        return $order;
+    }
+
     /**
      * Delete order by id
      * @param $id

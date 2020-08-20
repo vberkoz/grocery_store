@@ -38,6 +38,18 @@ class CabinetController
         return true;
     }
 
+    public function actionOrderCopy()
+    {
+        Order::copy(intval($_POST['order_id']));
+        return true;
+    }
+
+    public function actionOrderProductAdd()
+    {
+        echo json_encode($_POST);
+        return true;
+    }
+
     /**
      * Liked products page
      * @return bool

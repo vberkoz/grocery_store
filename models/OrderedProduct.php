@@ -45,7 +45,6 @@ class OrderedProduct
         }
         $db = Db::getConnection();
         $result = $db->query($sql);
-        $result->execute();
     }
 
     public static function list(int $orderId): array
