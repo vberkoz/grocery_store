@@ -4,6 +4,8 @@ let state = {
     errors: ['name', 'phone'],
     name: '',
     phone: '',
+    address: 'Відсутня',
+    message: 'Відсутнє'
 
 };
 

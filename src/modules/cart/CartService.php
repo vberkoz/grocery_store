@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Cart.php';
+include_once 'CartRenderer.php';
 include_once ROOT.'/components/Utils.php';
 include_once ROOT.'/modules/product/Product.php';
 include_once ROOT.'/modules/cart_product/CartProduct.php';
@@ -20,6 +21,18 @@ class CartService
         $cartId = Cart::insert($data);
         $items = self::content();
         CartProduct::insert($cartId, $items);
+
+        $data['items'] = $items;
+        $message = CartRenderer::mailTemplate($data);
+
+        $email = 'vberkoz@gmail.com';
+        $subject = 'Vitamin+ замовлення: ' . $cartId;
+        $subject = '=?UTF-8?B?'.base64_encode($subject).'?=';
+
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        mail($email, $subject, $message, $headers);
 
         return $data;
     }
