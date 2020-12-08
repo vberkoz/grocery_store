@@ -7,12 +7,18 @@ class SiteController extends PublicBase
      */
     public function actionIndex()
     {
+        $pageTitle = 'Головна';
+        $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
         if (User::isGuest()) {
-            $categories = Category::getCategories();
-            header("Location: /category/1");
+            $products = Product::getProducts();
+            $userId = 0;
         } else {
-            header("Location: /cabinet/history");
+            $userId = User::checkLogged();
+            $products = Product::getProducts('', $userId);
         }
+
+        require_once ROOT . '/views/site/index.php';
+        return true;
     }
 
     /**

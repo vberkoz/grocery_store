@@ -26,7 +26,7 @@ class AdminProductController extends AdminBase
     {
         self::checkAdmin();
         Product::deleteProduct($id);
-        header("Location: /admin/product/1");
+        header("Location: /admin/commodity/1");
     }
 
     /**
@@ -38,7 +38,7 @@ class AdminProductController extends AdminBase
 
         $product['title'] = 'Новий Товар';
         $product['category_id'] = 1;
-        $product['product_id'] = self::generateProductId();
+        $product['code'] = self::generateProductId();
         $product['price'] = 1;
         $product['availability'] = 1;
         $product['visibility'] = 0;
@@ -48,7 +48,7 @@ class AdminProductController extends AdminBase
         $product['unit'] = 'кг';
 
         $id = Product::createProduct($product);
-        header("Location: /admin/product/update/$id");
+        header("Location: /admin/commodity/update/$id");
     }
 
     /**
@@ -90,7 +90,7 @@ class AdminProductController extends AdminBase
                     }
                 }
 
-                header("Location: /admin/product/1");
+                header("Location: /admin/commodity/1");
             }
         }
 

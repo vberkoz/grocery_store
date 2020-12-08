@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'host' => 'db',
+    'host' => 'mysql',
     'port' => '3306',
     'dbname' => 'gs',
     'user' => 'admin',

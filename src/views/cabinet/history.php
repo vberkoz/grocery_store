@@ -6,7 +6,7 @@
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script>
     $.get('/cabinet/orders', {}, r => orderHistory(r))
-    
+
     let historyState = []
 
     const orderHistory = (data) => {
@@ -176,7 +176,7 @@
         })
         products += `
         </tbody></table>
-        <input class="form-control w-100 product-index-search" type="search" placeholder="Додати новий товар" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <input class="form-control w-100 product-index-search" type="search" placeholder="Додати новий товар" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" autocomplete="off">
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" aria-labelledby="dLabel"></div>
         `
         return products
@@ -243,7 +243,7 @@
                                 productQuantity = product.quantity
                                 event.target.closest('.history-plus').parentElement.previousSibling.previousSibling.value = product.quantity + ' ' + product.unit;
                                 $('#item-total-' + product.id).text(new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(product.quantity * product.price) + ' ₴')
-                                
+
                                 order.price += product.volume_min * product.price
                                 order.discount += (product.volume_min * product.discount_client) + (product.price / 100 * product.discount_restaurant * product.volume_min)
                                 order.total = order.price - order.discount
@@ -251,7 +251,7 @@
                                 event.target.closest('.order').getElementsByClassName('discount')[0].textContent = new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(order.discount) + ' ₴'
                                 event.target.closest('.order').getElementsByClassName('total')[0].textContent = new Intl.NumberFormat('uk-UA', { style: 'decimal', minimumFractionDigits: 2 }).format(order.total) + ' ₴'
                                 break;
-                        
+
                             case 'MINUS':
                                 product.quantity = Math.round((parseFloat(product.quantity) - parseFloat(product.volume_min)) * 10) / 10;
                                 productQuantity = product.quantity
@@ -290,7 +290,7 @@
                                     event.target.closest('.product').remove()
                                 }
                                 break;
-                        
+
                             default:
                                 break;
                         }

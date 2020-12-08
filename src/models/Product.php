@@ -2,58 +2,58 @@
 
 class Product
 {
-    const SHOW_BY_DEFAULT = 8;
-
     /**
      * Gets products list by category
-     * @param int $count
-     * @param int $page
-     * @param int $categoryId
+     * @param string $category
+     * @param int $userId
      * @return array
      */
-    public static function getProducts(
-        $count = self::SHOW_BY_DEFAULT, 
-        $page = 1, 
-        $categoryId = 1,
-        $userId = 0
-    ) {
-        $count = intval($count);
-        $categoryId = intval($categoryId);
-        $offset = ($page - 1) * $count;
-
+    public static function getProducts(string $category = '', int $userId = 0): array
+    {
         $categorySQL = '';
-        if ($categoryId > 1) {
-            $categorySQL = "AND category_id = $categoryId ";
+        if ($category) {
+            $categorySQL = "AND categories.slug = '$category' ";
         }
 
         $db = Db::getConnection();
 
-        $sql = "SELECT 
-                    products.id AS id,
-                    products.title, 
-                    products.category_id,
-                    products.product_id,
-                    products.price,
-                    products.availability,
-                    products.visibility,
-                    products.image,
-                    products.volume,
-                    products.volume_min,
-                    products.unit,
-                    discounts.currency,
-                    discounts.percent,
-                    discounts.user_id
-                FROM products 
-                LEFT JOIN 
-                    (SELECT * FROM discounts WHERE user_id = $userId) AS discounts 
-                    ON products.id = discounts.product_id
-                WHERE visibility = 1 $categorySQL
-                ORDER BY id DESC
-                LIMIT $count OFFSET $offset";
+        $sql = "
+            SELECT 
+                products.id,
+                products.code,
+                products.price,
+                products.availability,
+                products.visibility,
+                products.volume,
+                products.volume_min,
+                
+                discounts.currency,
+                discounts.percent,
+                discounts.user_id,
+                
+                product_details.language,
+                product_details.title,
+                product_details.slug,
+                product_details.image,
+                product_details.description,
+                product_details.characteristics,
+                product_details.unit,
+                
+                categories.title AS category_title,
+                categories.slug AS category_slug
+            FROM products 
+            LEFT JOIN 
+                (SELECT * FROM discounts WHERE user_id = $userId) AS discounts 
+                ON products.id = discounts.product_id
+            LEFT JOIN product_details ON products.id = product_details.product_id
+            LEFT JOIN categories ON products.category_id = categories.id
+            WHERE products.visibility = 1 $categorySQL
+            ORDER BY id DESC";
 
-        $result = $db->query($sql);
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        return $result->fetchAll();
+        $r = $db->query($sql);
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+//        echo "<pre>";print_r($r->fetchAll());die;
+        return $r->fetchAll();
     }
 
     /**
@@ -92,8 +92,9 @@ class Product
         $result = $db->query("SELECT 
             products.id AS id,
             products.title, 
+            products.slug,
             products.category_id,
-            products.product_id,
+            products.code,
             products.price,
             products.availability,
             products.visibility,
@@ -122,9 +123,56 @@ class Product
      * @param $productId
      * @return mixed
      */
-    public static function getProduct($productId) {
+     public static function getProduct($productId) {
+         $db = Db::getConnection();
+         $result = $db->query("SELECT * FROM products WHERE id = $productId");
+         $result->setFetchMode(PDO::FETCH_ASSOC);
+         return $result->fetch();
+     }
+
+    /**
+     * Gets single product by slug
+     * @param string $slug
+     * @param int $userId
+     * @return array
+     */
+    public static function single(string $slug, int $userId = 0): array
+    {
         $db = Db::getConnection();
-        $result = $db->query("SELECT * FROM products WHERE id = $productId");
+        $result = $db->query("SELECT 
+            products.id,
+            products.code,
+            products.price,
+            products.availability,
+            products.visibility,
+            products.volume,
+            products.volume_min,
+            
+            product_details.title, 
+            product_details.slug, 
+            product_details.description, 
+            product_details.characteristics, 
+            product_details.image,
+            product_details.unit,
+            
+            discounts.currency,
+            discounts.percent,
+            discounts.user_id,
+            
+            categories.title AS category_title,
+            categories.slug AS category_slug
+        FROM products 
+        LEFT JOIN 
+            (SELECT * FROM discounts WHERE user_id = $userId) AS discounts 
+            ON products.id = discounts.product_id
+        LEFT JOIN categories
+            ON products.category_id = categories.id
+        LEFT JOIN product_details
+            ON products.id = product_details.product_id
+        WHERE 
+            products.visibility = 1 AND 
+            products.availability = 1 AND 
+            product_details.slug = '$slug'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
         return $result->fetch();
     }
@@ -151,7 +199,7 @@ class Product
         }
         while ($row = $result->fetch()) {
             $products[$i]['id'] = $row['id'];
-            $products[$i]['product_id'] = $row['product_id'];
+            $products[$i]['code'] = $row['code'];
             $products[$i]['title'] = $row['title'];
             $products[$i]['category_id'] = $row['category_id'];
             $products[$i]['price'] = $row['price'];
@@ -223,7 +271,7 @@ class Product
         $sql = 'INSERT INTO products (
                     title, 
                     category_id, 
-                    product_id, 
+                    code, 
                     price, 
                     availability, 
                     visibility, 
@@ -234,7 +282,7 @@ class Product
                 ) VALUES (
                     :title, 
                     :category_id, 
-                    :product_id, 
+                    :code, 
                     :price, 
                     :availability, 
                     :visibility, 
@@ -247,7 +295,7 @@ class Product
         $result = $db->prepare($sql);
         $result->bindParam(':title', $product['title'], PDO::PARAM_STR);
         $result->bindParam(':category_id', $product['category_id'], PDO::PARAM_INT);
-        $result->bindParam(':product_id', $product['product_id'], PDO::PARAM_STR);
+        $result->bindParam(':code', $product['code'], PDO::PARAM_STR);
         $result->bindParam(':price', $product['price'], PDO::PARAM_STR);
         $result->bindParam(':availability', $product['availability'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $product['visibility'], PDO::PARAM_INT);
@@ -293,7 +341,7 @@ class Product
                   image = :image,
                   title = :title,
                   category_id = :category_id,
-                  product_id = :product_id,
+                  code = :code,
                   price = :price,
                   volume = :volume,
                   volume_min = :volume_min,
@@ -307,7 +355,7 @@ class Product
         $result->bindParam(':image', $product['image'], PDO::PARAM_STR);
         $result->bindParam(':title', $product['title'], PDO::PARAM_STR);
         $result->bindParam(':category_id', $product['category_id'], PDO::PARAM_INT);
-        $result->bindParam(':product_id', $product['product_id'], PDO::PARAM_STR);
+        $result->bindParam(':code', $product['code'], PDO::PARAM_STR);
         $result->bindParam(':price', $product['price'], PDO::PARAM_STR);
         $result->bindParam(':volume', $product['volume'], PDO::PARAM_STR);
         $result->bindParam(':volume_min', $product['volume_min'], PDO::PARAM_STR);

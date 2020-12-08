@@ -65,7 +65,7 @@
                                         <input type="text"
                                                value="<?php $discountValue = '';
                                                     foreach ($discounts as $discount) {
-                                                            if ($product['id'] == $discount['product_id']) {
+                                                            if ($product['id'] == $discount['code']) {
                                                                 $discountValue = $discount['currency'];
                                                             }
                                                     }
@@ -76,11 +76,11 @@
                                                data-product-id="<?php echo $product['id']; ?>"
                                                style="width: 50px;display: inline;">
                                         <span style="display: inline;" class="mr-2">₴</span>
-                                        
+
                                         <?php if ($user['role'] == 'restaurant'): ?>
                                             <input type="text" value="<?php $discountValue = '';
                                                     foreach ($discounts as $discount) {
-                                                            if ($product['id'] == $discount['product_id']) {
+                                                            if ($product['id'] == $discount['code']) {
                                                                 $discountValue = $discount['percent'];
                                                             }
                                                     }
@@ -98,7 +98,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div>
                         <?php echo $pagination->get(); ?>
                     </div>

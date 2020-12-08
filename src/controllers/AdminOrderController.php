@@ -18,8 +18,8 @@ class AdminOrderController extends AdminBase
             . date('-n')
             . date('-Y')
             . ' до 04:00 '
-            . date('j') 
-            . date('-n') 
+            . date('j')
+            . date('-n')
             . date('-Y');
         require_once ROOT . '/views/admin_order/index.php';
         return true;
@@ -32,9 +32,9 @@ class AdminOrderController extends AdminBase
         $orders = Order::orders(0);
         $products = Order::distinctProducts(0);
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
-        $tableTitle = 'Всього товарів з 04:00 ' 
-            . (date('j')) 
-            . date('-n') 
+        $tableTitle = 'Всього товарів з 04:00 '
+            . (date('j'))
+            . date('-n')
             . date('-Y');
         require_once ROOT . '/views/admin_order/index.php';
         return true;
@@ -69,11 +69,19 @@ class AdminOrderController extends AdminBase
         }
 
         $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
-        $productsCount = json_decode($order['bag'], true);
-        $productsIds = array_keys($productsCount);
+//        $productsCount = json_decode($order['bag'], true);
+//        $productsIds = array_keys($productsCount);
 
-        $products = json_decode($order['bag'], true);
-        $bag = Product::getProductsByIds(array_keys($products), array_values($products));
+//        $products = json_decode($order['bag'], true);
+        $products = OrderedProduct::list($id);
+        $productsIds = [];
+        $productsQuantities = [];
+        foreach ($products as $product) {
+            $productsIds[] = $product['code'];
+            $productsQuantities[] = $product['quantity'];
+        }
+//        echo '<pre>';print_r($productsQuantities);die;
+        $bag = Product::getProductsByIds($productsIds, $productsQuantities);
         $order['total'] = $bag['total'];
         $discount = $order['total'] * ($discount * 0.01);
         $total = $order['total'] - $discount;

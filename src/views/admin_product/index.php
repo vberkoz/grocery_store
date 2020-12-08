@@ -3,7 +3,7 @@
 <div class="col-12">
     <div class="card mb-3 mx-auto">
         <div class="card-body">
-            <a href="/admin/product/create" class="btn btn-primary mb-3">Додати товар</a>
+            <a href="/admin/commodity/create" class="btn btn-primary mb-3">Додати товар</a>
             <?php if ($products): ?>
                 <div class="row px-3">
                     <table class="table table-responsive-sm">
@@ -19,7 +19,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <?php foreach ($categories as $category): ?>
-                                            <a class="dropdown-item" href="/admin/product/<?php echo $category['id']; ?>">
+                                            <a class="dropdown-item" href="/admin/commodity/<?php echo $category['id']; ?>">
                                                 <?php echo $category['title']; ?>
                                             </a>
                                         <?php endforeach; ?>
@@ -48,7 +48,7 @@
                                 <td class="align-middle">
                                     <?php foreach ($categories as $category) {if ($category['id'] == $product['category_id']) echo $category['title'];} ?>
                                 </td>
-                                <td class="align-middle"><?php echo $product['product_id']; ?></td>
+                                <td class="align-middle"><?php echo $product['code']; ?></td>
                                 <td class="align-middle text-center">
                                     <?php if ($product['availability']): ?>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492" height="1.4em" fill="currentColor" class="text-success align-middle pb-1">
@@ -67,7 +67,7 @@
                                 <td class="align-middle text-center"><?php echo $product['unit']; ?></td>
                                 <td class="align-middle text-right"><?php echo numfmt_format_currency($fmt, $product['price'], "UAH"); ?></td>
                                 <td class="align-middle">
-                                    <a class="btn btn-outline-secondary btn-sm border-0" href="/admin/product/update/<?php echo $product['id']; ?>">
+                                    <a class="btn btn-outline-secondary btn-sm border-0" href="/admin/commodity/update/<?php echo $product['id']; ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 528 528" height="1.4em" fill="currentColor" class="align-middle pb-1">
                                             <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z"/>
                                         </svg>

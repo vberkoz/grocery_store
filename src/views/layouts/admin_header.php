@@ -32,8 +32,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/product/1"
-                           class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/product') echo 'active'; ?>">
+                        <a href="/admin/commodity/1"
+                           class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/admin/commodity') echo 'active'; ?>">
                             Товари
                         </a>
                     </li>

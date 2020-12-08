@@ -31,9 +31,9 @@ class Category
     {
         $db = Db::getConnection();
         if ($adminArea) {
-            $sql = "SELECT * FROM categories WHERE id <> 1 ORDER BY sort_order ASC";
+            $sql = "SELECT * FROM categories WHERE id <> 1";
         } else {
-            $sql = "SELECT * FROM categories WHERE visibility = 1 ORDER BY sort_order ASC";
+            $sql = "SELECT * FROM categories WHERE visibility = 1";
         }
 
         $result = $db->query($sql);
@@ -49,12 +49,11 @@ class Category
     public static function createCategory($category)
     {
         $db = Db::getConnection();
-        $sql = 'INSERT INTO categories (title, sort_order, visibility)
+        $sql = 'INSERT INTO categories (title, visibility)
                 VALUES (:title, :sort_order, :visibility)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':title', $category['title'], PDO::PARAM_STR);
-        $result->bindParam(':sort_order', $category['sort_order'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $category['visibility'], PDO::PARAM_INT);
 
         if ($result->execute()) return $db->lastInsertId();
@@ -92,14 +91,12 @@ class Category
         $sql = 'UPDATE categories 
                 SET 
                   title = :title,
-                  sort_order = :sort_order,
                   visibility = :visibility
                 WHERE id = :id';
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':title', $category['title'], PDO::PARAM_STR);
-        $result->bindParam(':sort_order', $category['sort_order'], PDO::PARAM_INT);
         $result->bindParam(':visibility', $category['visibility'], PDO::PARAM_INT);
 
         return $result->execute();

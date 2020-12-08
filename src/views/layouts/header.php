@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-    <title>Вітамін+</title>
+    <title><?php if (isset($pageTitle)) {echo $pageTitle . ' | Вітамін+';} else {echo 'Вітамін+';} ?></title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/">
 
@@ -16,15 +16,19 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/template/css/public.css">
+
+    <!-- Product slider -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 
 <body style="background-color: #f5f5f5;">
 
 <header class="fixed-top bg-white text-dark">
-    <div class="d-md-block border-bottom">
-        <div class="container">
+    <div class="d-md-block border-bottom px-3 py-2">
+        <div class="container-fluid">
             <div class="d-flex justify-content-between">
-                <span class="text-muted py-2">
+                <span class="text-muted">
                     <a href="tel:+380663100015" class="btn btn-light btn-sm text-muted">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 384" height="1.4em" fill="currentColor" class="align-middle pb-1">
                             <path d="M353.188,252.052c-23.51,0-46.594-3.677-68.469-10.906c-10.719-3.656-23.896-0.302-30.438,6.417l-43.177,32.594    c-50.073-26.729-80.917-57.563-107.281-107.26l31.635-42.052c8.219-8.208,11.167-20.198,7.635-31.448    c-7.26-21.99-10.948-45.063-10.948-68.583C132.146,13.823,118.323,0,101.333,0H30.813C13.823,0,0,13.823,0,30.813    C0,225.563,158.438,384,353.188,384c16.99,0,30.813-13.823,30.813-30.813v-70.323C384,265.875,370.177,252.052,353.188,252.052z"/>
@@ -32,10 +36,14 @@
                         +38 (066) 31 000 15
                     </a>
                 </span>
-                <span class="py-2">
-                    <a href="/cabinet/liked" class="btn btn-light btn-sm text-muted">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 456" height="1.3em" fill="currentColor" class="align-middle pb-1">
-                            <path d="m471.382812 44.578125c-26.503906-28.746094-62.871093-44.578125-102.410156-44.578125-29.554687 0-56.621094 9.34375-80.449218 27.769531-12.023438 9.300781-22.917969 20.679688-32.523438 33.960938-9.601562-13.277344-20.5-24.660157-32.527344-33.960938-23.824218-18.425781-50.890625-27.769531-80.445312-27.769531-39.539063 0-75.910156 15.832031-102.414063 44.578125-26.1875 28.410156-40.613281 67.222656-40.613281 109.292969 0 43.300781 16.136719 82.9375 50.78125 124.742187 30.992188 37.394531 75.535156 75.355469 127.117188 119.3125 17.613281 15.011719 37.578124 32.027344 58.308593 50.152344 5.476563 4.796875 12.503907 7.4375 19.792969 7.4375 7.285156 0 14.316406-2.640625 19.785156-7.429687 20.730469-18.128907 40.707032-35.152344 58.328125-50.171876 51.574219-43.949218 96.117188-81.90625 127.109375-119.304687 34.644532-41.800781 50.777344-81.4375 50.777344-124.742187 0-42.066407-14.425781-80.878907-40.617188-109.289063zm0 0"/>
+                <span>
+                    <a href="/cabinet/history" class="btn btn-light btn-sm text-muted">
+<!--                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 456" height="1.3em" fill="currentColor" class="align-middle pb-1">-->
+<!--                            <path d="m471.382812 44.578125c-26.503906-28.746094-62.871093-44.578125-102.410156-44.578125-29.554687 0-56.621094 9.34375-80.449218 27.769531-12.023438 9.300781-22.917969 20.679688-32.523438 33.960938-9.601562-13.277344-20.5-24.660157-32.527344-33.960938-23.824218-18.425781-50.890625-27.769531-80.445312-27.769531-39.539063 0-75.910156 15.832031-102.414063 44.578125-26.1875 28.410156-40.613281 67.222656-40.613281 109.292969 0 43.300781 16.136719 82.9375 50.78125 124.742187 30.992188 37.394531 75.535156 75.355469 127.117188 119.3125 17.613281 15.011719 37.578124 32.027344 58.308593 50.152344 5.476563 4.796875 12.503907 7.4375 19.792969 7.4375 7.285156 0 14.316406-2.640625 19.785156-7.429687 20.730469-18.128907 40.707032-35.152344 58.328125-50.171876 51.574219-43.949218 96.117188-81.90625 127.109375-119.304687 34.644532-41.800781 50.777344-81.4375 50.777344-124.742187 0-42.066407-14.425781-80.878907-40.617188-109.289063zm0 0"/>-->
+<!--                        </svg>-->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 515 455" height="1.4em" fill="currentColor" class="align-middle pb-1">
+                            <path d="m290 32.222c-113.405 0-207.262 84.222-222.981 193.333h-67.019l96.667 96.667 96.667-96.667h-61.188c14.972-73.444 80.056-128.889 157.854-128.889 88.832 0 161.111 72.28 161.111 161.111s-72.279 161.112-161.111 161.112c-51.684 0-100.6-25.079-130.84-67.056l-52.298 37.635c42.323 58.78 110.78 93.866 183.138 93.866 124.373 0 225.556-101.198 225.556-225.556s-101.183-225.556-225.556-225.556z"/>
+                            <path d="m257.778 161.111v131.029l96.195 57.711 33.166-55.256-64.917-38.956v-94.527z"/>
                         </svg>
                     </a>
                     <a href="/bag" class="btn btn-light btn-sm text-muted">
@@ -47,8 +55,8 @@
         </div>
     </div>
     <nav class="navbar navbar-expand-md navbar-light ">
-        <div class="container">
-            <a class="navbar-brand mb-1" href="/category/1">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-1" href="/">
                 <img src="/template/images/logo.jpg" height="29" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,5 +103,5 @@
 </header>
 
 
-<main role="main" class="content container px-4" style="margin-top: 120px;">
+<main role="main" class="content container-fluid px-4" style="margin-top: 120px;">
     <div class="row">

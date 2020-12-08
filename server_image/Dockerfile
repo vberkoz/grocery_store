@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM library/php:8.0-rc-apache
 
 RUN apt-get -y update \
 && apt-get install -y libicu-dev\
@@ -10,4 +10,6 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf
 RUN a2enmod rewrite
 
-RUN chown -R www-data:www-data /var/www
+#docker exec -it php_container bash
+#ps aux | grep php
+RUN chown -R 28 /var/www/html && chmod -R 777 /var/www/html

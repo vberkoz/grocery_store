@@ -22,7 +22,7 @@ class Router
     private function getURI()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
-            return trim($_SERVER['REQUEST_URI'], '/');
+            return substr(trim($_SERVER['REQUEST_URI'], '/'), 7);
         }
 
         return '';
@@ -46,17 +46,24 @@ class Router
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
                 // Determine which controller and method are processing the request
-                $segments = explode('/', $internalRoute);
+//                $segments = explode('/', $internalRoute);
+                $segments = explode('.', $internalRoute);
 
-                $controllerName = array_shift($segments) . 'Controller';
+//                $controllerName = array_shift($segments) . 'Controller';
+                $moduleName = array_shift($segments);
+                $controllerName = $moduleName . 'Controller';
                 $controllerName = ucfirst($controllerName);
+//                echo '<pre>';print_r($controllerName);die;
 
-                $actionName = 'action' . ucfirst(array_shift($segments));
+//                $actionName = 'action' . ucfirst(array_shift($segments));
+                $methodName = array_shift($segments);
 
                 $parameters = $segments;
 
                 // Include controller class file
-                $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
+//                $controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
+                $controllerFile = ROOT . "/modules/$moduleName/$controllerName.php";
+//                echo '<pre>';print_r($methodName);die;
 
                 if (file_exists($controllerFile)) {
                     include_once $controllerFile;
@@ -65,7 +72,8 @@ class Router
                 // Create object, call method
                 $controllerObject = new $controllerName;
 
-                $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+//                $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+                $result = call_user_func_array(array($controllerObject, $methodName), $parameters);
 
                 if ($result != null) {
                     break;
