@@ -4,6 +4,16 @@ include_once ROOT.'/components/Utils.php';
 
 class Product
 {
+    public static function selectByTerm($term)
+    {
+        $db = Db::getConnection();
+        $s = "SELECT title, slug FROM product_details WHERE title LIKE '$term%' LIMIT 5";
+        $r = $db->prepare($s);
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+        $r->execute();
+        return $r->fetchAll();
+    }
+
     public static function selectByIdForCart($ids)
     {
         $db = Db::getConnection();

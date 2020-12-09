@@ -1,6 +1,5 @@
 
 
-const domain = 'http://localhost:8080/api/v1/';
 const cartCountElement = document.getElementById('cart_count');
 
 (() => {

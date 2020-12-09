@@ -1,4 +1,4 @@
-const domain = 'http://localhost:8080/api/v1/';
+
 
 let saveReview = () => {
     let review = {

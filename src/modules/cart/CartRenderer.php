@@ -28,7 +28,7 @@ class CartRenderer
                 <div class='col-12 col-md-4 mb-2'>
                     <div class='row'>
                         <div class='col-4'>
-                            <img src='http://localhost:8080/public/assets/images/$image' alt='$image' class='img-fluid'>
+                            <img src='http://192.168.1.100:8080/public/assets/images/$image' alt='$image' class='img-fluid'>
                         </div>
                         <div class='col-8'>
                             <p class='title mb-0'>$title</p>

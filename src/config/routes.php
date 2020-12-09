@@ -18,5 +18,7 @@ return array(
     'cart/content' => 'cart.content',
     'cart/summary' => 'cart.summary',
     'cart/checkout' => 'cart.checkout',
-    'cart/index' => 'cart.index'
+    'cart/index' => 'cart.index',
+
+    'search' => 'search.full'
 );

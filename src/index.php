@@ -13,6 +13,7 @@ if ($maintaining) {
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+header("Access-Control-Allow-Origin: *");
 session_start();
 
 // 2. Include system files

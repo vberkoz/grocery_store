@@ -1,5 +1,7 @@
 
 
+const domain = 'http://192.168.1.100:8080/api/v1/';
+
 $(document).ready(function () {
 
     $.fn.inputFilter = function(inputFilter) {
