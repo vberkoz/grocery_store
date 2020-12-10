@@ -36,6 +36,8 @@ class RefreshRenderer
         $assets = 'assets';
         $directory = '/public';
 
+        $fruit = Product::selectNew();
+
         $details = include('main.php');
         $header = include(ROOT.'/ssr/layout/header.php');
         $footer = include(ROOT.'/ssr/layout/footer.php');

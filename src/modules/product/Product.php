@@ -4,6 +4,32 @@ include_once ROOT.'/components/Utils.php';
 
 class Product
 {
+    public static function selectNew() {
+        $db = Db::getConnection();
+        $sql = "
+            SELECT 
+                product_details.language,
+                product_details.title,
+                product_details.slug,
+                product_details.image,
+                product_details.unit,
+                products.id,
+                products.category_id,
+                products.price,
+                products.volume,
+                products.volume_min,
+                categories.title AS category,
+                categories.slug AS category_slug
+            FROM products
+            LEFT JOIN product_details ON products.id = product_details.product_id
+            LEFT JOIN categories ON products.category_id = categories.id
+            WHERE products.visible = 1 LIMIT 10";
+        $r = $db->prepare($sql);
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+        $r->execute();
+        return $r->fetchAll();
+    }
+
     public static function selectByTerm($term)
     {
         $db = Db::getConnection();
