@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <nav class='navbar navbar-expand-md navbar-light '>
+    <nav class='navbar navbar-expand-md navbar-light'>
         <div class='container-fluid'>
             <a class='navbar-brand mb-1 d-none d-md-inline-block' href='#'>
                 <img src='assets/images/logo.jpg' height='29' alt='Вітамін+'>
@@ -67,9 +67,8 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="category_dd" id="nav_categories"></div>
             </div>
-
             <div class="dropdown">
-                <input type="search" class="form-control mx-2 product-index-search dropdown-toggle" placeholder="Пошук"
+                <input type="search" class="form-control mx-2 dropdown-toggle" placeholder="Пошук"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" autocomplete="off"
                        onkeyup="search(this)" id="search_input">
                 <div class="dropdown-menu mx-2" aria-labelledby="search" id="search"></div>
@@ -80,7 +79,13 @@
                 <span class='navbar-toggler-icon'></span>
             </button>
             <div class='collapse navbar-collapse' id='navbarCollapse'>
-                <ul class='navbar-nav mr-auto'></ul>
+                <ul class='navbar-nav mr-auto pt-4'>
+                    <li class="nav-item d-md-none"><a class="nav-link text-secondary" href="#">Головна</a></li>
+                    <li class="nav-item d-md-none"><a class="nav-link text-secondary" href="#">Оплата і доставка</a></li>
+                    <li class="nav-item d-md-none"><a class="nav-link text-secondary" href="#">Блог</a></li>
+                    <li class="nav-item d-md-none"><a class="nav-link text-secondary" href="#">Контакти</a></li>
+                    <li class="nav-item d-md-none"><a class="nav-link text-secondary" href="#">Про нас</a></li>
+                </ul>
                 <form class='form-inline mt-5 mt-md-0'>
                     <a class='btn btn-primary' href='#'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
@@ -96,7 +101,7 @@
 
 <main role='main' class='content container px-4' style='margin-top: 120px;'>
     <div class='row'>
-        <div class="col-md-9 mb-3">
+        <div class="col-lg-9 mb-3">
             <div class="card">
                 <div class="card-body">
                     <table class="table-responsive">
@@ -113,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-lg-3 mb-3">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between m-0">

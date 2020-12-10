@@ -163,5 +163,7 @@ return $details = "
 <script src='https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js'></script>
 <script src='//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'></script>
 <script src='$assets/js/main.js'></script>
+<script src='$assets/js/categories.js'></script>
+<script src='$assets/js/search.js'></script>
 <script src='$assets/js/card.js'></script>
 ";

@@ -36,6 +36,13 @@
                         </svg>+38 (066) 31 000 15
                     </a>
                 </span>
+                <ul class='navbar-nav d-none d-md-flex flex-row mr-auto pt-1 pl-2'>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Головна</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Оплата і доставка</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Блог</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Контакти</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Про нас</a></li>
+                </ul>
                 <span>
                     <a href='/public/cart.html' class='btn btn-light btn-sm text-muted'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
@@ -49,16 +56,30 @@
             </div>
         </div>
     </div>
-    <nav class='navbar navbar-expand-md navbar-light '>
+    <nav class='navbar navbar-expand-md navbar-light'>
         <div class='container-fluid'>
             <a class='navbar-brand mb-1' href='#'>
                 <img src='../assets/images/logo.jpg' height='29' alt='Вітамін+'>
             </a>
+            <div class='dropdown'>
+                <button class='btn btn-outline-primary dropdown-toggle' type='button' id='category_dd' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Категорії</button>
+                <div class='dropdown-menu' aria-labelledby='category_dd' id='nav_categories'></div>
+            </div>
+            <div class='dropdown'>
+                <input type='search' class='form-control mx-2 dropdown-toggle' placeholder='Пошук' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)' id='search_input'>
+                <div class='dropdown-menu mx-2' aria-labelledby='search' id='search'></div>
+            </div>
             <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>
                 <span class='navbar-toggler-icon'></span>
             </button>
             <div class='collapse navbar-collapse' id='navbarCollapse'>
-                <ul class='navbar-nav mr-auto'></ul>
+                <ul class='navbar-nav mr-auto pt-4'>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Головна</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Оплата і доставка</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Блог</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Контакти</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Про нас</a></li>
+                </ul>
                 <form class='form-inline mt-5 mt-md-0'>
                     <a class='btn btn-primary' href='#'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
@@ -71,7 +92,6 @@
         </div>
     </nav>
 </header>
-
 
 <main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
     <div class='row'>
@@ -225,6 +245,8 @@
 <script src='https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js'></script>
 <script src='//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'></script>
 <script src='../assets/js/main.js'></script>
+<script src='../assets/js/categories.js'></script>
+<script src='../assets/js/search.js'></script>
 <script src='../assets/js/card.js'></script>
 
 </div>

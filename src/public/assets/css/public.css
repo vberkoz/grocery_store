@@ -11,16 +11,16 @@ body {
     overflow-y:scroll;
 }
 
-@media (max-width: 425px) {
-    input#search_input {max-width: 206px;}
+@media (min-width: 320px) {
+    input#search_input {max-width: 100px;}
 }
 
-@media (max-width: 375px) {
+@media (min-width: 375px) {
     input#search_input {max-width: 156px;}
 }
 
-@media (max-width: 320px) {
-    input#search_input {max-width: 100px;}
+@media (min-width: 425px) {
+    input#search_input {max-width: 206px;}
 }
 
 .content {
