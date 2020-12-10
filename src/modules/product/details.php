@@ -14,6 +14,8 @@ $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
 $price = numfmt_format_currency($fmt, $product['price'], "UAH");
 
 return $details = "
+<main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
+<div class='row'>
 <aside class='container-fluid'>
     <div class='row' id='products'>
         <div class='col-md-12 col-xl-8 offset-xl-2 p-1'>

@@ -20,5 +20,6 @@ return array(
     'cart/checkout' => 'cart.checkout',
     'cart/index' => 'cart.index',
 
-    'search' => 'search.full'
+    'search' => 'search.full',
+    'refresh' => 'refresh.full'
 );

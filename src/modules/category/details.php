@@ -71,6 +71,8 @@ foreach ($products as $product) {
 }
 
 return $index = "
+<main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
+<div class='row'>
 <aside class='col-12'><div class='row' id='products'>$card</div></aside>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js'></script>

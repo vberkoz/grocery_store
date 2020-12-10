@@ -21,7 +21,7 @@ return $header = "
     <link rel='canonical' href='https://getbootstrap.com/docs/4.0/examples/navbar-fixed/'>
 
     <!-- Bootstrap core CSS -->
-    <link href='../assets/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='$assets/css/bootstrap.min.css' rel='stylesheet'>
 
     <!-- Custom styles for this template -->
     <link rel='stylesheet' href='$assets/css/public.css'>
@@ -45,11 +45,11 @@ return $header = "
                     </a>
                 </span>
                 <ul class='navbar-nav d-none d-md-flex flex-row mr-auto pt-1 pl-2'>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Головна</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Оплата і доставка</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Блог</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Контакти</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='#'>Про нас</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/index.html'>Головна</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/payment.html'>Оплата і доставка</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/blog.html'>Блог</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/contact.html'>Контакти</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/about.html'>Про нас</a></li>
                 </ul>
                 <span>
                     <a href='/public/cart.html' class='btn btn-light btn-sm text-muted'>
@@ -66,7 +66,7 @@ return $header = "
     </div>
     <nav class='navbar navbar-expand-md navbar-light'>
         <div class='container-fluid'>
-            <a class='navbar-brand mb-1' href='#'>
+            <a class='navbar-brand mb-1 d-none d-md-inline-block' href='/public/index.html'>
                 <img src='$assets/images/logo.jpg' height='29' alt='Вітамін+'>
             </a>
             <div class='dropdown'>
@@ -82,11 +82,11 @@ return $header = "
             </button>
             <div class='collapse navbar-collapse' id='navbarCollapse'>
                 <ul class='navbar-nav mr-auto pt-4'>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Головна</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Оплата і доставка</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Блог</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Контакти</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='#'>Про нас</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/index.html'>Головна</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/payment.html'>Оплата і доставка</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/blog.html'>Блог</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/contact.html'>Контакти</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/about.html'>Про нас</a></li>
                 </ul>
                 <form class='form-inline mt-5 mt-md-0'>
                     <a class='btn btn-primary' href='#'>
@@ -100,7 +100,4 @@ return $header = "
         </div>
     </nav>
 </header>
-
-<main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
-    <div class='row'>
 ";

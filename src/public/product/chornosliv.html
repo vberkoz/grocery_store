@@ -8,7 +8,7 @@
     <meta name='author' content=''>
     <link rel='icon' type='image/svg+xml' href='/favicon.svg'>
 
-    <title>Чорнослив1 | Вітамін+</title>
+    <title>Чорнослив | Вітамін+</title>
 
     <link rel='canonical' href='https://getbootstrap.com/docs/4.0/examples/navbar-fixed/'>
 
@@ -36,13 +36,14 @@
                         </svg>+38 (066) 31 000 15
                     </a>
                 </span>
+                <ul class='navbar-nav d-none d-md-flex flex-row mr-auto pt-1 pl-2'>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/index.html'>Головна</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/payment.html'>Оплата і доставка</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/blog.html'>Блог</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/contact.html'>Контакти</a></li>
+                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/about.html'>Про нас</a></li>
+                </ul>
                 <span>
-                    <a href='#' class='btn btn-light btn-sm text-muted'>
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 515 455' height='1.4em' fill='currentColor' class='align-middle pb-1'>
-                            <path d='m290 32.222c-113.405 0-207.262 84.222-222.981 193.333h-67.019l96.667 96.667 96.667-96.667h-61.188c14.972-73.444 80.056-128.889 157.854-128.889 88.832 0 161.111 72.28 161.111 161.111s-72.279 161.112-161.111 161.112c-51.684 0-100.6-25.079-130.84-67.056l-52.298 37.635c42.323 58.78 110.78 93.866 183.138 93.866 124.373 0 225.556-101.198 225.556-225.556s-101.183-225.556-225.556-225.556z'/>
-                            <path d='m257.778 161.111v131.029l96.195 57.711 33.166-55.256-64.917-38.956v-94.527z'/>
-                        </svg>
-                    </a>
                     <a href='/public/cart.html' class='btn btn-light btn-sm text-muted'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                             <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -55,16 +56,30 @@
             </div>
         </div>
     </div>
-    <nav class='navbar navbar-expand-md navbar-light '>
+    <nav class='navbar navbar-expand-md navbar-light'>
         <div class='container-fluid'>
-            <a class='navbar-brand mb-1' href='#'>
+            <a class='navbar-brand mb-1 d-none d-md-inline-block' href='/public/index.html'>
                 <img src='../assets/images/logo.jpg' height='29' alt='Вітамін+'>
             </a>
+            <div class='dropdown'>
+                <button class='btn btn-outline-primary dropdown-toggle' type='button' id='category_dd' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Категорії</button>
+                <div class='dropdown-menu' aria-labelledby='category_dd' id='nav_categories'></div>
+            </div>
+            <div class='dropdown'>
+                <input type='search' class='form-control mx-2 dropdown-toggle' placeholder='Пошук' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)' id='search_input'>
+                <div class='dropdown-menu mx-2' aria-labelledby='search' id='search'></div>
+            </div>
             <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>
                 <span class='navbar-toggler-icon'></span>
             </button>
             <div class='collapse navbar-collapse' id='navbarCollapse'>
-                <ul class='navbar-nav mr-auto'></ul>
+                <ul class='navbar-nav mr-auto pt-4'>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/index.html'>Головна</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/payment.html'>Оплата і доставка</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/blog.html'>Блог</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/contact.html'>Контакти</a></li>
+                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/about.html'>Про нас</a></li>
+                </ul>
                 <form class='form-inline mt-5 mt-md-0'>
                     <a class='btn btn-primary' href='#'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
@@ -78,10 +93,8 @@
     </nav>
 </header>
 
-
 <main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
-    <div class='row'>
-
+<div class='row'>
 <aside class='container-fluid'>
     <div class='row' id='products'>
         <div class='col-md-12 col-xl-8 offset-xl-2 p-1'>
@@ -91,7 +104,7 @@
                     <li class='breadcrumb-item'>
                         <a href='/public/category/suhofrukti.html'>Сухофрукти</a>
                     </li>
-                    <li class='breadcrumb-item active' aria-current='page'>Чорнослив1</li>
+                    <li class='breadcrumb-item active' aria-current='page'>Чорнослив</li>
                 </ol>
             </nav>
         </div>
@@ -100,7 +113,7 @@
             <div class='card h-100'>
                 <div class='card-body d-flex align-items-center'>
                     <img class='align-middle mx-auto d-block img-fluid'
-                         src='../assets/images/chornosliv.jpg' alt='Чорнослив1'>
+                         src='../assets/images/chornosliv.jpg' alt='Чорнослив'>
                 </div>
             </div>
         </div>
@@ -109,7 +122,7 @@
             <div class='card'>
                 <div class='card-body'>
                     <p class='text-muted'><small><strong>Код товару: 07e34d5c</strong></small></p>
-                    <h1 class='card-title'><strong>Чорнослив1</strong></h1>
+                    <h1 class='card-title'><strong>Чорнослив</strong></h1>
                     <p class='text-muted'>
                         <small>Ціна за 1 кг</small><br>
                         <small>Мін. замовлення 0.1 кг</small>
@@ -248,13 +261,15 @@
 <script src='https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js'></script>
 <script src='//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'></script>
 <script src='../assets/js/main.js'></script>
+<script src='../assets/js/categories.js'></script>
+<script src='../assets/js/search.js'></script>
 <script src='../assets/js/card.js'></script>
 
 </div>
 </main>
-<footer class="footer bg-white text-dark">
-    <div class="container-fluid p-3">
-        <span class="text-muted">&copy; 2020 Вітамін+</span>
+<footer class='footer bg-white text-dark'>
+    <div class='container-fluid p-3'>
+        <span class='text-muted'>&copy; 2020 Вітамін+</span>
     </div>
 </footer>
 </body>
