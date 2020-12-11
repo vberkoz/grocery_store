@@ -4,9 +4,10 @@ include_once ROOT.'/components/Utils.php';
 
 class Product
 {
-    public static function selectNew() {
+    public static function selectNew()
+    {
         $db = Db::getConnection();
-        $sql = "
+        $s = "
             SELECT 
                 product_details.language,
                 product_details.title,
@@ -23,8 +24,38 @@ class Product
             FROM products
             LEFT JOIN product_details ON products.id = product_details.product_id
             LEFT JOIN categories ON products.category_id = categories.id
-            WHERE products.visible = 1 LIMIT 10";
-        $r = $db->prepare($sql);
+            WHERE products.visible = 1 LIMIT 20";
+        $r = $db->prepare($s);
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+        $r->execute();
+        return $r->fetchAll();
+    }
+
+    public static function selectPopular()
+    {
+        $db = Db::getConnection();
+        $s = "
+            SELECT
+                product_details.language,
+                product_details.title,
+                product_details.slug,
+                product_details.image,
+                product_details.unit,
+                products.id,
+                products.price,
+                products.volume,
+                products.volume_min,
+                cp.num
+            FROM (SELECT
+                    product_id AS pid, 
+                    COUNT(product_id) AS num
+                FROM cart_products
+                GROUP BY pid) AS cp 
+            LEFT JOIN products ON products.id = cp.pid
+            LEFT JOIN product_details ON product_details.product_id = cp.pid
+            ORDER BY cp.num DESC
+            LIMIT 20";
+        $r = $db->prepare($s);
         $r->setFetchMode(PDO::FETCH_ASSOC);
         $r->execute();
         return $r->fetchAll();

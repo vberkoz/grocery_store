@@ -23,6 +23,14 @@ foreach ($products as $product) {
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>$title</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>$volume $unit
+                    <div>
+                        <div>
+                            <strong>$price</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='$id' data-unit='$unit' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -30,10 +38,9 @@ foreach ($products as $product) {
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -41,27 +48,15 @@ foreach ($products as $product) {
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='$id' data-unit='$unit'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='$id' data-volume_min='$volume_min' data-unit='$unit'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>$title</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>$volume $unit
-                    <div>
-                        <div>
-                            <strong>$price</strong>
-                        </div>
                     </div>
                 </div>
             </div>

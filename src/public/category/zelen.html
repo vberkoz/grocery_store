@@ -26,8 +26,8 @@
 <body style='background-color: #f5f5f5;'>
 
 <header class='fixed-top bg-white text-dark'>
-    <div class='d-md-block border-bottom px-3 py-2'>
-        <div class='container-fluid'>
+    <div class='d-md-block border-bottom px-3 px-md-0 py-2'>
+        <div class='container-fluid px-0 px-md-3'>
             <div class='d-flex justify-content-between'>
                 <span class='text-muted'>
                     <a href='tel:+380663100015' class='btn btn-light btn-sm text-muted'>
@@ -45,18 +45,18 @@
                 </ul>
                 <span>
                     <a href='/public/cart.html' class='btn btn-light btn-sm text-muted'>
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor' style='position: relative;'>
                             <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
                             <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
                             <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                         </svg>
-                        <span class='badge badge-pill badge-danger d-none' id='cart_count'></span>
+                        <span class='badge badge-pill badge-danger d-none' id='cart_count' style='position: relative;top: -3px;'></span>
                     </a>
                 </span>
             </div>
         </div>
     </div>
-    <nav class='navbar navbar-expand-md navbar-light'>
+    <nav class='navbar navbar-expand-md navbar-light px-md-0'>
         <div class='container-fluid'>
             <a class='navbar-brand mb-1 d-none d-md-inline-block' href='/public/index.html'>
                 <img src='../assets/images/logo.jpg' height='29' alt='Вітамін+'>
@@ -105,6 +105,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Петрушка вагова</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>55,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='24' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -112,10 +120,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='24' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -123,27 +130,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='24' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='24' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Петрушка вагова</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>55,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -159,6 +154,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Зелена цибуля (перо)</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>40,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='25' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -166,10 +169,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='25' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -177,27 +179,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='25' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='25' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Зелена цибуля (перо)</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>40,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -213,6 +203,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Щавель</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>65,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='36' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -220,10 +218,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='36' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -231,27 +228,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='36' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='36' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Щавель</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>65,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -267,6 +252,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Кріп ваговий</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>75,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='114' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -274,10 +267,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='114' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -285,27 +277,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='114' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='114' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Кріп ваговий</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>75,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -321,6 +301,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Кріп пучок</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>4,50 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='115' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -328,10 +316,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='115' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -339,27 +326,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='115' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='115' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Кріп пучок</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>4,50 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -375,6 +350,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мангольд</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>110,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='129' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -382,10 +365,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='129' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -393,27 +375,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='129' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='129' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мангольд</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>110,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -429,6 +399,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мікрогрін Горох</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>70,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='135' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -436,10 +414,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='135' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -447,27 +424,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='135' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='135' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мікрогрін Горох</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>70,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -483,6 +448,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мікрогрін Люцерна</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>50,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='136' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -490,10 +463,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='136' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -501,27 +473,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='136' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='136' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мікрогрін Люцерна</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>50,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -537,6 +497,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мікрогрін Гарбуз</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>70,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='137' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -544,10 +512,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='137' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -555,27 +522,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='137' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='137' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мікрогрін Гарбуз</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>70,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -591,6 +546,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мікрогрін Редис</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>70,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='138' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -598,10 +561,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='138' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -609,27 +571,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='138' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='138' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мікрогрін Редис</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>70,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -645,6 +595,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мікрогрін Цибуля</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>110,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='139' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -652,10 +610,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='139' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -663,27 +620,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='139' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='139' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мікрогрін Цибуля</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>110,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -699,6 +644,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Мята</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>80,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='141' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -706,10 +659,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='141' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -717,27 +669,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='141' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='141' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Мята</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>80,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -753,6 +693,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Петрушка кучерява</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>60,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='158' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -760,10 +708,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='158' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -771,27 +718,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='158' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='158' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Петрушка кучерява</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>60,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -807,6 +742,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Петрушка</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>4,50 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='159' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -814,10 +757,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='159' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -825,27 +767,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='159' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='159' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Петрушка</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>4,50 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -861,6 +791,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Розмарин</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>190,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='171' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -868,10 +806,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='171' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -879,27 +816,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='171' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='171' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Розмарин</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>190,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -915,6 +840,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Рукола</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>90,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='172' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -922,10 +855,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='172' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -933,27 +865,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='172' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='172' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Рукола</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>90,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -969,6 +889,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Рукола пучок</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                    <div>
+                        <div>
+                            <strong>29,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='173' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -976,10 +904,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='173' data-volume_min='1' data-unit='шт'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -987,27 +914,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='173' data-unit='шт'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='173' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Рукола пучок</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
-                        <div>
-                            <strong>29,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1023,6 +938,14 @@
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
+                <p class='card-text pt-2 mb-2'>Шпинат</p>
+                <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                    <div>
+                        <div>
+                            <strong>45,00 ₴</strong>
+                        </div>
+                    </div>
+                </div>
                 <a href='#' data-id='209' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
                         <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -1030,10 +953,9 @@
                         <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                     </svg>
                 </a>
-                
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
+                        <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='209' data-volume_min='0.1' data-unit='кг'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                 fill='currentColor' class='align-middle'>
@@ -1041,27 +963,15 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' class='form-control text-center input-float' data-id='209' data-unit='кг'>
-                    
                     <div class='input-group-append'>
                         <button type='button' data-id='209' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
+                            class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
                         </button>
-                    </div>
-                </div>
-                
-                <p class='card-text pt-2' style='min-height: 48px;'>Шпинат</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
-                        <div>
-                            <strong>45,00 ₴</strong>
-                        </div>
                     </div>
                 </div>
             </div>

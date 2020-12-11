@@ -1,5 +1,8 @@
-$(document).ready(function () {
-    $('.fruit').slick({
+
+
+const slider = c => {
+    $(c).addClass('d-block');
+    $(c).slick({
         infinite: false,
         speed: 300,
         slidesToShow: 8,
@@ -33,14 +36,17 @@ $(document).ready(function () {
             // instead of a settings object
         ]
     });
-});
 
-// Custom carousel nav
-$('.carousel-prev').click(function () {
-    $(this).parent().parent().parent().find('.fruit').slick('slickPrev');
-});
+    // Custom carousel nav
+    $(c + '-prev').click(function () {
+        $(this).parent().parent().parent().find(c).slick('slickPrev');
+    });
 
-$('.carousel-next').click(function (e) {
-    e.preventDefault();
-    $(this).parent().parent().parent().find('.fruit').slick('slickNext');
-});
+    $(c + '-next').click(function (e) {
+        e.preventDefault();
+        $(this).parent().parent().parent().find(c).slick('slickNext');
+    });
+}
+
+slider('.fruit');
+slider('.popular');

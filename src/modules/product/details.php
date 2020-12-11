@@ -21,10 +21,8 @@ return $details = "
         <div class='col-md-12 col-xl-8 offset-xl-2 p-1'>
             <nav class='card' aria-label='breadcrumb'>
                 <ol class='breadcrumb m-0' style='background-color: rgba(255, 255, 128, .0)'>
-                    <li class='breadcrumb-item'><a href='/'>Головна</a></li>
-                    <li class='breadcrumb-item'>
-                        <a href='$directory/category/$category_slug.html'>$category_title</a>
-                    </li>
+                    <li class='breadcrumb-item'><a href='$directory/index.html'>Головна</a></li>
+                    <li class='breadcrumb-item'><a href='$directory/category/$category_slug.html'>$category_title</a></li>
                     <li class='breadcrumb-item active' aria-current='page'>$title</li>
                 </ol>
             </nav>
@@ -63,7 +61,7 @@ return $details = "
 
                             <div class='input-group d-none'>
                                 <div class='input-group-prepend'>
-                                    <button type='button' class='btn btn-outline-primary remove-from-bag'
+                                    <button type='button' class='btn btn-primary remove-from-bag'
                                         data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
                                              fill='currentColor' class='align-middle'>
@@ -75,7 +73,7 @@ return $details = "
                                 <input type='text' class='form-control text-center input-float' data-id='$id' data-unit='$unit'>
 
                                 <div class='input-group-append'>
-                                    <button type='button' class='btn btn-outline-primary add-to-bag-second'
+                                    <button type='button' class='btn btn-primary add-to-bag-second'
                                         data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                             fill='currentColor' class='align-middle'>

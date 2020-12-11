@@ -13,14 +13,17 @@ body {
 
 @media (min-width: 320px) {
     input#search_input {max-width: 100px;}
+    .card {padding: 0;}
 }
 
 @media (min-width: 375px) {
     input#search_input {max-width: 156px;}
+    .card {padding: 0;}
 }
 
 @media (min-width: 425px) {
     input#search_input {max-width: 206px;}
+    .card {padding: 10px;}
 }
 
 .content {
@@ -29,4 +32,22 @@ body {
 
 .footer {
     flex-shrink: 0;
+}
+
+.btn, .form-control, .navbar-toggler {border-radius: .7rem;}
+.card, .dropdown-menu, .modal-content {border-radius: .7rem;}
+
+.modal-content {padding: 10px;}
+
+.dropdown-menu {
+    padding: 10px 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.input-group input {
+    border: 1px solid #007bff;
 }

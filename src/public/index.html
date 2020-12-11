@@ -26,8 +26,8 @@
 <body style='background-color: #f5f5f5;'>
 
 <header class='fixed-top bg-white text-dark'>
-    <div class='d-md-block border-bottom px-3 py-2'>
-        <div class='container-fluid'>
+    <div class='d-md-block border-bottom px-3 px-md-0 py-2'>
+        <div class='container-fluid px-0 px-md-3'>
             <div class='d-flex justify-content-between'>
                 <span class='text-muted'>
                     <a href='tel:+380663100015' class='btn btn-light btn-sm text-muted'>
@@ -45,18 +45,18 @@
                 </ul>
                 <span>
                     <a href='/public/cart.html' class='btn btn-light btn-sm text-muted'>
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor' style='position: relative;'>
                             <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
                             <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
                             <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
                         </svg>
-                        <span class='badge badge-pill badge-danger d-none' id='cart_count'></span>
+                        <span class='badge badge-pill badge-danger d-none' id='cart_count' style='position: relative;top: -3px;'></span>
                     </a>
                 </span>
             </div>
         </div>
     </div>
-    <nav class='navbar navbar-expand-md navbar-light'>
+    <nav class='navbar navbar-expand-md navbar-light px-md-0'>
         <div class='container-fluid'>
             <a class='navbar-brand mb-1 d-none d-md-inline-block' href='/public/index.html'>
                 <img src='assets/images/logo.jpg' height='29' alt='Вітамін+'>
@@ -96,562 +96,1462 @@
 <main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
 <div class='row'>
 <div class='col-sm-12 p-1'>
-    <div class='d-flex justify-content-between px-1 pt-3'>
-        <h4 class='pt-2'>Фрукти</h4>
-        <div class='pb-2'>
-            <button type='button' class='carousel-prev btn btn-outline-primary'>
-                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
-                    <polygon points='207.093,30.187 176.907,0 48.907,128 176.907,256 207.093,225.813 109.28,128'/>
-                </svg>
-            </button>
-            <button type='button' class='carousel-next btn btn-outline-primary'>
-                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
-                    <polygon points='79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128'/>
-                </svg>
-            </button>
-        </div>
-    </div>
-
-    <div class='fruit' id='products'>
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='15'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/banan.html'>
-                    <img class='card-img-top' src='assets/images/banan.jpg' alt='Банан'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='15' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+    <div id='products'>
+        <div class='d-flex justify-content-between px-1 pt-3'>
+            <h4 class='pt-2'>Нові</h4>
+            <div class='pb-2'>
+                <button type='button' class='fruit-prev btn btn-outline-primary'>
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
+                        <polygon points='207.093,30.187 176.907,0 48.907,128 176.907,256 207.093,225.813 109.28,128'/>
                     </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='15' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='15' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='15' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+                </button>
+                <button type='button' class='fruit-next btn btn-outline-primary'>
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
+                        <polygon points='79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128'/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class='fruit d-none'>
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='15'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/banan.html'>
+                        <img class='card-img-top' src='assets/images/banan.jpg' alt='Банан'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Банан</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Банан</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>34,21 ₴</strong>
+                            <div>
+                                <strong>34,21 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='15' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='15' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='15' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='15' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='16'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/yabluko-golden.html'>
-                    <img class='card-img-top' src='assets/images/yabluko-golden.jpg' alt='Яблуко Голден'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='16' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='16' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='16' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='16' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='16'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/yabluko-golden.html'>
+                        <img class='card-img-top' src='assets/images/yabluko-golden.jpg' alt='Яблуко Голден'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Яблуко Голден</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Яблуко Голден</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>33,00 ₴</strong>
+                            <div>
+                                <strong>33,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='16' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='16' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='16' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='16' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='21'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/grib-shampinjon.html'>
-                    <img class='card-img-top' src='assets/images/grib-shampinjon.jpg' alt='Гриб Шампіньйон'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='21' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='21' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='21' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='21' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='21'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/grib-shampinjon.html'>
+                        <img class='card-img-top' src='assets/images/grib-shampinjon.jpg' alt='Гриб Шампіньйон'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Гриб Шампіньйон</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Гриб Шампіньйон</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>55,00 ₴</strong>
+                            <div>
+                                <strong>55,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='21' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='21' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='21' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='21' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='24'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/petrushka-vagova.html'>
-                    <img class='card-img-top' src='assets/images/petrushka-vagova.jpg' alt='Петрушка вагова'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='24' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='24' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='24' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='24' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='24'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/petrushka-vagova.html'>
+                        <img class='card-img-top' src='assets/images/petrushka-vagova.jpg' alt='Петрушка вагова'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Петрушка вагова</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Петрушка вагова</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>55,00 ₴</strong>
+                            <div>
+                                <strong>55,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='24' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='24' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='24' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='24' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='25'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/zelena-cibulya-pero.html'>
-                    <img class='card-img-top' src='assets/images/zelena-cibulya-pero.jpg' alt='Зелена цибуля (перо)'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='25' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='25' data-volume_min='1' data-unit='шт'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='25' data-unit='шт'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='25' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='25'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/zelena-cibulya-pero.html'>
+                        <img class='card-img-top' src='assets/images/zelena-cibulya-pero.jpg' alt='Зелена цибуля (перо)'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Зелена цибуля (перо)</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Зелена цибуля (перо)</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
                         <div>
-                            <strong>40,00 ₴</strong>
+                            <div>
+                                <strong>40,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='25' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='25' data-volume_min='1' data-unit='шт'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='25' data-unit='шт'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='25' data-volume_min='1' data-unit='шт'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='36'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/shavel.html'>
-                    <img class='card-img-top' src='assets/images/shavel.jpg' alt='Щавель'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='36' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='36' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='36' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='36' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='36'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/shavel.html'>
+                        <img class='card-img-top' src='assets/images/shavel.jpg' alt='Щавель'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Щавель</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Щавель</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>65,00 ₴</strong>
+                            <div>
+                                <strong>65,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='36' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='36' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='36' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='36' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='37'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/banan-v-yalenij.html'>
-                    <img class='card-img-top' src='assets/images/banan-v-yalenij.jpg' alt='Банан в'ялений'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='37' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='37' data-volume_min='0.2' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='37' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='37' data-volume_min='0.2' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='37'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/banan-v-yalenij.html'>
+                        <img class='card-img-top' src='assets/images/banan-v-yalenij.jpg' alt='Банан в'ялений'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Банан в'ялений</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Банан в'ялений</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>22,00 ₴</strong>
+                            <div>
+                                <strong>22,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='37' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='37' data-volume_min='0.2' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='37' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='37' data-volume_min='0.2' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='38'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/sumish-gorihiv-z-fruktami.html'>
-                    <img class='card-img-top' src='assets/images/sumish-gorihiv-z-fruktami.jpg' alt='Суміш горіхів з фруктами'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='38' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='38' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='38' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='38' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='38'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/sumish-gorihiv-z-fruktami.html'>
+                        <img class='card-img-top' src='assets/images/sumish-gorihiv-z-fruktami.jpg' alt='Суміш горіхів з фруктами'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Суміш горіхів з фруктами</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Суміш горіхів з фруктами</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>217,00 ₴</strong>
+                            <div>
+                                <strong>217,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='38' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='38' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='38' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='38' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='39'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/abrikos.html'>
-                    <img class='card-img-top' src='assets/images/abrikos.jpg' alt='Абрикос'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='39' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='39' data-volume_min='0.1' data-unit='кг'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='39' data-unit='кг'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='39' data-volume_min='0.1' data-unit='кг'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='39'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/abrikos.html'>
+                        <img class='card-img-top' src='assets/images/abrikos.jpg' alt='Абрикос'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Абрикос</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 кг
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Абрикос</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
                         <div>
-                            <strong>55,00 ₴</strong>
+                            <div>
+                                <strong>55,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='39' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='39' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='39' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='39' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='40'>
-        <div class='card h-100'>
-            <div class='px-4 pt-4'>
-                <a href='/public/product/avokado.html'>
-                    <img class='card-img-top' src='assets/images/avokado.jpg' alt='Авокадо'>
-                </a>
-            </div>
-            
-            <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <a href='#' data-id='40' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
-                        <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
-                        <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
-                        <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
-                    </svg>
-                </a>
-                
-                <div class='input-group input-group d-none'>
-                    <div class='input-group-prepend'>
-                        <button type='button' class='btn btn-outline-primary remove-from-bag'
-                            data-id='40' data-volume_min='1' data-unit='шт'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <input type='text' class='form-control text-center input-float' data-id='40' data-unit='шт'>
-                    
-                    <div class='input-group-append'>
-                        <button type='button' data-id='40' data-volume_min='1' data-unit='шт'
-                            class='btn btn-outline-primary add-to-bag-second'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
-                                fill='currentColor' class='align-middle'>
-                                <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
-                            </svg>
-                        </button>
-                    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='40'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/avokado.html'>
+                        <img class='card-img-top' src='assets/images/avokado.jpg' alt='Авокадо'>
+                    </a>
                 </div>
                 
-                <p class='card-text pt-2' style='min-height: 48px;'>Авокадо</p>
-                
-                <div class='d-flex justify-content-between align-items-end'>1 шт
-                    <div>
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Авокадо</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
                         <div>
-                            <strong>22,00 ₴</strong>
+                            <div>
+                                <strong>22,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='40' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='40' data-volume_min='1' data-unit='шт'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='40' data-unit='шт'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='40' data-volume_min='1' data-unit='шт'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='41'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/avokado-haas.html'>
+                        <img class='card-img-top' src='assets/images/avokado-haas.jpg' alt='Авокадо Хаас'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Авокадо Хаас</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                        <div>
+                            <div>
+                                <strong>37,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='41' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='41' data-volume_min='1' data-unit='шт'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='41' data-unit='шт'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='41' data-volume_min='1' data-unit='шт'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='44'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/ananas-kalibr-10.html'>
+                        <img class='card-img-top' src='assets/images/ananas-kalibr-10.jpg' alt='Ананас калібр 10'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Ананас калібр 10</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1.5 кг
+                        <div>
+                            <div>
+                                <strong>40,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='44' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='44' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='44' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='44' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='45'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/ananas-kalibr-6.html'>
+                        <img class='card-img-top' src='assets/images/ananas-kalibr-6.jpg' alt='Ананас калібр 6'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Ананас калібр 6</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>85,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='45' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='45' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='45' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='45' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='46'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/ananas-kilce.html'>
+                        <img class='card-img-top' src='assets/images/ananas-kilce.jpg' alt='Ананас кільце'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Ананас кільце</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>171,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='46' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='46' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='46' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='46' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='47'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/ananas-korolivskij.html'>
+                        <img class='card-img-top' src='assets/images/ananas-korolivskij.jpg' alt='Ананас Королівський'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Ананас Королівський</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1.8 кг
+                        <div>
+                            <div>
+                                <strong>110,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='47' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='47' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='47' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='47' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='48'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/apelsin.html'>
+                        <img class='card-img-top' src='assets/images/apelsin.jpg' alt='Апельсин'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Апельсин</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>33,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='48' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='48' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='48' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='48' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='50'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/apelsin-ispaniya.html'>
+                        <img class='card-img-top' src='assets/images/apelsin-ispaniya.jpg' alt='Апельсин Іспанія'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Апельсин Іспанія</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>52,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='50' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='50' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='50' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='50' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='53'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/arahis-blansh.html'>
+                        <img class='card-img-top' src='assets/images/arahis-blansh.jpg' alt='Арахіс Бланш'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Арахіс Бланш</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>75,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='53' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='53' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='53' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='53' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='54'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/arahis-v-glazuri.html'>
+                        <img class='card-img-top' src='assets/images/arahis-v-glazuri.jpg' alt='Арахіс в глазурі'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Арахіс в глазурі</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>128,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='54' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='54' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='54' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='54' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='55'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/arahis-v-shkaralupi.html'>
+                        <img class='card-img-top' src='assets/images/arahis-v-shkaralupi.jpg' alt='Арахіс в шкаралупі'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Арахіс в шкаралупі</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>80,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='55' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='55' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='55' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='55' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        
+        <div class='d-flex justify-content-between px-1 pt-3'>
+            <h4 class='pt-2'>Популярні</h4>
+            <div class='pb-2'>
+                <button type='button' class='popular-prev btn btn-outline-primary'>
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
+                        <polygon points='207.093,30.187 176.907,0 48.907,128 176.907,256 207.093,225.813 109.28,128'/>
+                    </svg>
+                </button>
+                <button type='button' class='popular-next btn btn-outline-primary'>
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
+                        <polygon points='79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128'/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class='popular d-none'>
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='213'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/yagodi-godzhi.html'>
+                        <img class='card-img-top' src='assets/images/yagodi-godzhi.jpg' alt='Ягоди Годжі'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Ягоди Годжі</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>315,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='213' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='213' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='213' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='213' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='212'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/yabluko-chervone.html'>
+                        <img class='card-img-top' src='assets/images/yabluko-chervone.jpg' alt='Яблуко червоне'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Яблуко червоне</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>33,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='212' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='212' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='212' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='212' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='25'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/zelena-cibulya-pero.html'>
+                        <img class='card-img-top' src='assets/images/zelena-cibulya-pero.jpg' alt='Зелена цибуля (перо)'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Зелена цибуля (перо)</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 шт
+                        <div>
+                            <div>
+                                <strong>40,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='25' data-unit='шт' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='25' data-volume_min='1' data-unit='шт'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='25' data-unit='шт'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='25' data-volume_min='1' data-unit='шт'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='208'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/chornosliv.html'>
+                        <img class='card-img-top' src='assets/images/chornosliv.jpg' alt='Чорнослив'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Чорнослив</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>45,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='208' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='208' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='208' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='208' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='209'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/shpinat.html'>
+                        <img class='card-img-top' src='assets/images/shpinat.jpg' alt='Шпинат'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Шпинат</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>45,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='209' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='209' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='209' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='209' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='109'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/kokosova-struzhka.html'>
+                        <img class='card-img-top' src='assets/images/kokosova-struzhka.jpg' alt='Кокосова стружка'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Кокосова стружка</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>72,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='109' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='109' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='109' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='109' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='124'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/mak.html'>
+                        <img class='card-img-top' src='assets/images/mak.jpg' alt='Мак'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Мак</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>116,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='124' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='124' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='124' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='124' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='207'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/sochevicya-shlifovana.html'>
+                        <img class='card-img-top' src='assets/images/sochevicya-shlifovana.jpg' alt='Сочевиця Шліфована'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Сочевиця Шліфована</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>23,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='207' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='207' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='207' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='207' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='214'>
+            <div class='card h-100'>
+                <div class='px-4 pt-4'>
+                    <a href='/public/product/yadro-sonyashnika.html'>
+                        <img class='card-img-top' src='assets/images/yadro-sonyashnika.jpg' alt='Ядро соняшника1'>
+                    </a>
+                </div>
+                
+                <div class='card-body d-flex flex-column justify-content-between p-3'>
+                    <p class='card-text pt-2 mb-2'>Ядро соняшника1</p>
+                    <div class='d-flex justify-content-between align-items-end pb-4'>1 кг
+                        <div>
+                            <div>
+                                <strong>28,00 ₴</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='#' data-id='214' data-unit='кг' class='add-to-bag-first btn btn-outline-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor'>
+                            <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
+                            <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
+                            <path d='M341.333,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667     C364.907,426.667,384,407.573,384,384S364.907,341.333,341.333,341.333z'/>
+                        </svg>
+                    </a>
+                    <div class='input-group d-none'>
+                        <div class='input-group-prepend'>
+                            <button type='button' class='btn btn-primary remove-from-bag'
+                                data-id='214' data-volume_min='0.1' data-unit='кг'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type='text' class='form-control text-center input-float' data-id='214' data-unit='кг'>
+                        <div class='input-group-append'>
+                            <button type='button' data-id='214' data-volume_min='0.1' data-unit='кг'
+                                class='btn btn-primary add-to-bag-second'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
+                                    fill='currentColor' class='align-middle'>
+                                    <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>

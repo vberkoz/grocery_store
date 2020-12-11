@@ -6,7 +6,7 @@ return "
 <div class='col-lg-9 mb-3'>
     <div class='card'>
         <div class='card-body'>
-            <table class='table-responsive'>
+            <table class='table-responsive' id='cart_table'>
                 <thead>
                 <tr class='small text-uppercase text-muted'>
                     <th scope='col' class='px-3'>Продукт</th>

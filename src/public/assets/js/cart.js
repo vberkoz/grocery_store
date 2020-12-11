@@ -96,6 +96,8 @@ $.get(domain + 'cart/content', {}, r => {
         `;
     });
     document.getElementsByTagName('tbody')[0].innerHTML = content;
+    let e = document.getElementsByTagName('table').item(0);
+    e.scrollLeft = 100;
 })
 
 const update = (e, action) => {

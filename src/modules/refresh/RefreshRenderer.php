@@ -27,7 +27,8 @@ class RefreshRenderer
 
         self::cart();
 
-        return json_encode('Full refresh');
+        $r = 'Full refresh';
+        return json_encode($r);
     }
 
     public static function main()
@@ -36,7 +37,8 @@ class RefreshRenderer
         $assets = 'assets';
         $directory = '/public';
 
-        $fruit = Product::selectNew();
+        $new = Product::selectNew();
+        $popular = Product::selectPopular();
 
         $details = include('main.php');
         $header = include(ROOT.'/ssr/layout/header.php');
