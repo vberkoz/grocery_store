@@ -5,30 +5,64 @@ const slider = c => {
     $(c).slick({
         infinite: false,
         speed: 300,
-        slidesToShow: 8,
+        slidesToShow: 6,
         slidesToScroll: 1,
         arrows: false,
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 320,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true
                 }
             },
             {
-                breakpoint: 769,
+                breakpoint: 375,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 1920,
+                settings: {
+                    slidesToShow: 6,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 2560,
+                settings: {
+                    slidesToShow: 8,
+                    slidesToScroll: 1,
+                    infinite: true
                 }
             }
             // You can unslick at a given breakpoint now by adding:

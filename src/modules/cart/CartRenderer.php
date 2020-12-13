@@ -16,6 +16,7 @@ class CartRenderer
         $phone = $data['phone'];
         $address = $data['address'];
         $message = $data['message'];
+        $domain = DOMAIN;
         foreach ($data['items'] as $i) {
             $image = $i['image'];
             $title = $i['title'];
@@ -28,7 +29,7 @@ class CartRenderer
                 <div class='col-12 col-md-4 mb-2'>
                     <div class='row'>
                         <div class='col-4'>
-                            <img src='http://192.168.1.100:8080/public/assets/images/$image' alt='$image' class='img-fluid'>
+                            <img src='$domain/public/assets/images/$image' alt='$image' class='img-fluid'>
                         </div>
                         <div class='col-8'>
                             <p class='title mb-0'>$title</p>
@@ -48,9 +49,9 @@ class CartRenderer
             ";
         }
         $content = include('mail_template.php');
-//        $handle = fopen("public/mail_template.html",'w+');
-//        fwrite($handle, $content);
-//        fclose($handle);
+        $handle = fopen("public/mail_template.html",'w+');
+        fwrite($handle, $content);
+        fclose($handle);
 
         return $content;
     }

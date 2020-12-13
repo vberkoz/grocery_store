@@ -26,9 +26,26 @@ class RefreshRenderer
         self::about();
 
         self::cart();
+        self::account();
 
         $r = 'Full refresh';
         return json_encode($r);
+    }
+
+    public static function account()
+    {
+        $pageTitle = 'Вхід';
+        $assets = 'assets';
+        $directory = '/public';
+
+        $details = include('account.php');
+        $header = include(ROOT.'/ssr/layout/header.php');
+        $footer = include(ROOT.'/ssr/layout/footer.php');
+
+        $content = $header . $details . $footer;
+        $handle = fopen("public/account.html",'w+');
+        fwrite($handle, $content);
+        fclose($handle);
     }
 
     public static function main()

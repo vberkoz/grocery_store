@@ -21,5 +21,9 @@ return array(
     'cart/index' => 'cart.index',
 
     'search' => 'search.full',
-    'refresh' => 'refresh.full'
+    'refresh' => 'refresh.full',
+    'logged' => 'user.logged',
+    'login' => 'user.login',
+    'logout' => 'user.logout',
+    'orders' => 'user.orders'
 );

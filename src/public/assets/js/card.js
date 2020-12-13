@@ -11,7 +11,7 @@ const updateCart = (id, quantity) => {
 }
 
 const hydrateProducts = () => {
-    $.get(domain + 'cart/index', {}, function (r) {
+    $.get(domain + 'cart/index', r => {
         if (r) {
             r = JSON.parse(r);
             if (Object.keys(r).length) {

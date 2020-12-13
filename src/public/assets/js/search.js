@@ -11,7 +11,7 @@ const fetchSearchData = term => {
         r.map(i => {
             seachItems += `<a class="dropdown-item" href="${i.link}">${i.title}</a>`;
         });
-        document.getElementById('search').innerHTML = seachItems;
+        document.getElementById('search_dd').innerHTML = seachItems;
     });
 }
 

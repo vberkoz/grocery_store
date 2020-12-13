@@ -63,15 +63,13 @@ return $details = "
                                 <div class='input-group-prepend'>
                                     <button type='button' class='btn btn-primary remove-from-bag'
                                         data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
-                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
+                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
                                              fill='currentColor' class='align-middle'>
                                             <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
                                         </svg>
                                     </button>
                                 </div>
-
                                 <input type='text' class='form-control text-center input-float' data-id='$id' data-unit='$unit'>
-
                                 <div class='input-group-append'>
                                     <button type='button' class='btn btn-primary add-to-bag-second'
                                         data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>

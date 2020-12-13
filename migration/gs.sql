@@ -9,18 +9,18 @@ USE `gs`;
 
 DROP TABLE IF EXISTS `cart_products`;
 CREATE TABLE `cart_products` (
-                                 `id` int NOT NULL AUTO_INCREMENT,
-                                 `cart_id` int NOT NULL,
-                                 `product_id` int NOT NULL,
-                                 `quantity` float NOT NULL,
-                                 `client` float NOT NULL DEFAULT '0',
-                                 `restaurant` float NOT NULL DEFAULT '0',
-                                 `price` float NOT NULL,
-                                 PRIMARY KEY (`id`),
-                                 KEY `order_id` (`cart_id`),
-                                 KEY `product_id` (`product_id`),
-                                 CONSTRAINT `cart_products_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE,
-                                 CONSTRAINT `cart_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cart_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `quantity` float NOT NULL,
+  `client` float NOT NULL DEFAULT '0',
+  `restaurant` float NOT NULL DEFAULT '0',
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`cart_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `cart_products_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `cart_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `cart_products` (`id`, `cart_id`, `product_id`, `quantity`, `client`, `restaurant`, `price`) VALUES
@@ -43,42 +43,45 @@ INSERT INTO `cart_products` (`id`, `cart_id`, `product_id`, `quantity`, `client`
 (71,	132,	212,	1.3,	3,	10,	33),
 (72,	132,	25,	5,	0,	0,	40),
 (79,	140,	109,	1,	0,	0,	72),
-(80,	140,	124,	1,	0,	0,	116);
+(80,	140,	124,	1,	0,	0,	116),
+(81,	141,	109,	1,	0,	0,	72),
+(82,	141,	118,	1,	0,	0,	87);
 
 DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
-                         `id` int NOT NULL AUTO_INCREMENT,
-                         `hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                         `user_id` int DEFAULT NULL,
-                         `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                         `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                         `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-                         `message` text CHARACTER SET utf8 COLLATE utf8_general_ci,
-                         `count` int DEFAULT NULL,
-                         `price` float DEFAULT NULL,
-                         `discount` float DEFAULT '0',
-                         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                         PRIMARY KEY (`id`),
-                         UNIQUE KEY `orders_id_uindex` (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `message` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `count` int DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `discount` float DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `orders_id_uindex` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `carts` (`id`, `hash`, `user_id`, `name`, `phone`, `address`, `message`, `count`, `price`, `discount`, `created_at`) VALUES
-(98,	'f2e9e50dad88',	10,	'Олександр',	'0956543211',	'',	'',	NULL,	NULL,	25,	'2020-07-12 12:33:10'),
-(99,	'996e248a6046',	18,	'Basil Sergius',	'1234567899',	'Комарова 6/2',	'',	NULL,	NULL,	6.3,	'2020-07-24 11:28:57'),
-(102,	'3acc7f658ba9',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'',	NULL,	NULL,	37.8,	'2020-07-27 19:28:22'),
-(103,	'f88de97a311b',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'',	NULL,	NULL,	0,	'2020-07-27 20:34:06'),
-(104,	'3f49067ed742',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'',	NULL,	NULL,	31.5,	'2020-07-30 15:34:45'),
-(131,	'de9b2f65a2d6',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'',	NULL,	NULL,	0,	'2020-08-05 21:05:06'),
-(132,	'3bd863c59ba9',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'',	NULL,	NULL,	0,	'2020-08-06 02:01:10'),
-(140,	'c5c64de0ca51',	NULL,	'Василь',	'0668132356',	NULL,	NULL,	2,	188,	0,	'2020-12-07 21:09:14');
+(98,	'f2e9e50dad88',	10,	'Олександр',	'0956543211',	'Відсутня',	'Відсутнє',	2,	360,	25,	'2020-07-12 12:33:10'),
+(99,	'996e248a6046',	18,	'Basil Sergius',	'1234567899',	'Комарова 6/2',	'Відсутнє',	3,	106,	6.3,	'2020-07-24 11:28:57'),
+(102,	'3acc7f658ba9',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'Відсутнє',	3,	388,	37.8,	'2020-07-27 19:28:22'),
+(103,	'f88de97a311b',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'Відсутнє',	3,	113,	0,	'2020-07-27 20:34:06'),
+(104,	'3f49067ed742',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'Відсутнє',	1,	315,	31.5,	'2020-07-30 15:34:45'),
+(131,	'de9b2f65a2d6',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'Відсутнє',	3,	388,	0,	'2020-08-05 21:05:06'),
+(132,	'3bd863c59ba9',	18,	'Basil Sergius',	'0668132356',	'Комарова 6/2',	'Відсутнє',	3,	388,	0,	'2020-08-06 02:01:10'),
+(140,	'c5c64de0ca51',	NULL,	'Василь',	'0668132356',	'Відсутня',	'Відсутнє',	2,	188,	0,	'2020-12-07 21:09:14'),
+(141,	'5615a1776a5b',	NULL,	'Peter',	'0661234567',	'Відсутня',	'Відсутнє',	2,	159,	0,	'2020-12-13 16:00:11');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-                              `id` int NOT NULL AUTO_INCREMENT,
-                              `title` varchar(255) NOT NULL,
-                              `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                              `visible` int NOT NULL DEFAULT '1',
-                              PRIMARY KEY (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `visible` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `categories` (`id`, `title`, `slug`, `visible`) VALUES
@@ -92,13 +95,13 @@ INSERT INTO `categories` (`id`, `title`, `slug`, `visible`) VALUES
 
 DROP TABLE IF EXISTS `discounts`;
 CREATE TABLE `discounts` (
-                             `id` int NOT NULL AUTO_INCREMENT,
-                             `user_id` int NOT NULL,
-                             `product_id` int NOT NULL,
-                             `currency` float NOT NULL DEFAULT '0',
-                             `percent` float NOT NULL DEFAULT '0',
-                             PRIMARY KEY (`id`),
-                             UNIQUE KEY `discounts_id_uindex` (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `currency` float NOT NULL DEFAULT '0',
+  `percent` float NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `discounts_id_uindex` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `discounts` (`id`, `user_id`, `product_id`, `currency`, `percent`) VALUES
@@ -112,18 +115,18 @@ INSERT INTO `discounts` (`id`, `user_id`, `product_id`, `currency`, `percent`) V
 
 DROP TABLE IF EXISTS `product_details`;
 CREATE TABLE `product_details` (
-                                   `id` int NOT NULL AUTO_INCREMENT,
-                                   `product_id` int NOT NULL,
-                                   `language` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   `characteristics` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                                   PRIMARY KEY (`id`),
-                                   KEY `product_id` (`product_id`),
-                                   CONSTRAINT `product_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `language` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `characteristics` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `product_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `product_details` (`id`, `product_id`, `language`, `title`, `slug`, `image`, `description`, `characteristics`, `unit`) VALUES
@@ -322,15 +325,15 @@ INSERT INTO `product_details` (`id`, `product_id`, `language`, `title`, `slug`, 
 
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
-                            `id` int NOT NULL AUTO_INCREMENT,
-                            `category_id` int NOT NULL,
-                            `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                            `price` float NOT NULL,
-                            `visible` int NOT NULL DEFAULT '1',
-                            `volume` float DEFAULT '0.1',
-                            `volume_min` float DEFAULT '0.1',
-                            PRIMARY KEY (`id`),
-                            UNIQUE KEY `product_id_uindex` (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `price` float NOT NULL,
+  `visible` int NOT NULL DEFAULT '1',
+  `volume` float DEFAULT '0.1',
+  `volume_min` float DEFAULT '0.1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `product_id_uindex` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `products` (`id`, `category_id`, `code`, `price`, `visible`, `volume`, `volume_min`) VALUES
@@ -529,15 +532,15 @@ INSERT INTO `products` (`id`, `category_id`, `code`, `price`, `visible`, `volume
 
 DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
-                           `id` int NOT NULL AUTO_INCREMENT,
-                           `product_id` int NOT NULL,
-                           `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                           `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                           `text` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                           `date` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-                           PRIMARY KEY (`id`),
-                           KEY `product_id` (`product_id`),
-                           CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `text` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `date` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `reviews` (`id`, `product_id`, `name`, `email`, `text`, `date`) VALUES
@@ -550,17 +553,17 @@ INSERT INTO `reviews` (`id`, `product_id`, `name`, `email`, `text`, `date`) VALU
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-                         `id` int NOT NULL AUTO_INCREMENT,
-                         `email` varchar(255) NOT NULL,
-                         `username` varchar(255) NOT NULL,
-                         `phone` varchar(10) DEFAULT NULL,
-                         `address` varchar(255) DEFAULT NULL,
-                         `discount` int DEFAULT '0',
-                         `secret` varchar(255) NOT NULL,
-                         `role` varchar(255) DEFAULT NULL,
-                         `change_secret_link` varchar(255) DEFAULT NULL,
-                         PRIMARY KEY (`id`),
-                         UNIQUE KEY `users_id_uindex` (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `discount` int DEFAULT '0',
+  `secret` varchar(255) NOT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  `change_secret_link` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_id_uindex` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `email`, `username`, `phone`, `address`, `discount`, `secret`, `role`, `change_secret_link`) VALUES
@@ -569,4 +572,4 @@ INSERT INTO `users` (`id`, `email`, `username`, `phone`, `address`, `discount`, 
 (10,	'alex@mail.com',	'Олександр',	NULL,	NULL,	0,	'$2y$10$Ja6adhjFQJoE2mFC5ElNBuO8hjovdh7K2yDPBjWOp0BBclTNwsiMi',	'client',	''),
 (18,	'vasylberkoz@icloud.com',	'Basil Sergius',	'0668132356',	'Комарова 6/2',	0,	'$2y$10$uBQZxQXGHFOrTpg38yLGTuh.NEEK/EHvNavKHmG2Wlprt1JsR.MpK',	'restaurant',	NULL);
 
--- 2020-12-07 21:11:18
+-- 2020-12-13 22:10:34

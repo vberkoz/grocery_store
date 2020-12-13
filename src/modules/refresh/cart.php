@@ -3,7 +3,7 @@
 return "
 <main role='main' class='content container px-4' style='margin-top: 120px;'>
 <div class='row'>
-<div class='col-lg-9 mb-3'>
+<div class='col-lg-9 mb-3 p-2'>
     <div class='card'>
         <div class='card-body'>
             <table class='table-responsive' id='cart_table'>
@@ -20,7 +20,7 @@ return "
         </div>
     </div>
 </div>
-<div class='col-lg-3 mb-3'>
+<div class='col-lg-3 mb-3 p-2'>
     <div class='card'>
         <div class='card-body'>
             <div class='d-flex justify-content-between m-0'>

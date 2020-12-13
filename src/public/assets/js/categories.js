@@ -10,6 +10,6 @@
                 navCategories += `<a class="dropdown-item" href="/public/category/${i.slug}.html">${i.title}</a>`;
             }
         });
-        document.getElementById('nav_categories').innerHTML = navCategories;
+        document.getElementById('category_dd').innerHTML = navCategories;
     });
 })();

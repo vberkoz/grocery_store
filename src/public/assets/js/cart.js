@@ -60,18 +60,16 @@ $.get(domain + 'cart/content', {}, r => {
             <td class='p-3' style='min-width: 180px;max-width: 180px;'>
                 <div class='input-group'>
                     <div class='input-group-prepend'>
-                        <button class='btn btn-outline-primary' type='button' onclick="update(this, 'remove')">
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em' fill='currentColor' class='align-middle'>
+                        <button class='btn btn-primary' type='button' onclick="update(this, 'remove')">
+                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em' fill='currentColor' class='align-middle'>
                                 <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
                             </svg>
                         </button>
                     </div>
-                    
                     <input type='text' value='${i.quantity} ${i.unit}' onchange="update(this, 'change')"
                         class='form-control text-center item-input ${inputNumberTypeClass}' data-unit='${i.unit}'>
-                        
                     <div class='input-group-append'>
-                        <button class='btn btn-outline-primary' type='button' onclick="update(this, 'add')">
+                        <button class='btn btn-primary' type='button' onclick="update(this, 'add')">
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em' fill='currentColor' class='align-middle'>
                                 <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
                             </svg>
@@ -80,7 +78,7 @@ $.get(domain + 'cart/content', {}, r => {
                 </div>
             </td>
             
-            <td class='p-3 text-right' style='min-width: 100px;'>
+            <td class='p-3 text-right' style='min-width: 150px;'>
                 <span class='total align-middle'>${total}</span>
             </td>
             

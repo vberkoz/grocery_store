@@ -69,34 +69,44 @@ return $header = "
             <a class='navbar-brand mb-1 d-none d-md-inline-block' href='/public/index.html'>
                 <img src='$assets/images/logo.jpg' height='29' alt='Вітамін+'>
             </a>
-            <div class='dropdown'>
-                <button class='btn btn-outline-primary dropdown-toggle' type='button' id='category_dd' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Категорії</button>
-                <div class='dropdown-menu' aria-labelledby='category_dd' id='nav_categories'></div>
+            
+            <div id='category' class='dropdown'>
+                <button id='category_btn' class='btn btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Категорії</button>
+                <div id='category_dd' class='dropdown-menu'></div>
             </div>
-            <div class='dropdown'>
-                <input type='search' class='form-control mx-2 dropdown-toggle' placeholder='Пошук' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)' id='search_input'>
-                <div class='dropdown-menu mx-2' aria-labelledby='search' id='search'></div>
+            
+            <div id='search' class='dropdown'>
+                <input id='search_input' type='search' class='form-control mx-2 dropdown-toggle' placeholder='Пошук' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)'>
+                <div id='search_dd' class='dropdown-menu mx-2'></div>
             </div>
-            <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>
-                <span class='navbar-toggler-icon'></span>
-            </button>
-            <div class='collapse navbar-collapse' id='navbarCollapse'>
-                <ul class='navbar-nav mr-auto pt-4'>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/index.html'>Головна</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/payment.html'>Оплата і доставка</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/blog.html'>Блог</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/contact.html'>Контакти</a></li>
-                    <li class='nav-item d-md-none'><a class='nav-link text-secondary' href='/public/about.html'>Про нас</a></li>
-                </ul>
-                <form class='form-inline mt-5 mt-md-0'>
-                    <a class='btn btn-primary' href='#'>
+            
+            <div id='menu' class='dropdown d-md-none'>
+                <button id='menu_btn' class='btn btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                    <span class='navbar-toggler-icon'></span>
+                </button>
+                <div id='menu_dd' class='dropdown-menu'>
+                    <a class='dropdown-item' href='/public/index.html'>Головна</a>
+                    <a class='dropdown-item' href='/public/payment.html'>Оплата і доставка</a>
+                    <a class='dropdown-item' href='/public/blog.html'>Блог</a>
+                    <a class='dropdown-item' href='/public/contact.html'>Контакти</a>
+                    <a class='dropdown-item' href='/public/about.html'>Про нас</a>
+                    <a class='dropdown-item' href='/public/account.html'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
                             <path d='m431.964 435.333c-.921-58.994-19.3-112.636-51.977-151.474-32.487-38.601-76.515-59.859-123.987-59.859s-91.5 21.258-123.987 59.859c-32.646 38.797-51.013 92.364-51.973 151.285 18.46 9.247 94.85 44.856 175.96 44.856 87.708 0 158.845-35.4 175.964-44.667z'/>
                             <circle cx='256' cy='120' r='88'/>
-                        </svg>
+                        </svg>Вхід в акаунт
                     </a>
-                </form>
+                </div>
             </div>
+            
+            <form class='form-inline mt-5 mt-md-0 d-none d-md-inline-block'>
+                <a class='btn btn-primary' href='/public/account.html'>
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
+                        <path d='m431.964 435.333c-.921-58.994-19.3-112.636-51.977-151.474-32.487-38.601-76.515-59.859-123.987-59.859s-91.5 21.258-123.987 59.859c-32.646 38.797-51.013 92.364-51.973 151.285 18.46 9.247 94.85 44.856 175.96 44.856 87.708 0 158.845-35.4 175.964-44.667z'/>
+                        <circle cx='256' cy='120' r='88'/>
+                    </svg>
+                </a>
+            </form>
         </div>
     </nav>
 </header>

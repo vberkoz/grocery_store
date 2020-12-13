@@ -12,9 +12,8 @@ foreach ($products as $product) {
     $volume = $product['volume'];
     $volume_min = $product['volume_min'];
     $price = numfmt_format_currency($fmt, $product['price'], "UAH");
-
     $card .= "
-    <div class='col-xl-2 col-md-3 col-6 pl-1 pr-1 pb-2 product-card' data-id='$id'>
+    <div class=' pl-1 pr-1 pb-2 product-card' data-id='$id'>
         <div class='card h-100'>
             <div class='px-4 pt-4'>
                 <a href='$directory/product/$slug.html'>
@@ -23,7 +22,7 @@ foreach ($products as $product) {
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
-                <p class='card-text pt-2 mb-2'>$title</p>
+                <p class='card-text pt-2 mb-2 gradient-text'>$title</p>
                 <div class='d-flex justify-content-between align-items-end pb-4'>$volume $unit
                     <div>
                         <div>
@@ -42,7 +41,7 @@ foreach ($products as $product) {
                     <div class='input-group-prepend'>
                         <button type='button' class='btn btn-primary remove-from-bag'
                             data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.6em'
+                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
                             </svg>
@@ -74,6 +73,6 @@ return $index = "
 <script src='https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js'></script>
 <script src='$assets/js/main.js'></script>
 <script src='$assets/js/categories.js'></script>
-<script src='$assets/js/search.js'></script>  
+<script src='$assets/js/search.js'></script>
 <script src='$assets/js/card.js'></script>
 ";
