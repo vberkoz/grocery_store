@@ -77,6 +77,28 @@ nav {min-height: 60px;}
     z-index: 1002;
 }
 
+#account_menu {width: 100%;}
+#account_menu button {
+    margin: 0 0 8px 0;
+    width: 100%;
+}
+
+#order_list {width: 100%;}
+
+.product-item, .cart-item {width: 100%;}
+.product-image {
+    max-width: 60px;
+    vertical-align: text-bottom;
+}
+.product-title {white-space: nowrap;}
+.product-info {
+    width: 129px;
+}
+.product-control {width: 145px;}
+.product-delete {vertical-align: 0px;}
+
+#cart {padding: 16px;}
+
 /*
     JioPhone 2
 */
@@ -101,6 +123,16 @@ nav {min-height: 60px;}
     }
     .card {padding: 0;}
     .product-card {width: 100%;}
+
+    #account {
+        padding: 0 12px;
+        width: 100%;
+    }
+    .product-info {width: 147px;}
+    .product-control {
+        width: 153px;
+        margin-right: 10px;
+    }
 }
 
 /*
@@ -121,6 +153,9 @@ nav {min-height: 60px;}
 
     .card {padding: 0;}
     .product-card {width: 100%;}
+
+    .product-control {width: 186px;}
+    .product-info {width: 187px;}
 }
 
 /*
@@ -146,6 +181,9 @@ nav {min-height: 60px;}
 
     .card {padding: 0;}
     .product-card {width: 100%;}
+
+    .product-info {width: 227px;}
+    .product-control {width: 234px;}
 }
 
 /*
@@ -165,6 +203,9 @@ nav {min-height: 60px;}
 
     .card {padding: 0;}
     .product-card {width: 50%;}
+
+    .product-info {width: 242px;}
+    .product-control {margin-right: 25px;}
 }
 
 /*
@@ -184,6 +225,9 @@ nav {min-height: 60px;}
 
     .card {padding: 0;}
     .product-card {width: 50%;}
+
+    .product-info {width: 251px;}
+    .product-control {margin-right: 34px;}
 }
 
 /*
@@ -208,6 +252,9 @@ nav {min-height: 60px;}
 
     .card {padding: 10px;}
     .product-card {width: 50%;}
+
+    .product-info {width: 258px;}
+    .product-control {margin-right: 41px;}
 }
 
 @media (min-width: 425px) {
@@ -223,6 +270,9 @@ nav {min-height: 60px;}
 
     .card {padding: 10px;}
     .product-card {width: 50%;}
+
+    .product-info {width: 272px;}
+    .product-control {margin-right: 55px;}
 }
 
 /*
@@ -241,6 +291,14 @@ nav {min-height: 60px;}
 
     .card {padding: 10px;}
     .product-card {width: 50%;}
+
+    #account_menu button {
+        margin: 0 0 8px 0;
+        width: auto;
+    }
+
+    .product-info {width: 327px;}
+    .product-control {margin-right: 110px;}
 }
 
 /*
@@ -259,6 +317,15 @@ nav {min-height: 60px;}
 
     .card {padding: 10px;}
     .product-card {width: 50%;}
+
+    .product-item {width: 50%;}
+    .cart-item {width: 49.5%;}
+
+    .product-info {width: 147px;}
+    .product-control {
+        width: 153px;
+        margin-right: 10px;
+    }
 }
 
 /* BlackBerry PlayBook */
@@ -278,6 +345,9 @@ nav {min-height: 60px;}
 
     .card {padding: 10px;}
     .product-card {width: 50%;}
+
+    .product-info {width: 162px;}
+    .product-control {width: 155px;}
 }
 
 /* Microsoft Lumina 550 */
@@ -296,6 +366,8 @@ nav {min-height: 60px;}
     }
     .card {padding: 10px;}
     .product-card {width: 33.33%;}
+
+    .product-info {width: 159px;}
 }
 
 /*
@@ -316,6 +388,11 @@ nav {min-height: 60px;}
         width: 356px;
     }
     .product-card {width: 33.33%;}
+
+    .product-item {width: 33.33%;}
+
+    .product-info {width: 147px;}
+    .product-control {width: 230px;}
 }
 
 /*
@@ -339,6 +416,9 @@ nav {min-height: 60px;}
 */
 @media (min-width: 1024px) {
     .product-card {width: 20%;}
+
+    .product-item {width: 25%;}
+    .product-info {width: 147px;}
 }
 
 /*
@@ -353,11 +433,24 @@ nav {min-height: 60px;}
     Laptop with HiDPI screen
 */
 @media (min-width: 1440px) {
-    .product-card {width: 16.66%;}
+    .product-card, .product-item {width: 16.66%;}
+    .cart-item {width: 32.9%;}
+    .product-control {width: 180px;}
 }
 
 @media (min-width: 1920px) {
     .product-card {width: 12.5%;}
+
+    #account_menu {padding: 0 8px;}
+
+    .order {
+        display: inline-block;
+        width: 49%;
+        margin: 0 8px;
+        vertical-align: text-top;
+    }
+    .product-item {width: 33.33%;}
+    .product-info {width: 147px;}
 }
 
 @media (min-width: 2560px) {

@@ -19,6 +19,7 @@ return array(
     'cart/summary' => 'cart.summary',
     'cart/checkout' => 'cart.checkout',
     'cart/index' => 'cart.index',
+    'cart/copy' => 'cart.copy',
 
     'search' => 'search.full',
     'refresh' => 'refresh.full',

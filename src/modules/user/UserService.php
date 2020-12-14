@@ -8,14 +8,22 @@ class UserService
     {
         $userId = $d['userId'];
         $orders = Utils::storage([
-            'columns' => '*',
+            'columns' => "*",
             'table' => 'carts',
             'conditions' => "user_id = '$userId'"
         ]);
         foreach ($orders as $k => $i) {
             $cartId = $i['id'];
             $orders[$k]['products'] = Utils::storage([
-                'columns' => '*',
+                'columns' => '
+                    cart_products.price,
+                    cart_products.quantity,
+                    product_details.title,
+                    product_details.image,
+                    product_details.unit,
+                    products.volume,
+                    products.id
+                ',
                 'table' => 'cart_products',
                 'joins' => [
                     [

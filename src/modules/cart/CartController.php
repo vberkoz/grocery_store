@@ -4,6 +4,12 @@ include_once 'CartService.php';
 
 class CartController
 {
+    public function copy()
+    {
+        echo json_encode(CartService::copy($_POST['data']));
+        return true;
+    }
+
     public function index()
     {
         echo json_encode(CartService::index());

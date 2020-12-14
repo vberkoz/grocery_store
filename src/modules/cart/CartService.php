@@ -8,6 +8,16 @@ include_once ROOT.'/modules/cart_product/CartProduct.php';
 
 class CartService
 {
+    public static function copy($d)
+    {
+        $products = [];
+        foreach ($d as $i) {
+            $products[$i['id']] = $i['quantity'];
+        }
+        $_SESSION['products'] = $products;
+        return $products;
+    }
+
     public static function checkout($data)
     {
         $data['hash'] = Utils::hash();
