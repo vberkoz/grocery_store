@@ -19,13 +19,97 @@ class RefreshRenderer
                 'logo' => 'Вітамін+',
                 'categories' => 'Категорії',
                 'search' => 'Пошук',
-                'cabinet' => 'Кабінет'
+                'cabinet' => 'Кабінет',
+
+                'new' => 'Нові',
+                'popular' => 'Популярні',
+
+                'goods' => 'Товари',
+                'discount' => 'Знижка',
+                'total' => 'Всього',
+                'order' => 'Замовити',
+
+                'your_order' => 'Ваше замовлення',
+                'warn' => 'Звертаємо Вашу увагу на те, що вартість замовлення, розрахована на сайті, являється приблизною і може відрізнятися від вартості при оплаті.',
+                'info' => 'Сьогодні будуть доставлені замовлення які були оформлені до 4-ї години ранку. Замовлення оформлені після 4-ї години ранку будуть доставлені завтра.',
+                'help' => "Щоб оформити замовлення заповніть обов'язкові поля 'Ваше ім'я' та 'Номер телефону' і наш працівник незабаром зв'яжеться з Вами. Також Ви можете вказати адресу доставки та повідомлення для пакувальника.",
+                'name' => "Ваше ім`я",
+                'phone' => 'Номер телефону',
+                'address' => 'Адреса',
+                'msg' => 'Повідомлення для пакувальника',
+                'm2' => 'Мінімум 2 символи',
+                'm10' => 'Мінімум 10 цифр',
+                'privacy' => 'Ми не передаємо особисту інформацію наших клієнтів іншим сторонам.',
+                'make' => 'Оформити замовлення',
+
+                'breadcrumb' => 'Головна',
+                'code' => 'Код товару',
+                'price_for' => 'Ціна за',
+                'min_order' => 'Мін. замовлення',
+                'add_to_cart' => 'Покласти в кошик',
+                'char' => 'Характеристики',
+                'char_empty' => "<div class='my-4'><h5 class='text-center'>Характеристики відсутні</h5><p class='text-center'>Ми працюємо над вдосконаленням нашого сервісу.<br>Характеристики товару незабаром з'являться.</p></div>",
+                'useful' => 'Корисна інформація',
+                'useful_empty' => "<div class='my-4'><h5 class='text-center'>Інформація відсутня</h5><p class='text-center'>Ми працюємо над вдосконаленням нашого сервісу.<br>Інформація про товар незабаром з'явиться.</p></div>",
+                'reviews' => 'Відгуки',
+                'reviews_empty' => "<div class='my-4'><h5 class='text-center'>Відгуків ще немає</h5><p class='text-center'>Поділіться своїми думками про цей товар</p></div>",
+                'write' => 'Написати',
+                'your_review' => 'Ваш відгук',
+                'reviewer_name' => "Ім`я",
+                'reviewer_email' => 'Електронна пошта',
+                'reviewer_msg' => 'Відгук',
+                'cancel' => 'Відміна',
+                'save' => 'Зберегти',
+
+                'login_to_cabinet' => 'Увійти в кабінет',
             ],
             'en' => [
                 'logo' => 'Vitamin+',
                 'categories' => 'Categories',
                 'search' => 'Search',
-                'cabinet' => 'Cabinet'
+                'cabinet' => 'Cabinet',
+
+                'new' => 'New',
+                'popular' => 'Popular',
+
+                'goods' => 'Goods',
+                'discount' => 'Discount',
+                'total' => 'Total',
+                'order' => 'Order',
+
+                'your_order' => 'Your order',
+                'warn' => 'Please note that the cost of the order, calculated on the site, is approximate and may differ from the cost of payment.',
+                'info' => "Orders that were placed before 4 o'clock in the morning will be delivered today. Orders placed after 4 o'clock in the morning will be delivered tomorrow.",
+                'help' => "To place an order, fill in the required fields 'Your name' and 'Phone number' and our employee will contact you shortly. You can also specify the delivery address and message for the packer.",
+                'name' => 'Your name',
+                'phone' => 'Phone number',
+                'address' => 'Address',
+                'msg' => 'Message for the packer',
+                'm2' => 'At least 2 characters',
+                'm10' => 'At least 10 digits',
+                'privacy' => 'We do not pass personal information of our customers to other parties.',
+                'make' => 'Finish',
+
+                'breadcrumb' => 'Main',
+                'code' => 'Product code',
+                'price_for' => 'Price for',
+                'min_order' => 'Min. order',
+                'add_to_cart' => 'Add to Cart',
+                'char' => 'Characteristics',
+                'char_empty' => "<div class='my-4'><h5 class='text-center'>No characteristics</h5><p class='text-center'>We are working to improve our service.<br>Product characteristics will appear soon.</p></div>",
+                'useful' => 'Useful Information',
+                'useful_empty' => "<div class='my-4'><h5 class='text-center'>No information available</h5><p class='text-center'>We are working to improve our service.<br>Product information will appear soon.</p></div>",
+                'reviews' => 'Reviews',
+                'reviews_empty' => "<div class='my-4'><h5 class='text-center'>There are no reviews yet</h5><p class='text-center'>Share your thoughts on this product</p></div>",
+                'write' => 'Write',
+                'your_review' => 'Your review',
+                'reviewer_name' => 'Name',
+                'reviewer_email' => 'Email',
+                'reviewer_msg' => 'Review',
+                'cancel' => 'Cancel',
+                'save' => 'Save',
+
+                'login_to_cabinet' => 'Login to cabinet',
             ]
         ];
 
@@ -64,14 +148,15 @@ class RefreshRenderer
             self::about($lang, $menu, $menuMobile, $texts);
 
             self::cart($lang, $menu, $menuMobile, $texts);
-            self::account($lang, $menu, $menuMobile, $texts);
+            self::checkout($lang, $menu, $menuMobile, $texts);
+            self::cabinet($lang, $menu, $menuMobile, $texts);
         }
 
         $r = 'Full refresh';
         return json_encode($r);
     }
 
-    public static function account($lang, $menu, $menuMobile, $texts)
+    public static function cabinet($lang, $menu, $menuMobile, $texts)
     {
         switch ($lang) {
             case 'ua': $pageTitle = 'Кабінет | Вітамін+'; break;
@@ -83,15 +168,17 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
 
+        $loginToCabinetCap = $texts[$lang]['login_to_cabinet'];
+
         $assets = '../assets';
         $dir = "/public/$lang";
 
-        $details = include('account.php');
+        $details = include('cabinet.php');
         $header = include(ROOT.'/ssr/layout/header.php');
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/account.html",'w+');
+        $handle = fopen("public/$lang/cabinet.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -107,6 +194,9 @@ class RefreshRenderer
         $catBtn = $texts[$lang]['categories'];
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
+        $newCap = $texts[$lang]['new'];
+        $popularCap = $texts[$lang]['popular'];
+
         $assets = '../assets';
         $dir = "/public/$lang";
 
@@ -281,6 +371,12 @@ class RefreshRenderer
         $catBtn = $texts[$lang]['categories'];
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
+
+        $goodsCap = $texts[$lang]['goods'];
+        $discountCap = $texts[$lang]['discount'];
+        $totalCap = $texts[$lang]['total'];
+        $orderCap = $texts[$lang]['order'];
+
         $assets = '../assets';
         $dir = "/public/$lang";
 
@@ -290,6 +386,44 @@ class RefreshRenderer
 
         $content = $header . $details . $footer;
         $handle = fopen("public/$lang/cart.html",'w+');
+        fwrite($handle, $content);
+        fclose($handle);
+    }
+
+    public static function checkout($lang, $menu, $menuMobile, $texts)
+    {
+        switch ($lang) {
+            case 'ua': $pageTitle = 'Перевірка | Вітамін+'; break;
+            case 'en': $pageTitle = 'Checkout | Vitamin+'; break;
+        }
+
+        $logo = $texts[$lang]['logo'];
+        $catBtn = $texts[$lang]['categories'];
+        $search = $texts[$lang]['search'];
+        $cabinet = $texts[$lang]['cabinet'];
+
+        $yourOrderCap = $texts[$lang]['your_order'];
+        $warnCap = $texts[$lang]['warn'];
+        $infoCap = $texts[$lang]['info'];
+        $helpCap = $texts[$lang]['help'];
+        $nameCap = $texts[$lang]['name'];
+        $phoneCap = $texts[$lang]['phone'];
+        $addressCap = $texts[$lang]['address'];
+        $msgCap = $texts[$lang]['msg'];
+        $m2Cap = $texts[$lang]['m2'];
+        $m10Cap = $texts[$lang]['m10'];
+        $privacyCap = $texts[$lang]['privacy'];
+        $makeCap = $texts[$lang]['make'];
+
+        $assets = '../assets';
+        $dir = "/public/$lang";
+
+        $details = include('checkout.php');
+        $header = include(ROOT.'/ssr/layout/header.php');
+        $footer = include(ROOT.'/ssr/layout/footer.php');
+
+        $content = $header . $details . $footer;
+        $handle = fopen("public/$lang/checkout.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }

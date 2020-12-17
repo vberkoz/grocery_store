@@ -808,4 +808,4 @@ INSERT INTO `users` (`id`, `email`, `username`, `phone`, `address`, `discount`, 
 (10,	'alex@mail.com',	'Олександр',	NULL,	NULL,	0,	'$2y$10$Ja6adhjFQJoE2mFC5ElNBuO8hjovdh7K2yDPBjWOp0BBclTNwsiMi',	'client',	''),
 (18,	'vasylberkoz@icloud.com',	'Basil Sergius',	'0668132356',	'Комарова 6/2',	0,	'$2y$10$uBQZxQXGHFOrTpg38yLGTuh.NEEK/EHvNavKHmG2Wlprt1JsR.MpK',	'restaurant',	NULL);
 
--- 2020-12-17 13:28:51
+-- 2020-12-17 20:20:21

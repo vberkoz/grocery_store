@@ -12,19 +12,19 @@ return "
     <div class='card'>
         <div class='card-body'>
             <div class='d-flex justify-content-between m-0'>
-                <p class='m-0'>Товари:</p>
+                <p class='m-0'>$goodsCap:</p>
                 <p class='m-0' id='cart_price'></p>
             </div>
             <div class='d-flex justify-content-between m-0'>
-                <p class='m-0'>Знижка:</p>
+                <p class='m-0'>$discountCap:</p>
                 <p class='m-0 text-danger' id='cart_discount'></p>
             </div>
             <div class='d-flex justify-content-between m-0'>
-                <p class='m-0'>Всього:</p>
+                <p class='m-0'>$totalCap:</p>
                 <p class='m-0'><b id='cart_total'></b></p>
             </div>
             <hr>
-            <a href='$dir/checkout.html' class='btn btn-primary btn-block'>Замовити</a>
+            <a href='$dir/checkout.html' class='btn btn-primary btn-block'>$orderCap</a>
         </div>
     </div>
 </div>

@@ -73,7 +73,7 @@ return $header = "
                     <span class='navbar-toggler-icon'></span>
                 </button>
                 <div id='menu_dd' class='dropdown-menu'>
-                    $menuMobile<a class='dropdown-item' href='$dir/account.html'>$cabinet</a>
+                    $menuMobile<a class='dropdown-item' href='$dir/cabinet.html'>$cabinet</a>
                 </div>
             </div>
             

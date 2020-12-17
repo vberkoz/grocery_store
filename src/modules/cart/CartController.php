@@ -18,13 +18,13 @@ class CartController
 
     public function content()
     {
-        echo json_encode(CartService::content());
+        echo json_encode(CartService::content($_POST['lang']));
         return true;
     }
 
     public function summary()
     {
-        echo json_encode(CartService::summary());
+        echo json_encode(CartService::summary($_POST['lang']));
         return true;
     }
 

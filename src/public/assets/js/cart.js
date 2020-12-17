@@ -24,7 +24,7 @@ const updateCartTotal = () => {
     );
 }
 
-$.get(domain + 'cart/content', {}, r => {
+$.post(domain + 'cart/content', {lang}, r => {
     r = JSON.parse(r);
     state.items = r;
 
@@ -45,12 +45,12 @@ $.get(domain + 'cart/content', {}, r => {
         content += `
         <div class='mb-4 d-inline-block cart-item' data-id='${i.id}'>
             <div>
-                <div class="d-inline-block"><img class="product-image" src='http://192.168.1.100:8080/public/assets/images/${i.image}' alt='${i.image}'></div>
+                <div class="d-inline-block"><img class="product-image" src='http://192.168.1.100:8080/public/${lang}/img/${i.img}' alt='${i.img}'></div>
                 <div class="d-inline-block product-info">
                     <p class='product-title gradient-text mb-0'>${i.title}</p>
                     <small>
                         <div class='text-muted'>
-                            <span class='py-2'>${i.volume} ${i.unit}</span>
+                            <span class='py-2'>${i.vol} ${i.unit}</span>
                             <span class='p-2'>${price}</span>
                         </div>
                         <div class='text-dark'>
@@ -102,8 +102,8 @@ const update = (e, action) => {
 
     let quantity;
     switch (action) {
-        case 'add': quantity = parseFloat(item.quantity) + parseFloat(item.volume_min);break;
-        case 'remove': quantity = parseFloat(item.quantity) - parseFloat(item.volume_min);break;
+        case 'add': quantity = parseFloat(item.quantity) + parseFloat(item.vol_min);break;
+        case 'remove': quantity = parseFloat(item.quantity) - parseFloat(item.vol_min);break;
         case 'change':
             quantity = e.value;
             if (quantity.includes(' ' + item.unit)) quantity = quantity.slice(0, -3);
@@ -113,7 +113,7 @@ const update = (e, action) => {
     }
     item.quantity = Math.round(quantity * 10) / 10;
 
-    if (parseFloat(item.quantity) < parseFloat(item.volume_min) || !quantity) {
+    if (parseFloat(item.quantity) < parseFloat(item.vol_min) || !quantity) {
         item.quantity = 0;
         itemElement.remove();
     }

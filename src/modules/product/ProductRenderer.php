@@ -47,10 +47,30 @@ class ProductRenderer
             $pageTitle = $prod['title'];
             $assets = '../../assets';
             $dir = "/public/$lang";
+
             $logo = $texts[$lang]['logo'];
             $catBtn = $texts[$lang]['categories'];
             $search = $texts[$lang]['search'];
             $cabinet = $texts[$lang]['cabinet'];
+
+            $breadcrumbCap = $texts[$lang]['breadcrumb'];
+            $codeCap = $texts[$lang]['code'];
+            $priceForCap = $texts[$lang]['price_for'];
+            $minOrderCap = $texts[$lang]['min_order'];
+            $addToCartCap = $texts[$lang]['add_to_cart'];
+            $charCap = $texts[$lang]['char'];
+            $charEmptyCap = $texts[$lang]['char_empty'];
+            $usefulCap = $texts[$lang]['useful'];
+            $usefulEmptyCap = $texts[$lang]['useful_empty'];
+            $reviewsCap = $texts[$lang]['reviews'];
+            $reviewsEmptyCap = $texts[$lang]['reviews_empty'];
+            $writeCap = $texts[$lang]['write'];
+            $yourReviewCap = $texts[$lang]['your_review'];
+            $reviewerNameCap = $texts[$lang]['reviewer_name'];
+            $reviewerEmailCap = $texts[$lang]['reviewer_email'];
+            $reviewerMsgCap = $texts[$lang]['reviewer_msg'];
+            $cancelCap = $texts[$lang]['cancel'];
+            $saveCap = $texts[$lang]['save'];
 
             $menu = '';
             $menuMobile = '';
@@ -67,13 +87,7 @@ class ProductRenderer
                     $desc .= "<p>$i</p>";
                 }
             } else {
-                $desc = "
-                <div class='my-4'>
-                    <h5 class='text-center'>Інформація відсутня</h5>
-                    <p class='text-center'>Ми працюємо над вдосконаленням нашого сервісу.<br>Інформація про
-                        товар незабаром з'явиться.</p>
-                </div>
-            ";
+                $desc = $usefulEmptyCap;
             }
             $prod['desc'] = $desc;
 
@@ -86,13 +100,7 @@ class ProductRenderer
                 }
                 $char .= "</ul>";
             } else {
-                $char .= "
-                <div class='my-4'>
-                    <h5 class='text-center'>Характеристики відсутні</h5>
-                    <p class='text-center'>Ми працюємо над вдосконаленням нашого сервісу.<br>Характеристики
-                        товару незабаром з'являться.</p>
-                </div>
-            ";
+                $char .= $charEmptyCap;
             }
             $prod['char'] = $char;
 
@@ -105,12 +113,7 @@ class ProductRenderer
                     $reviews .= "<p><strong>$name</strong><br>$text</p>";
                 }
             } else {
-                $reviews = "
-                <div class='my-4'>
-                    <h5 class='text-center'>Відгуків ще немає</h5>
-                    <p class='text-center'>Поділіться своїми думками про цей товар</p>
-                </div>            
-            ";
+                $reviews = $reviewsEmptyCap;
             }
 
             $details = include('details.php');

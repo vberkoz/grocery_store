@@ -47,9 +47,9 @@ class CartService
         return $data;
     }
 
-    public static function summary()
+    public static function summary($lang)
     {
-        $items = self::content();
+        $items = self::content($lang);
         $price = 0;
         foreach ($items as $i) {
             $price += $i['total'];
@@ -61,12 +61,31 @@ class CartService
         return $summary;
     }
 
-    public static function content()
+    public static function content($lang)
     {
         $ids = self::index();
         $params = implode("','", array_keys($ids));
         $params = "'$params'";
-        $products = Product::selectByIdForCart($params);
+        $products = Utils::storage([
+            'columns' => '
+                product_'.$lang.'_details.title,
+                product_'.$lang.'_details.slug,
+                product_'.$lang.'_details.img,
+                product_'.$lang.'_details.unit,
+                products.id,
+                products.price,
+                products.vol,
+                products.vol_min
+            ',
+            'table' => 'products',
+            'joins' => [
+                [
+                    'table' => 'product_'.$lang.'_details',
+                    'expresion' => 'products.id = product_'.$lang.'_details.prod_id'
+                ]
+            ],
+            'conditions' => "products.id IN ($params)"
+        ]);
         foreach ($products as $k => $v) {
             foreach ($ids as $id => $q) {
                 if ($products[$k]['id'] == $id) {
