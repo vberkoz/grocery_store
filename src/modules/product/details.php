@@ -1,17 +1,17 @@
 <?php
 
-$category_slug = $product['category_slug'];
-$category_title = $product['category'];
-$title = $product['title'];
-$image = $product['image'];
-$code = $product['code'];
-$volume = $product['volume'];
-$unit = $product['unit'];
-$volume_min = $product['volume_min'];
-$id = $product['id'];
+$cat_slug = $prod['cat_slug'];
+$cat_title = $prod['cat'];
+$title = $prod['title'];
+$img = $prod['img'];
+$code = $prod['code'];
+$vol = $prod['vol'];
+$unit = $prod['unit'];
+$vol_min = $prod['vol_min'];
+$id = $prod['id'];
 
 $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
-$price = numfmt_format_currency($fmt, $product['price'], "UAH");
+$price = numfmt_format_currency($fmt, $prod['price'], "UAH");
 
 return $details = "
 <main role='main' class='content container-fluid px-4' style='margin-top: 120px;'>
@@ -21,8 +21,8 @@ return $details = "
         <div class='col-md-12 col-xl-8 offset-xl-2 p-1'>
             <nav class='card' aria-label='breadcrumb'>
                 <ol class='breadcrumb m-0' style='background-color: rgba(255, 255, 128, .0)'>
-                    <li class='breadcrumb-item'><a href='$directory/index.html'>Головна</a></li>
-                    <li class='breadcrumb-item'><a href='$directory/category/$category_slug.html'>$category_title</a></li>
+                    <li class='breadcrumb-item'><a href='$dir/index.html'>Головна</a></li>
+                    <li class='breadcrumb-item'><a href='$dir/category/$cat_slug.html'>$cat_title</a></li>
                     <li class='breadcrumb-item active' aria-current='page'>$title</li>
                 </ol>
             </nav>
@@ -32,7 +32,7 @@ return $details = "
             <div class='card h-100'>
                 <div class='card-body d-flex align-items-center'>
                     <img class='align-middle mx-auto d-block img-fluid'
-                         src='$assets/images/$image' alt='$title'>
+                         src='../img/$img' alt='$title'>
                 </div>
             </div>
         </div>
@@ -43,8 +43,8 @@ return $details = "
                     <p class='text-muted'><small><strong>Код товару: $code</strong></small></p>
                     <h1 class='card-title'><strong>$title</strong></h1>
                     <p class='text-muted'>
-                        <small>Ціна за $volume $unit</small><br>
-                        <small>Мін. замовлення $volume_min $unit</small>
+                        <small>Ціна за $vol $unit</small><br>
+                        <small>Мін. замовлення $vol_min $unit</small>
                     </p>
 
                     <div>
@@ -62,7 +62,7 @@ return $details = "
                             <div class='input-group d-none'>
                                 <div class='input-group-prepend'>
                                     <button type='button' class='btn btn-primary remove-from-bag'
-                                        data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
+                                        data-id='$id' data-volume_min='$vol_min' data-unit='$unit'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
                                              fill='currentColor' class='align-middle'>
                                             <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
@@ -72,7 +72,7 @@ return $details = "
                                 <input type='text' class='form-control text-center input-float' data-id='$id' data-unit='$unit'>
                                 <div class='input-group-append'>
                                     <button type='button' class='btn btn-primary add-to-bag-second'
-                                        data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
+                                        data-id='$id' data-volume_min='$vol_min' data-unit='$unit'>
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                             fill='currentColor' class='align-middle'>
                                             <path d='m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0'/>
@@ -88,7 +88,7 @@ return $details = "
             <div class='card mt-2'>
                 <div class='card-body'>
                     <h4 class='card-title'>Характеристики</h4>
-                    <hr>$characteristics
+                    <hr>$char
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@ return $details = "
             <div class='card'>
                 <div class='card-body'>
                     <h4 class='card-title'>Корисна інформація</h4>
-                    <hr>$description
+                    <hr>$desc
                 </div>
             </div>
         </div>

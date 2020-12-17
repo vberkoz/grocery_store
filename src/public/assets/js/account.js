@@ -12,7 +12,7 @@ const copy = e => {
     }, r => {
         r = JSON.parse(r);
         hydrateProducts();
-        window.location.href = '/public/cart.html';
+        window.location.href = '/public/ua/cart.html';
     });
 }
 
@@ -36,7 +36,7 @@ const orders = userId => {
                 products += `
                     <div class='mb-4 d-inline-block product-item'>
                         <div>
-                            <div class="d-inline-block"><img class="product-image" src='assets/images/${j.image}' alt='${j.image}'></div>
+                            <div class="d-inline-block"><img class="product-image" src='http://192.168.1.100:8080/public/assets/images/${j.image}' alt='${j.image}'></div>
                             <div class="d-inline-block product-info">
                                 <p class='product-title gradient-text mb-0'>${j.title}</p>
                                 <small>

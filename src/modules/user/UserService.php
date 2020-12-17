@@ -10,7 +10,8 @@ class UserService
         $orders = Utils::storage([
             'columns' => "*",
             'table' => 'carts',
-            'conditions' => "user_id = '$userId'"
+            'conditions' => "user_id = '$userId'",
+            'affect' => 'many'
         ]);
         foreach ($orders as $k => $i) {
             $cartId = $i['id'];
@@ -50,11 +51,12 @@ class UserService
     {
         $email = $d['email'];
         $secret = $d['secret'];
-        $user = User::one([
+        $users = Utils::storage([
             'columns' => 'id, secret',
             'table' => 'users',
             'conditions' => "email = '$email'"
         ]);
+        $user = $users[0];
         if (password_verify($secret, $user['secret'])) {
             $_SESSION['user'] = $user['id'];
             return $user['id'];

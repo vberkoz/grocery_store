@@ -24,7 +24,7 @@ return "
                 <p class='m-0'><b id='cart_total'></b></p>
             </div>
             <hr>
-            <a href='/public/checkout.html' class='btn btn-primary btn-block'>Замовити</a>
+            <a href='$dir/checkout.html' class='btn btn-primary btn-block'>Замовити</a>
         </div>
     </div>
 </div>

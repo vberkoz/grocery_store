@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     $('.new-products').slick({
         infinite: false,

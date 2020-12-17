@@ -49,7 +49,7 @@ class CartRenderer
             ";
         }
         $content = include('mail_template.php');
-        $handle = fopen("public/mail_template.html",'w+');
+        $handle = fopen("public/ua/mail_template.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
 

@@ -1,14 +1,8 @@
 <?php
 
-if (isset($pageTitle)) {
-    $title = $pageTitle . ' | Вітамін+';
-} else {
-    $title = 'Вітамін+';
-}
-
 return $header = "
 <!doctype html>
-<html lang='en'>
+<html lang='$lang'>
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
@@ -16,7 +10,7 @@ return $header = "
     <meta name='author' content=''>
     <link rel='icon' type='image/svg+xml' href='/favicon.svg'>
 
-    <title>$title</title>
+    <title>$pageTitle</title>
 
     <link rel='canonical' href='https://getbootstrap.com/docs/4.0/examples/navbar-fixed/'>
 
@@ -44,15 +38,9 @@ return $header = "
                         </svg>+38 (066) 31 000 15
                     </a>
                 </span>
-                <ul class='navbar-nav d-none d-md-flex flex-row mr-auto pt-1 pl-2'>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/index.html'>Головна</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/payment.html'>Оплата і доставка</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/blog.html'>Блог</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/contact.html'>Контакти</a></li>
-                    <li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/about.html'>Про нас</a></li>
-                </ul>
+                <ul class='navbar-nav d-none d-md-flex flex-row mr-auto pt-1 pl-2'>$menu</ul>
                 <span>
-                    <a href='/public/cart.html' class='btn btn-light btn-sm text-muted'>
+                    <a href='$dir/cart.html' class='btn btn-light btn-sm text-muted'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor' style='position: relative;'>
                             <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
                             <path d='M151.467,234.667H310.4c16,0,29.973-8.853,37.333-21.973L424,74.24c1.707-2.987,2.667-6.507,2.667-10.24     c0-11.84-9.6-21.333-21.333-21.333H89.92L69.653,0H0v42.667h42.667L119.36,204.48l-28.8,52.267     c-3.307,6.187-5.227,13.12-5.227,20.587C85.333,300.907,104.427,320,128,320h256v-42.667H137.067     c-2.987,0-5.333-2.347-5.333-5.333c0-0.96,0.213-1.813,0.64-2.56L151.467,234.667z'/>
@@ -66,17 +54,17 @@ return $header = "
     </div>
     <nav class='navbar navbar-expand-md navbar-light px-md-0'>
         <div class='container-fluid'>
-            <a class='navbar-brand mb-1 d-none d-md-inline-block' href='/public/index.html'>
-                <img src='$assets/images/logo.jpg' height='29' alt='Вітамін+'>
+            <a class='navbar-brand mb-1 d-none d-md-inline-block' href='$dir/index.html'>
+                <img src='$assets/images/logo.jpg' height='29' alt='$logo'>
             </a>
             
             <div id='category' class='dropdown'>
-                <button id='category_btn' class='btn btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Категорії</button>
+                <button id='category_btn' class='btn btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>$catBtn</button>
                 <div id='category_dd' class='dropdown-menu'></div>
             </div>
             
             <div id='search' class='dropdown'>
-                <input id='search_input' type='search' class='form-control mx-2 dropdown-toggle' placeholder='Пошук' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)'>
+                <input id='search_input' type='search' class='form-control mx-2 dropdown-toggle' placeholder='$search' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)'>
                 <div id='search_dd' class='dropdown-menu mx-2'></div>
             </div>
             
@@ -85,22 +73,12 @@ return $header = "
                     <span class='navbar-toggler-icon'></span>
                 </button>
                 <div id='menu_dd' class='dropdown-menu'>
-                    <a class='dropdown-item' href='/public/index.html'>Головна</a>
-                    <a class='dropdown-item' href='/public/payment.html'>Оплата і доставка</a>
-                    <a class='dropdown-item' href='/public/blog.html'>Блог</a>
-                    <a class='dropdown-item' href='/public/contact.html'>Контакти</a>
-                    <a class='dropdown-item' href='/public/about.html'>Про нас</a>
-                    <a class='dropdown-item' href='/public/account.html'>
-                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
-                            <path d='m431.964 435.333c-.921-58.994-19.3-112.636-51.977-151.474-32.487-38.601-76.515-59.859-123.987-59.859s-91.5 21.258-123.987 59.859c-32.646 38.797-51.013 92.364-51.973 151.285 18.46 9.247 94.85 44.856 175.96 44.856 87.708 0 158.845-35.4 175.964-44.667z'/>
-                            <circle cx='256' cy='120' r='88'/>
-                        </svg>Вхід в акаунт
-                    </a>
+                    $menuMobile<a class='dropdown-item' href='$dir/account.html'>$cabinet</a>
                 </div>
             </div>
             
             <form class='form-inline mt-5 mt-md-0 d-none d-md-inline-block'>
-                <a class='btn btn-primary' href='/public/account.html'>
+                <a class='btn btn-primary' href='$dir/account.html'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
                         <path d='m431.964 435.333c-.921-58.994-19.3-112.636-51.977-151.474-32.487-38.601-76.515-59.859-123.987-59.859s-91.5 21.258-123.987 59.859c-32.646 38.797-51.013 92.364-51.973 151.285 18.46 9.247 94.85 44.856 175.96 44.856 87.708 0 158.845-35.4 175.964-44.667z'/>
                         <circle cx='256' cy='120' r='88'/>

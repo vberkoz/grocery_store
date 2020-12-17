@@ -5,7 +5,7 @@ const search = e => {
 }
 
 const fetchSearchData = term => {
-    $.post(domain + 'search', {term: term}, r => {
+    $.post(domain + 'search', {term, lang}, r => {
         r = JSON.parse(r);
         let seachItems = '';
         r.map(i => {

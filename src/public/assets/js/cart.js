@@ -45,7 +45,7 @@ $.get(domain + 'cart/content', {}, r => {
         content += `
         <div class='mb-4 d-inline-block cart-item' data-id='${i.id}'>
             <div>
-                <div class="d-inline-block"><img class="product-image" src='assets/images/${i.image}' alt='${i.image}'></div>
+                <div class="d-inline-block"><img class="product-image" src='http://192.168.1.100:8080/public/assets/images/${i.image}' alt='${i.image}'></div>
                 <div class="d-inline-block product-info">
                     <p class='product-title gradient-text mb-0'>${i.title}</p>
                     <small>

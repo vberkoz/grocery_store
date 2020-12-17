@@ -9,7 +9,7 @@ class Product
         $db = Db::getConnection();
         $s = "
             SELECT 
-                product_details.language,
+                product_details.lang,
                 product_details.title,
                 product_details.slug,
                 product_details.image,

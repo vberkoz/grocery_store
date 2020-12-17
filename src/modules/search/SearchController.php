@@ -6,7 +6,7 @@ class SearchController
 {
     public function full()
     {
-        echo json_encode(SearchService::full($_POST['term']));
+        echo json_encode(SearchService::full($_POST));
         return true;
     }
 }

@@ -26,5 +26,8 @@ return array(
     'logged' => 'user.logged',
     'login' => 'user.login',
     'logout' => 'user.logout',
-    'orders' => 'user.orders'
+    'orders' => 'user.orders',
+
+    'copy_images' => 'utils.copyImages',
+    'slug' => 'utils.slug',
 );

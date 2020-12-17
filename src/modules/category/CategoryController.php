@@ -1,12 +1,13 @@
 <?php
 
 include_once 'Category.php';
+include_once 'CategoryService.php';
 
 class CategoryController
 {
     public function index(): bool
     {
-        echo json_encode(Category::selectAll());
+        echo json_encode(CategoryService::index($_POST['lang']));
         return true;
     }
 

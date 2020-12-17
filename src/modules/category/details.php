@@ -3,27 +3,27 @@
 $fmt = numfmt_create( 'uk_UA', NumberFormatter::CURRENCY );
 
 $card = "";
-foreach ($products as $product) {
-    $id = $product['id'];
-    $slug = $product['slug'];
-    $image = $product['image'];
-    $title = $product['title'];
-    $unit = $product['unit'];
-    $volume = $product['volume'];
-    $volume_min = $product['volume_min'];
-    $price = numfmt_format_currency($fmt, $product['price'], "UAH");
+foreach ($prods as $i) {
+    $id = $i['id'];
+    $slug = $i['slug'];
+    $img = $i['img'];
+    $title = $i['title'];
+    $unit = $i['unit'];
+    $vol = $i['vol'];
+    $vol_min = $i['vol_min'];
+    $price = numfmt_format_currency($fmt, $i['price'], "UAH");
     $card .= "
     <div class=' pl-1 pr-1 pb-2 product-card' data-id='$id'>
         <div class='card h-100'>
             <div class='px-4 pt-4'>
-                <a href='$directory/product/$slug.html'>
-                    <img class='card-img-top' src='$assets/images/$image' alt='$title'>
+                <a href='$dir/product/$slug.html'>
+                    <img class='card-img-top' src='../img/$img' alt='$title'>
                 </a>
             </div>
             
             <div class='card-body d-flex flex-column justify-content-between p-3'>
                 <p class='card-text pt-2 mb-2 gradient-text'>$title</p>
-                <div class='d-flex justify-content-between align-items-end pb-4'>$volume $unit
+                <div class='d-flex justify-content-between align-items-end pb-4'>$vol $unit
                     <div>
                         <div>
                             <strong>$price</strong>
@@ -40,7 +40,7 @@ foreach ($products as $product) {
                 <div class='input-group input-group d-none'>
                     <div class='input-group-prepend'>
                         <button type='button' class='btn btn-primary remove-from-bag'
-                            data-id='$id' data-volume_min='$volume_min' data-unit='$unit'>
+                            data-id='$id' data-volume_min='$vol_min' data-unit='$unit'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459' height='0.8em'
                                 fill='currentColor' class='align-middle'>
                                 <path d='M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774   C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936   C441.333,189.472,459.308,207.456,459.313,229.648z'/>
@@ -49,7 +49,7 @@ foreach ($products as $product) {
                     </div>
                     <input type='text' class='form-control text-center input-float' data-id='$id' data-unit='$unit'>
                     <div class='input-group-append'>
-                        <button type='button' data-id='$id' data-volume_min='$volume_min' data-unit='$unit'
+                        <button type='button' data-id='$id' data-volume_min='$vol_min' data-unit='$unit'
                             class='btn btn-primary add-to-bag-second'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 448' height='0.8em'
                                 fill='currentColor' class='align-middle'>
