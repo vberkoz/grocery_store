@@ -40,6 +40,7 @@ return $header = "
                 </span>
                 <ul class='navbar-nav d-none d-md-flex flex-row mr-auto pt-1 pl-2'>$menu</ul>
                 <span>
+                    <a href='/public/".($lang == 'ua' ? 'en' : 'ua')."/$page.html' class='btn btn-light btn-sm text-muted'>".($lang == 'ua' ? 'En' : 'Ua')."</a>
                     <a href='$dir/cart.html' class='btn btn-light btn-sm text-muted'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 426.667 426.667' height='1em' fill='currentColor' style='position: relative;'>
                             <path d='M128,341.333c-23.573,0-42.453,19.093-42.453,42.667s18.88,42.667,42.453,42.667c23.573,0,42.667-19.093,42.667-42.667     S151.573,341.333,128,341.333z'/>
@@ -78,7 +79,7 @@ return $header = "
             </div>
             
             <form class='form-inline mt-5 mt-md-0 d-none d-md-inline-block'>
-                <a class='btn btn-primary' href='$dir/account.html'>
+                <a class='btn btn-primary' href='$dir/cabinet.html'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 30 512 450' height='1.2em' fill='currentColor' class='align-middle pb-1'>
                         <path d='m431.964 435.333c-.921-58.994-19.3-112.636-51.977-151.474-32.487-38.601-76.515-59.859-123.987-59.859s-91.5 21.258-123.987 59.859c-32.646 38.797-51.013 92.364-51.973 151.285 18.46 9.247 94.85 44.856 175.96 44.856 87.708 0 158.845-35.4 175.964-44.667z'/>
                         <circle cx='256' cy='120' r='88'/>

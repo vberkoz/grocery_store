@@ -7,6 +7,7 @@ class UserService
     public static function orders($d)
     {
         $userId = $d['userId'];
+        $lang = $d['lang'];
         $orders = Utils::storage([
             'columns' => "*",
             'table' => 'carts',
@@ -19,17 +20,17 @@ class UserService
                 'columns' => '
                     cart_products.price,
                     cart_products.quantity,
-                    product_details.title,
-                    product_details.image,
-                    product_details.unit,
-                    products.volume,
+                    product_'.$lang.'_details.title,
+                    product_'.$lang.'_details.img,
+                    product_'.$lang.'_details.unit,
+                    products.vol,
                     products.id
                 ',
                 'table' => 'cart_products',
                 'joins' => [
                     [
-                        'table' => 'product_details',
-                        'expresion' => 'cart_products.product_id = product_details.product_id'
+                        'table' => 'product_'.$lang.'_details',
+                        'expresion' => 'cart_products.product_id = product_'.$lang.'_details.prod_id'
                     ],
                     [
                         'table' => 'products',

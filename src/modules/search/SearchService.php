@@ -19,7 +19,7 @@ class SearchService
             ],
             'conditions' => "
                 visible = 1
-                AND title LIKE '$term%' LIMIT 5
+                AND title LIKE '%$term%' LIMIT 5
             "
         ]);
         foreach ($items as $k => $i) {

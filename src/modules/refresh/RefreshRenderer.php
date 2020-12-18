@@ -62,6 +62,14 @@ class RefreshRenderer
                 'save' => 'Зберегти',
 
                 'login_to_cabinet' => 'Увійти в кабінет',
+                'cabinet_email' => 'Електронна пошта',
+                'invalid_email' => 'Невірний формат електронної пошти',
+                'password' => 'Пароль',
+                'change_password' => 'Змінити',
+                'invalid_password' => 'Пароль має бути не менше 6-ти символів',
+                'login' => 'Зайти',
+                'first_time' => 'Вперше тут?',
+                'register' => 'Зареєструйся',
             ],
             'en' => [
                 'logo' => 'Vitamin+',
@@ -110,6 +118,14 @@ class RefreshRenderer
                 'save' => 'Save',
 
                 'login_to_cabinet' => 'Login to cabinet',
+                'cabinet_email' => 'Email',
+                'invalid_email' => 'Invalid email format',
+                'password' => 'Password',
+                'change_password' => 'Change',
+                'invalid_password' => 'Password must be at least 6 characters long',
+                'login' => 'Login',
+                'first_time' => 'First time here?',
+                'register' => 'Register',
             ]
         ];
 
@@ -169,9 +185,18 @@ class RefreshRenderer
         $cabinet = $texts[$lang]['cabinet'];
 
         $loginToCabinetCap = $texts[$lang]['login_to_cabinet'];
+        $cabinetEmailCap = $texts[$lang]['cabinet_email'];
+        $invalidEmailCap = $texts[$lang]['invalid_email'];
+        $passwordCap = $texts[$lang]['password'];
+        $changePasswordCap = $texts[$lang]['change_password'];
+        $invalidPasswordCap = $texts[$lang]['invalid_password'];
+        $loginCap = $texts[$lang]['login'];
+        $firstTimeCap = $texts[$lang]['first_time'];
+        $registerCap = $texts[$lang]['register'];
 
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'cabinet';
 
         $details = include('cabinet.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -199,6 +224,7 @@ class RefreshRenderer
 
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'index';
 
         $new = Utils::storage([
             'columns' => '
@@ -277,6 +303,7 @@ class RefreshRenderer
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'payment';
 
         $details = include('payment.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -301,6 +328,7 @@ class RefreshRenderer
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'blog';
 
         $details = include('blog.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -325,6 +353,7 @@ class RefreshRenderer
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'contact';
 
         $details = include('contact.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -349,6 +378,7 @@ class RefreshRenderer
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'about';
 
         $details = include('about.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -379,6 +409,7 @@ class RefreshRenderer
 
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'cart';
 
         $details = include('cart.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -417,6 +448,7 @@ class RefreshRenderer
 
         $assets = '../assets';
         $dir = "/public/$lang";
+        $page = 'checkout';
 
         $details = include('checkout.php');
         $header = include(ROOT.'/ssr/layout/header.php');

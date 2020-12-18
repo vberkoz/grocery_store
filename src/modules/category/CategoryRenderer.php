@@ -49,6 +49,12 @@ class CategoryRenderer
             $pageTitle = $cats[0]['title'];
             $assets = '../../assets';
             $dir = "/public/$lang";
+            $page = 'category/'.Utils::storage([
+                'columns' => 'slug',
+                'table' => 'category_'.($lang == 'ua' ? 'en' : 'ua').'_details',
+                'conditions' => "id = $cat_id"
+            ])[0]['slug'];
+
             $logo = $texts[$lang]['logo'];
             $catBtn = $texts[$lang]['categories'];
             $search = $texts[$lang]['search'];

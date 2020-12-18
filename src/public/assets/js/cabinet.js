@@ -12,15 +12,13 @@ const copy = e => {
     }, r => {
         r = JSON.parse(r);
         hydrateProducts();
-        window.location.href = '/public/ua/cart.html';
+        window.location.href = `/public/${lang}/cart.html`;
     });
 }
 
 const orders = userId => {
     $.post(domain + 'orders', {
-        data: {
-            userId: userId
-        }
+        data: {userId, lang}
     }, r => {
         r = JSON.parse(r);
         state.orders = r;
@@ -36,12 +34,12 @@ const orders = userId => {
                 products += `
                     <div class='mb-4 d-inline-block product-item'>
                         <div>
-                            <div class="d-inline-block"><img class="product-image" src='http://192.168.1.100:8080/public/assets/images/${j.image}' alt='${j.image}'></div>
+                            <div class="d-inline-block"><img class="product-image" src='http://192.168.1.100:8080/public/${lang}/img/${j.img}' alt='${j.img}'></div>
                             <div class="d-inline-block product-info">
                                 <p class='product-title gradient-text mb-0'>${j.title}</p>
                                 <small>
                                     <div class='text-muted'>
-                                        <span class='py-2'>${j.volume} ${j.unit}</span>
+                                        <span class='py-2'>${j.vol} ${j.unit}</span>
                                         <span class='p-2'>${productPrice}</span>
                                     </div>
                                     <div class='text-dark'>
@@ -57,7 +55,7 @@ const orders = userId => {
             orders += `
                 <div class='card mb-3 order' data-order-id='${i.id}'>
                     <header class='card-header bg-white'>
-                        <b class='d-inline-block mr-3'>Замовлення: ${i.hash}</b>
+                        <b class='d-inline-block mr-3'>${lang === 'ua' ? 'Замовлення' : 'Order'}: ${i.hash}</b>
                         <span>${i.created_at}</span>
                         <button class='btn btn-outline-secondary btn-sm border-0 ml-2 history-order-copy' onclick="copy(this)">
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 330 330' height='1.4em' fill='currentColor' class='align-middle pb-1'>
@@ -65,25 +63,27 @@ const orders = userId => {
                                 <path d='M155,120c-8.284,0-15,6.716-15,15s6.716,15,15,15h80c8.284,0,15-6.716,15-15s-6.716-15-15-15H155z'></path>
                                 <path d='M235,180h-80c-8.284,0-15,6.716-15,15s6.716,15,15,15h80c8.284,0,15-6.716,15-15S243.284,180,235,180z'></path>
                                 <path d='M235,240h-80c-8.284,0-15,6.716-15,15c0,8.284,6.716,15,15,15h80c8.284,0,15-6.716,15-15C250,246.716,243.284,240,235,240z'></path>
-                            </svg> Копіювати
+                            </svg> ${lang === 'ua' ? 'Копіювати' : 'Copy'}
                         </button>
                     </header>
                     <div class='card-body'>
                         <div class='row'>
                             <div class='col-md-3'>
-                                <h6 class='text-muted'>Оплата</h6>
-                                <p>Товари: <span>${orderPrice}</span><br>Знижка: <span class='text-danger'>${orderDiscount}</span><br>Всього: <span>${orderSummary}</span></p>
+                                <h6 class='text-muted'>${lang === 'ua' ? 'Оплата' : 'Payment'}</h6>
+                                <p>${lang === 'ua' ? 'Товари' : 'Goods'}: <span>${orderPrice}</span>
+                                <br>${lang === 'ua' ? 'Знижка' : 'Discount'}: <span class='text-danger'>${orderDiscount}</span>
+                                <br>${lang === 'ua' ? 'Всього' : 'Total'}: <span>${orderSummary}</span></p>
                             </div>
                             <div class='col-md-3'>
-                                <h6 class='text-muted'>Замовник</h6>
+                                <h6 class='text-muted'>${lang === 'ua' ? 'Замовник' : 'Customer'}</h6>
                                 <p>${i.name}<br>${i.phone}</p>
                             </div>
                             <div class='col-md-3'>
-                                <h6 class='text-muted'>Адреса</h6>
+                                <h6 class='text-muted'>${lang === 'ua' ? 'Адреса' : 'Address'}</h6>
                                 <p>${i.address}</p>
                             </div>
                             <div class='col-md-3'>
-                                <h6 class='text-muted'>Повідомлення</h6>
+                                <h6 class='text-muted'>${lang === 'ua' ? 'Повідомлення' : 'Message'}</h6>
                                 <p>${i.message}</p>
                             </div>
                         </div>

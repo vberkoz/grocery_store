@@ -47,6 +47,11 @@ class ProductRenderer
             $pageTitle = $prod['title'];
             $assets = '../../assets';
             $dir = "/public/$lang";
+            $page = 'product/'.Utils::storage([
+                'columns' => 'slug',
+                'table' => 'product_'.($lang == 'ua' ? 'en' : 'ua').'_details',
+                'conditions' => "prod_id = $id"
+            ])[0]['slug'];
 
             $logo = $texts[$lang]['logo'];
             $catBtn = $texts[$lang]['categories'];
