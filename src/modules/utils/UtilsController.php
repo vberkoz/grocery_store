@@ -3,6 +3,12 @@
 
 class UtilsController
 {
+    public function defaultImages()
+    {
+        echo json_encode(Utils::generateDefaultImages());
+        return true;
+    }
+
     public function copyImages()
     {
         echo json_encode(Utils::copyImages());

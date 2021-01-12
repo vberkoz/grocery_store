@@ -111,7 +111,7 @@
         xhr.send(JSON.stringify(currentState.details.product));
         initialState.details.product = JSON.parse(JSON.stringify(currentState.details.product));
         const id = `[data-id="${initialState.details.product.id}"]`;
-        document.querySelector(`${id}[class="title"]`).textContent = initialState.details.product.title;
+        document.querySelector(`${id}[class="title"]`).textContent = initialState.details.product.title_ua;
         document.querySelector(`${id}[class="category"]`).textContent = initialState.details.product.category;
         document.querySelector(`${id}[class="price"]`).textContent = initialState.details.product.price;
         document.querySelector(`${id}[class="visible"]`).checked = parseInt(initialState.details.product.visible);
@@ -122,8 +122,8 @@
     const changeValue = e => {
         let i = currentState.details.product;
         switch (e.getAttribute('name')) {
-            case 'category_id':
-                i.category_id = e.options[e.selectedIndex].getAttribute('data-category-id');
+            case 'cat_id':
+                i.cat_id = e.options[e.selectedIndex].getAttribute('data-category-id');
                 i.category = e.options[e.selectedIndex].text;
                 break;
             case 'visible': i.visible = e.checked ? '1' : '0'; break;
@@ -157,19 +157,24 @@
             let cs = initialState.details.categories;
             let table = document.createElement('table');
             table.innerHTML = `
-                ${inputText('Мова',                 p.language,         'language')}
-                ${inputText('Назва продукту',       p.title,            'title')}
-                ${inputText('Слаг',                 p.slug,             'slug')}
-                ${inputText('Зображення',           p.image,            'image')}
-                ${textArea('Корисна інформація',    p.description,      'description')}
-                ${textArea('Характеристики',        p.characteristics,  'characteristics')}
-                ${inputSelect('Назва категорії',    p.category_id, cs,  'category_id')}
-                ${inputText('Код',                  p.code,             'code')}
-                ${inputText('Ціна',                 p.price,            'price')}
-                ${inputCheckbox('Показувати',       p.visible,          'visible')}
-                ${inputText("Об'єм",                p.volume,           'volume')}
-                ${inputText("Мін. об'єм",           p.volume_min,       'volume_min')}
-                ${inputText("Од. виміру",           p.unit,             'unit')}
+                ${inputText('Назва продукту',       p.title_ua,        'title_ua')}
+                ${inputText('Product title',        p.title_en,        'title_en')}
+                ${inputText('Слаг',                 p.slug_ua,         'slug_ua')}
+                ${inputText('Slug',                 p.slug_en,         'slug_en')}
+                ${inputText('Зображення',           p.img_ua,          'img_ua')}
+                ${inputText('Image',                p.img_en,          'img_en')}
+                ${textArea('Корисна інформація',    p.desc_ua,         'desc_ua')}
+                ${textArea('Description',           p.desc_en,         'desc_en')}
+                ${textArea('Характеристики',        p.char_ua,         'char_ua')}
+                ${textArea('Characteristics',       p.char_en,         'char_en')}
+                ${inputSelect('Назва категорії',    p.cat_id,   cs,    'cat_id')}
+                ${inputText('Код',                  p.code,            'code')}
+                ${inputText('Ціна',                 p.price,           'price')}
+                ${inputCheckbox('Показувати',       p.visible,         'visible')}
+                ${inputText("Об'єм",                p.vol,             'vol')}
+                ${inputText("Мін. об'єм",           p.vol_min,         'vol_min')}
+                ${inputText("Од. виміру",           p.unit_ua,         'unit_ua')}
+                ${inputText("Units",                p.unit_en,         'unit_en')}
             `;
             product.appendChild(table);
         }
@@ -199,7 +204,7 @@
     const inputSelect = (title, id, options, name) => {
         let optionsString = '';
         options.map(i => {
-            optionsString += `<option data-category-id="${i.id}" ${i.id === id ? "selected" : ""}>${i.title}</option>`;
+            optionsString += `<option data-category-id="${i.cat_id}" ${i.cat_id === id ? "selected" : ""}>${i.title}</option>`;
         });
         return `
             <tr>

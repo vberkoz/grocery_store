@@ -11,45 +11,45 @@ class ProductRenderer
         foreach ($langs as $lang) {
             $prods = Utils::storage([
                 'columns' => '
-                    products.id,
-                    products.cat_id,
-                    products.code,
-                    products.price,
-                    products.visible,
-                    products.vol,
-                    products.vol_min,
-                    product_'.$lang.'_details.title,
-                    product_'.$lang.'_details.slug,
-                    product_'.$lang.'_details.img,
-                    product_'.$lang.'_details.desc,
-                    product_'.$lang.'_details.char,
-                    product_'.$lang.'_details.unit,
-                    category_'.$lang.'_details.title AS cat,
-                    category_'.$lang.'_details.slug AS cat_slug
+                    001_products.id,
+                    001_products.cat_id,
+                    001_products.code,
+                    001_products.def_img,
+                    001_products.price,
+                    001_products.visible,
+                    001_products.vol,
+                    001_products.vol_min,
+                    001_product_'.$lang.'_details.title,
+                    001_product_'.$lang.'_details.slug,
+                    001_product_'.$lang.'_details.img,
+                    001_product_'.$lang.'_details.desc,
+                    001_product_'.$lang.'_details.char,
+                    001_product_'.$lang.'_details.unit,
+                    001_category_'.$lang.'_details.title AS cat,
+                    001_category_'.$lang.'_details.slug AS cat_slug
                 ',
-                'table' => 'products',
+                'table' => '001_products',
                 'joins' => [
                     [
-                        'table' => 'product_'.$lang.'_details',
-                        'expresion' => 'products.id = product_'.$lang.'_details.prod_id'
+                        'table' => '001_product_'.$lang.'_details',
+                        'expresion' => '001_products.id = 001_product_'.$lang.'_details.prod_id'
                     ],
                     [
-                        'table' => 'category_'.$lang.'_details',
-                        'expresion' => 'products.cat_id = category_'.$lang.'_details.cat_id',
+                        'table' => '001_category_'.$lang.'_details',
+                        'expresion' => '001_products.cat_id = 001_category_'.$lang.'_details.cat_id',
                     ]
                 ],
-                'conditions' => "
-                    products.id = $id AND
-                    products.visible = 1
-                "
+                'conditions' => "001_products.id = $id"
             ]);
+
             $prod = $prods[0];
             $pageTitle = $prod['title'];
             $assets = '../../assets';
-            $dir = "/public/$lang";
+            $dir = "/$lang";
+
             $page = 'product/'.Utils::storage([
                 'columns' => 'slug',
-                'table' => 'product_'.($lang == 'ua' ? 'en' : 'ua').'_details',
+                'table' => '001_product_'.($lang == 'ua' ? 'en' : 'ua').'_details',
                 'conditions' => "prod_id = $id"
             ])[0]['slug'];
 
@@ -81,8 +81,8 @@ class ProductRenderer
             $menuMobile = '';
             foreach ($pages['name'] as $k => $name) {
                 $title = $pages[$lang][$k];
-                $menu .= "<li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/$lang/$name.html'>$title</a></li>";
-                $menuMobile .= "<a class='dropdown-item' href='/public/$lang/$name.html'>$title</a>";
+                $menu .= "<li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/$lang/$name.html'>$title</a></li>";
+                $menuMobile .= "<a class='dropdown-item' href='/$lang/$name.html'>$title</a>";
             }
 
             $desc = '';
@@ -127,9 +127,13 @@ class ProductRenderer
 
             $content = $header . $details . $footer;
             $filename = $prod['slug'];
-            $handle = fopen("public/$lang/product/$filename.html", 'w+');
+            $handle = fopen("$lang/product/$filename.html", 'w+');
             fwrite($handle, $content);
             fclose($handle);
+
+            $file = "ssr/img/".$prod['def_img'];
+            $newfile = "$lang/img/".$prod['img'];
+            copy($file, $newfile);
         }
     }
 }

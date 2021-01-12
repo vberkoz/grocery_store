@@ -11,47 +11,47 @@ class CategoryRenderer
         foreach ($langs as $lang) {
             $prods = Utils::storage([
                 'columns' => '
-                    products.id,
-                    products.cat_id,
-                    products.price,
-                    products.vol,
-                    products.vol_min,
-                    product_'.$lang.'_details.title,
-                    product_'.$lang.'_details.slug,
-                    product_'.$lang.'_details.img,
-                    product_'.$lang.'_details.unit,
-                    category_'.$lang.'_details.title AS cat,
-                    category_'.$lang.'_details.slug AS cat_slug
+                    001_products.id,
+                    001_products.cat_id,
+                    001_products.price,
+                    001_products.vol,
+                    001_products.vol_min,
+                    001_product_'.$lang.'_details.title,
+                    001_product_'.$lang.'_details.slug,
+                    001_product_'.$lang.'_details.img,
+                    001_product_'.$lang.'_details.unit,
+                    001_category_'.$lang.'_details.title AS cat,
+                    001_category_'.$lang.'_details.slug AS cat_slug
                 ',
-                'table' => 'products',
+                'table' => '001_products',
                 'joins' => [
                     [
-                        'table' => 'product_'.$lang.'_details',
-                        'expresion' => 'products.id = product_'.$lang.'_details.prod_id'
+                        'table' => '001_product_'.$lang.'_details',
+                        'expresion' => '001_products.id = 001_product_'.$lang.'_details.prod_id'
                     ],
                     [
-                        'table' => 'category_'.$lang.'_details',
-                        'expresion' => 'products.cat_id = category_'.$lang.'_details.cat_id',
+                        'table' => '001_category_'.$lang.'_details',
+                        'expresion' => '001_products.cat_id = 001_category_'.$lang.'_details.cat_id',
                     ]
                 ],
                 'conditions' => "
-                    products.cat_id = $cat_id AND 
-                    products.visible = 1
+                    001_products.cat_id = $cat_id AND 
+                    001_products.visible = 1
                 "
             ]);
 
             $cats = Utils::storage([
                 'columns' => 'id, title, slug',
-                'table' => 'category_'.$lang.'_details',
+                'table' => '001_category_'.$lang.'_details',
                 'conditions' => "id = $cat_id"
             ]);
 
             $pageTitle = $cats[0]['title'];
             $assets = '../../assets';
-            $dir = "/public/$lang";
+            $dir = "/$lang";
             $page = 'category/'.Utils::storage([
                 'columns' => 'slug',
-                'table' => 'category_'.($lang == 'ua' ? 'en' : 'ua').'_details',
+                'table' => '001_category_'.($lang == 'ua' ? 'en' : 'ua').'_details',
                 'conditions' => "id = $cat_id"
             ])[0]['slug'];
 
@@ -64,8 +64,8 @@ class CategoryRenderer
             $menuMobile = '';
             foreach ($pages['name'] as $k => $name) {
                 $title = $pages[$lang][$k];
-                $menu .= "<li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/$lang/$name.html'>$title</a></li>";
-                $menuMobile .= "<a class='dropdown-item' href='/public/$lang/$name.html'>$title</a>";
+                $menu .= "<li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/$lang/$name.html'>$title</a></li>";
+                $menuMobile .= "<a class='dropdown-item' href='/$lang/$name.html'>$title</a>";
             }
 
 
@@ -75,7 +75,7 @@ class CategoryRenderer
 
             $content = $header . $details . $footer;
             $filename = $cats[0]['slug'];
-            $handle = fopen("public/$lang/category/$filename.html",'w+');
+            $handle = fopen("$lang/category/$filename.html",'w+');
             fwrite($handle, $content);
             fclose($handle);
         }

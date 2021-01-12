@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="zzz">
+    <serverData>
+      <paths name="zzz">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/stage.kl.com.ua" local="$PROJECT_DIR$/src" web="/stage.kl.com.ua" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/src/App" />
+            <excludedPath local="true" path="$PROJECT_DIR$/src/controllers" />
+            <excludedPath local="true" path="$PROJECT_DIR$/src/models" />
+            <excludedPath local="true" path="$PROJECT_DIR$/src/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/src/views" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

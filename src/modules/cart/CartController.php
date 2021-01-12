@@ -36,7 +36,7 @@ class CartController
 
     public function checkout()
     {
-        echo json_encode(CartService::checkout($_POST['data']));
+        echo json_encode(CartService::checkout($_POST['d'], $_POST['lang']));
         return true;
     }
 }

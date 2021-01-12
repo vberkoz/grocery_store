@@ -21,13 +21,19 @@ return array(
     'cart/index' => 'cart.index',
     'cart/copy' => 'cart.copy',
 
+    'user/show' => 'user.show',
+    'user/update' => 'user.update',
+
     'search' => 'search.full',
     'refresh' => 'refresh.full',
     'logged' => 'user.logged',
     'login' => 'user.login',
     'logout' => 'user.logout',
     'orders' => 'user.orders',
+    'email' => 'user.email',
+    'register' => 'user.register',
 
+    'default_images' => 'utils.defaultImages',
     'copy_images' => 'utils.copyImages',
     'slug' => 'utils.slug',
 );

@@ -24,11 +24,6 @@ class RefreshRenderer
                 'new' => 'Нові',
                 'popular' => 'Популярні',
 
-                'goods' => 'Товари',
-                'discount' => 'Знижка',
-                'total' => 'Всього',
-                'order' => 'Замовити',
-
                 'your_order' => 'Ваше замовлення',
                 'warn' => 'Звертаємо Вашу увагу на те, що вартість замовлення, розрахована на сайті, являється приблизною і може відрізнятися від вартості при оплаті.',
                 'info' => 'Сьогодні будуть доставлені замовлення які були оформлені до 4-ї години ранку. Замовлення оформлені після 4-ї години ранку будуть доставлені завтра.',
@@ -60,16 +55,6 @@ class RefreshRenderer
                 'reviewer_msg' => 'Відгук',
                 'cancel' => 'Відміна',
                 'save' => 'Зберегти',
-
-                'login_to_cabinet' => 'Увійти в кабінет',
-                'cabinet_email' => 'Електронна пошта',
-                'invalid_email' => 'Невірний формат електронної пошти',
-                'password' => 'Пароль',
-                'change_password' => 'Змінити',
-                'invalid_password' => 'Пароль має бути не менше 6-ти символів',
-                'login' => 'Зайти',
-                'first_time' => 'Вперше тут?',
-                'register' => 'Зареєструйся',
             ],
             'en' => [
                 'logo' => 'Vitamin+',
@@ -79,11 +64,6 @@ class RefreshRenderer
 
                 'new' => 'New',
                 'popular' => 'Popular',
-
-                'goods' => 'Goods',
-                'discount' => 'Discount',
-                'total' => 'Total',
-                'order' => 'Order',
 
                 'your_order' => 'Your order',
                 'warn' => 'Please note that the cost of the order, calculated on the site, is approximate and may differ from the cost of payment.',
@@ -117,21 +97,15 @@ class RefreshRenderer
                 'cancel' => 'Cancel',
                 'save' => 'Save',
 
-                'login_to_cabinet' => 'Login to cabinet',
-                'cabinet_email' => 'Email',
-                'invalid_email' => 'Invalid email format',
-                'password' => 'Password',
                 'change_password' => 'Change',
                 'invalid_password' => 'Password must be at least 6 characters long',
                 'login' => 'Login',
-                'first_time' => 'First time here?',
-                'register' => 'Register',
             ]
         ];
 
         $cats = Utils::storage([
             'columns' => '*',
-            'table' => 'categories'
+            'table' => '001_categories'
         ]);
         foreach ($cats as $i) {
             CategoryRenderer::details($i['id'], $pages, $texts);
@@ -139,9 +113,7 @@ class RefreshRenderer
 
         $prods = Utils::storage([
             'columns' => 'id',
-            'table' => 'products',
-            'conditions' => 'visible = 1',
-            'order' => 'id DESC'
+            'table' => '001_products'
         ]);
         foreach ($prods as $i) {
             ProductRenderer::details($i['id'], $pages, $texts);
@@ -153,8 +125,8 @@ class RefreshRenderer
             $menuMobile = '';
             foreach ($pages['name'] as $k => $name) {
                 $title = $pages[$lang][$k];
-                $menu .= "<li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/public/$lang/$name.html'>$title</a></li>";
-                $menuMobile .= "<a class='dropdown-item' href='/public/$lang/$name.html'>$title</a>";
+                $menu .= "<li class='nav-item'><a class='nav-link text-secondary px-2 py-0' href='/$lang/$name.html'>$title</a></li>";
+                $menuMobile .= "<a class='dropdown-item' href='/$lang/$name.html'>$title</a>";
             }
 
             self::main($lang, $menu, $menuMobile, $texts);
@@ -184,18 +156,8 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
 
-        $loginToCabinetCap = $texts[$lang]['login_to_cabinet'];
-        $cabinetEmailCap = $texts[$lang]['cabinet_email'];
-        $invalidEmailCap = $texts[$lang]['invalid_email'];
-        $passwordCap = $texts[$lang]['password'];
-        $changePasswordCap = $texts[$lang]['change_password'];
-        $invalidPasswordCap = $texts[$lang]['invalid_password'];
-        $loginCap = $texts[$lang]['login'];
-        $firstTimeCap = $texts[$lang]['first_time'];
-        $registerCap = $texts[$lang]['register'];
-
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'cabinet';
 
         $details = include('cabinet.php');
@@ -203,7 +165,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/cabinet.html",'w+');
+        $handle = fopen("$lang/cabinet.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -223,60 +185,61 @@ class RefreshRenderer
         $popularCap = $texts[$lang]['popular'];
 
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'index';
 
         $new = Utils::storage([
             'columns' => '
-                products.id,
-                products.cat_id,
-                products.price,
-                products.vol,
-                products.vol_min,
-                product_'.$lang.'_details.title,
-                product_'.$lang.'_details.slug,
-                product_'.$lang.'_details.img,
-                product_'.$lang.'_details.unit,
-                category_'.$lang.'_details.title AS cat,
-                category_'.$lang.'_details.slug AS cat_slug
+                001_products.id,
+                001_products.cat_id,
+                001_products.price,
+                001_products.vol,
+                001_products.vol_min,
+                001_product_'.$lang.'_details.title,
+                001_product_'.$lang.'_details.slug,
+                001_product_'.$lang.'_details.img,
+                001_product_'.$lang.'_details.unit,
+                001_category_'.$lang.'_details.title AS cat,
+                001_category_'.$lang.'_details.slug AS cat_slug
             ',
-            'table' => 'products',
+            'table' => '001_products',
             'joins' => [
                 [
-                    'table' => 'product_'.$lang.'_details',
-                    'expresion' => 'products.id = product_'.$lang.'_details.prod_id'
+                    'table' => '001_product_'.$lang.'_details',
+                    'expresion' => '001_products.id = 001_product_'.$lang.'_details.prod_id'
                 ],
                 [
-                    'table' => 'category_'.$lang.'_details',
-                    'expresion' => 'products.cat_id = category_'.$lang.'_details.cat_id',
+                    'table' => '001_category_'.$lang.'_details',
+                    'expresion' => '001_products.cat_id = 001_category_'.$lang.'_details.cat_id',
                 ]
             ],
-            'conditions' => 'products.visible = 1 LIMIT 20'
+            'conditions' => '001_products.visible = 1 LIMIT 20'
         ]);
 
         $popular = Utils::storage([
             'columns' => '
-                product_'.$lang.'_details.title,
-                product_'.$lang.'_details.slug,
-                product_'.$lang.'_details.img,
-                product_'.$lang.'_details.unit,
-                products.id,
-                products.price,
-                products.vol,
-                products.vol_min,
+                001_product_'.$lang.'_details.title,
+                001_product_'.$lang.'_details.slug,
+                001_product_'.$lang.'_details.img,
+                001_product_'.$lang.'_details.unit,
+                001_products.id,
+                001_products.price,
+                001_products.vol,
+                001_products.vol_min,
                 cp.num
             ',
-            'table' => '(SELECT product_id AS pid, COUNT(product_id) AS num FROM cart_products GROUP BY pid) AS cp',
+            'table' => '(SELECT product_id AS pid, COUNT(product_id) AS num FROM 001_cart_products GROUP BY pid) AS cp',
             'joins' => [
                 [
-                    'table' => 'products',
-                    'expresion' => 'products.id = cp.pid'
+                    'table' => '001_products',
+                    'expresion' => '001_products.id = cp.pid'
                 ],
                 [
-                    'table' => 'product_'.$lang.'_details',
-                    'expresion' => 'product_'.$lang.'_details.prod_id = cp.pid'
+                    'table' => '001_product_'.$lang.'_details',
+                    'expresion' => '001_product_'.$lang.'_details.prod_id = cp.pid'
                 ]
             ],
+            'conditions' => '001_products.visible = 1',
             'order' => 'cp.num DESC LIMIT 20'
         ]);
 
@@ -285,7 +248,7 @@ class RefreshRenderer
         $footer = include(ROOT . '/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/index.html", 'w+');
+        $handle = fopen("$lang/index.html", 'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -302,7 +265,7 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'payment';
 
         $details = include('payment.php');
@@ -310,7 +273,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/payment.html",'w+');
+        $handle = fopen("$lang/payment.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -327,7 +290,7 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'blog';
 
         $details = include('blog.php');
@@ -335,7 +298,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/blog.html",'w+');
+        $handle = fopen("$lang/blog.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -352,7 +315,7 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'contact';
 
         $details = include('contact.php');
@@ -360,7 +323,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/contact.html",'w+');
+        $handle = fopen("$lang/contact.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -377,7 +340,7 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'about';
 
         $details = include('about.php');
@@ -385,7 +348,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/about.html",'w+');
+        $handle = fopen("$lang/about.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -402,13 +365,8 @@ class RefreshRenderer
         $search = $texts[$lang]['search'];
         $cabinet = $texts[$lang]['cabinet'];
 
-        $goodsCap = $texts[$lang]['goods'];
-        $discountCap = $texts[$lang]['discount'];
-        $totalCap = $texts[$lang]['total'];
-        $orderCap = $texts[$lang]['order'];
-
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'cart';
 
         $details = include('cart.php');
@@ -416,7 +374,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/cart.html",'w+');
+        $handle = fopen("$lang/cart.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }
@@ -447,7 +405,7 @@ class RefreshRenderer
         $makeCap = $texts[$lang]['make'];
 
         $assets = '../assets';
-        $dir = "/public/$lang";
+        $dir = "/$lang";
         $page = 'checkout';
 
         $details = include('checkout.php');
@@ -455,7 +413,7 @@ class RefreshRenderer
         $footer = include(ROOT.'/ssr/layout/footer.php');
 
         $content = $header . $details . $footer;
-        $handle = fopen("public/$lang/checkout.html",'w+');
+        $handle = fopen("$lang/checkout.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
     }

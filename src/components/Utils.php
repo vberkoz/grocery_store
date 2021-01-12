@@ -3,18 +3,57 @@
 
 class Utils
 {
+    public static function generateDefaultImages()
+    {
+        $prods = self::storage([
+            'columns' => '*',
+            'table' => 'old_products'
+        ]);
+        $res = [];
+        $s = '';
+        foreach ($prods as $i) {
+            $img = $i['def_img'];
+            $code = self::hash();
+            $file = "ssr/img1/$img";
+            $newfile = "ssr/img/$code.jpg";
+
+            if (!copy($file, $newfile)) {
+                $res[] = "Unable to copy: $img";
+            } else {
+                $res[] = "Copied: $code.jpg";
+            }
+
+            $s .= "UPDATE old_products SET code = '$code', def_img = '$code.jpg' WHERE id = ".$i['id'].";";
+        }
+        $db = Db::getConnection();
+        $r = $db->prepare($s);
+        $r->setFetchMode(PDO::FETCH_ASSOC);
+        $r->execute();
+        return $res;
+    }
+
+    public static function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public static function slug()
     {
         $products = self::storage([
             'columns' => 'id, title',
-            'table' => 'product_en_details'
+            'table' => 'product_ua_details'
         ]);
 
         $sql = "";
         foreach ($products as $item) {
             $id = $item['id'];
             $slug = self::url_slug($item['title'], ['transliterate' => true]);
-            $sql .= "UPDATE product_en_details SET slug = '$slug', img = '$slug.jpg' WHERE id = $id;";
+            $sql .= "UPDATE product_ua_details SET slug = '$slug', img = '$slug.jpg' WHERE id = $id;";
         }
         $db = Db::getConnection();
         $r = $db->prepare($sql);
@@ -139,7 +178,7 @@ class Utils
 
     public static function storage(array $p)
     {
-        $columns = $p['columns'];
+        if (isset($p['columns'])) $columns = $p['columns'];
         $table = $p['table'];
 
         $joins = '';
@@ -157,14 +196,26 @@ class Utils
         $order = '';
         if (isset($p['order'])) $order = "ORDER BY " . $p['order'];
 
-        $s = "SELECT $columns FROM $table $joins $conditions $order";
+        if (!isset($p['action'])) $s = "SELECT $columns FROM $table $joins $conditions $order";
+
+        if (isset($p['action']) && $p['action'] == 'insert') {
+            $values = $p['values'];
+            $s = "INSERT INTO $table ($columns) VALUES ($values)";
+        }
+
+        if (isset($p['action']) && $p['action'] == 'update') {
+            $set = $p['set'];
+            $s = "UPDATE $table SET $set $conditions";
+        }
 //        return $s;
+//        echo $s;
 
         $db = Db::getConnection();
         $r = $db->prepare($s);
         $r->setFetchMode(PDO::FETCH_ASSOC);
         $r->execute();
-        return $r->fetchAll();
+        if (!isset($p['action'])) return $r->fetchAll();
+        return $db->lastInsertId();
     }
 
     public static function copyImages()

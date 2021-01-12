@@ -7,7 +7,7 @@ class CategoryService
     {
         return Utils::storage([
             'columns' => 'id, title, slug',
-            'table' => 'category_'.$lang.'_details',
+            'table' => '001_category_'.$lang.'_details',
         ]);
     }
 }

@@ -104,7 +104,7 @@ class OrderedProduct
         $db = Db::getConnection();
         $result = $db->query($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
-        
+
         return $result->fetchAll();
     }
 

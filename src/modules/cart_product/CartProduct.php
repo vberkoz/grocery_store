@@ -13,7 +13,7 @@ class CartProduct
             $client = 0;
             $restaurant = 0;
             $price = $i['total'];
-            $sql .= "INSERT INTO cart_products (cart_id, product_id, quantity, client, restaurant, price) ".
+            $sql .= "INSERT INTO 001_cart_products (cart_id, product_id, quantity, client, restaurant, price) ".
                 "VALUES ($cartId, $productId, $quantity, $client, $restaurant, $price); ";
         }
         $r = $db->prepare($sql);

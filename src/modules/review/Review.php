@@ -8,7 +8,7 @@ class Review
         $date = $dateTime->format('Y-m-d H:i:s');
 
         $db = Db::getConnection();
-        $sql = 'INSERT INTO reviews (product_id, name, email, text, date)
+        $sql = 'INSERT INTO 001_reviews (product_id, name, email, text, date)
                 VALUES (:product_id, :name, :email, :text, :date)';
 
         $r = $db->prepare($sql);
@@ -25,7 +25,7 @@ class Review
     public static function index(int $id): array
     {
         $db = Db::getConnection();
-        $sql = 'SELECT * FROM reviews WHERE product_id = :product_id';
+        $sql = 'SELECT * FROM 001_reviews WHERE product_id = :product_id';
 
         $r = $db->prepare($sql);
         $r->bindParam(':product_id', $id, PDO::PARAM_INT);

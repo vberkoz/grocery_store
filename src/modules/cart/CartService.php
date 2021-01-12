@@ -5,6 +5,7 @@ include_once 'CartRenderer.php';
 include_once ROOT.'/components/Utils.php';
 include_once ROOT.'/modules/product/Product.php';
 include_once ROOT.'/modules/cart_product/CartProduct.php';
+include_once ROOT.'/modules/user/UserService.php';
 
 class CartService
 {
@@ -18,22 +19,22 @@ class CartService
         return $products;
     }
 
-    public static function checkout($data)
+    public static function checkout($d, $lang)
     {
-        $data['hash'] = Utils::hash();
-        $data['user_id'] = null;
+        $d['hash'] = Utils::hash();
+        $d['user_id'] = UserService::logged();
 
-        $summary = self::summary();
-        $data['count'] = $summary['count'];
-        $data['price'] = $summary['price'];
-        $data['discount'] = 0;
+        $summary = self::summary($lang);
+        $d['count'] = $summary['count'];
+        $d['price'] = $summary['price'];
+        $d['discount'] = 0;
 
-        $cartId = Cart::insert($data);
-        $items = self::content();
+        $cartId = Cart::insert($d);
+        $items = self::content($lang);
         CartProduct::insert($cartId, $items);
 
-        $data['items'] = $items;
-        $message = CartRenderer::mailTemplate($data);
+        $d['items'] = $items;
+        $message = CartRenderer::mailTemplate($d);
 
         $email = 'vberkoz@gmail.com';
         $subject = 'Vitamin+ замовлення: ' . $cartId;
@@ -43,8 +44,9 @@ class CartService
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
         mail($email, $subject, $message, $headers);
+        unset($_SESSION['products']);
 
-        return $data;
+        return $d;
     }
 
     public static function summary($lang)
@@ -68,23 +70,23 @@ class CartService
         $params = "'$params'";
         $products = Utils::storage([
             'columns' => '
-                product_'.$lang.'_details.title,
-                product_'.$lang.'_details.slug,
-                product_'.$lang.'_details.img,
-                product_'.$lang.'_details.unit,
-                products.id,
-                products.price,
-                products.vol,
-                products.vol_min
+                001_product_'.$lang.'_details.title,
+                001_product_'.$lang.'_details.slug,
+                001_product_'.$lang.'_details.img,
+                001_product_'.$lang.'_details.unit,
+                001_products.id,
+                001_products.price,
+                001_products.vol,
+                001_products.vol_min
             ',
-            'table' => 'products',
+            'table' => '001_products',
             'joins' => [
                 [
-                    'table' => 'product_'.$lang.'_details',
-                    'expresion' => 'products.id = product_'.$lang.'_details.prod_id'
+                    'table' => '001_product_'.$lang.'_details',
+                    'expresion' => '001_products.id = 001_product_'.$lang.'_details.prod_id'
                 ]
             ],
-            'conditions' => "products.id IN ($params)"
+            'conditions' => "001_products.id IN ($params)"
         ]);
         foreach ($products as $k => $v) {
             foreach ($ids as $id => $q) {

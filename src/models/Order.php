@@ -187,12 +187,12 @@ class Order
      * @return bool
      */
     public static function save(
-        $userName, 
-        $userPhone, 
-        $userComment, 
-        $userAddress, 
-        $products, 
-        $discount, 
+        $userName,
+        $userPhone,
+        $userComment,
+        $userAddress,
+        $products,
+        $discount,
         $userId
     ) {
         $userId = intval($userId);
@@ -214,7 +214,7 @@ class Order
         $result->bindParam(':discount', $discount, PDO::PARAM_STR);
         $result->execute();
         $orderId = $db->lastInsertId();
-        
+
         OrderedProduct::saveBunch($userId, $orderId, $products);
 
         return $orderId;
@@ -285,7 +285,7 @@ class Order
             );";
         }
         $r = $db->query($sql);
-        
+
         return $order;
     }
 

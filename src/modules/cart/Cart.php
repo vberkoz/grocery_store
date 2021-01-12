@@ -6,7 +6,7 @@ class Cart
     public static function insert($data)
     {
         $db = Db::getConnection();
-        $sql = 'INSERT INTO carts (hash, user_id, name, phone, message, address, count, price, discount) 
+        $sql = 'INSERT INTO 001_carts (hash, user_id, name, phone, message, address, count, price, discount) 
                 VALUES (:hash, :user_id, :name, :phone, :message, :address, :count, :price, :discount)';
         $r = $db->prepare($sql);
         $r->bindParam(':hash', $data['hash'], PDO::PARAM_STR);

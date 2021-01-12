@@ -10,11 +10,11 @@ class SearchService
         $lang = $p['lang'];
         $items = Utils::storage([
             'columns' => 'title, slug',
-            'table' => 'product_'.$lang.'_details',
+            'table' => '001_product_'.$lang.'_details',
             'joins' => [
                 [
-                    'table' => 'products',
-                    'expresion' => 'products.id = product_'.$lang.'_details.prod_id'
+                    'table' => '001_products',
+                    'expresion' => '001_products.id = 001_product_'.$lang.'_details.prod_id'
                 ]
             ],
             'conditions' => "
@@ -24,7 +24,7 @@ class SearchService
         ]);
         foreach ($items as $k => $i) {
             $slug = $i['slug'];
-            $items[$k]['link'] = "/public/$lang/product/$slug.html";
+            $items[$k]['link'] = "/$lang/product/$slug.html";
         }
         return $items;
     }

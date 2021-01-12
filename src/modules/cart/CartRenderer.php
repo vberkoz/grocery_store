@@ -18,9 +18,9 @@ class CartRenderer
         $message = $data['message'];
         $domain = DOMAIN;
         foreach ($data['items'] as $i) {
-            $image = $i['image'];
+            $img = $i['img'];
             $title = $i['title'];
-            $volume = $i['volume'];
+            $vol = $i['vol'];
             $quantity = $i['quantity'];
             $unit = $i['unit'];
             $total = numfmt_format_currency($fmt, $i['total'], "UAH");
@@ -29,13 +29,13 @@ class CartRenderer
                 <div class='col-12 col-md-4 mb-2'>
                     <div class='row'>
                         <div class='col-4'>
-                            <img src='$domain/public/assets/images/$image' alt='$image' class='img-fluid'>
+                            <img src='$domain/assets/images/$img' alt='$img' class='img-fluid'>
                         </div>
                         <div class='col-8'>
                             <p class='title mb-0'>$title</p>
                             <small>
                                 <div class='text-muted'>
-                                    <span class='py-2'>$volume $unit</span>
+                                    <span class='py-2'>$vol $unit</span>
                                     <span class='p-2'>$price</span>
                                 </div>
                                 <div class='text-dark'>
@@ -49,7 +49,7 @@ class CartRenderer
             ";
         }
         $content = include('mail_template.php');
-        $handle = fopen("public/ua/mail_template.html",'w+');
+        $handle = fopen("mail_template.html",'w+');
         fwrite($handle, $content);
         fclose($handle);
 
