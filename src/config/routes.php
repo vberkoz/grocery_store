@@ -21,6 +21,8 @@ return array(
     'cart/index' => 'cart.index',
     'cart/copy' => 'cart.copy',
 
+    'order/index' => 'order.index',
+
     'user/show' => 'user.show',
     'user/update' => 'user.update',
 
