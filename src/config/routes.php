@@ -25,6 +25,7 @@ return array(
 
     'user/show' => 'user.show',
     'user/update' => 'user.update',
+    'user/index' => 'user.index',
 
     'search' => 'search.full',
     'refresh' => 'refresh.full',

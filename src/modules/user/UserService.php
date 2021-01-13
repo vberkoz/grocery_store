@@ -1,9 +1,18 @@
 <?php
 
 include_once 'User.php';
+include_once 'UserRepository.php';
 
 class UserService
 {
+    public static function index()
+    {
+        return [
+            'users' => UserRepository::index(),
+            'products' => UserRepository::products()
+        ];
+    }
+
     public static function update($d)
     {
         return Utils::storage([

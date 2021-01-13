@@ -4,6 +4,12 @@ include_once 'UserService.php';
 
 class UserController
 {
+    public function index()
+    {
+        echo json_encode(UserService::index());
+        return true;
+    }
+
     public function update()
     {
         echo json_encode(UserService::update($_POST['d']));
