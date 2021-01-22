@@ -31,6 +31,9 @@ class ProductController
         $content = trim(file_get_contents("php://input"));
         $decoded = json_decode($content, true);
         Product::update($decoded);
+        $ifp = fopen($_SERVER['DOCUMENT_ROOT'] . "/ssr/img/{$decoded['code']}.jpg", 'wb');
+        fwrite($ifp, base64_decode($decoded['img']));
+        fclose($ifp);
         $pages = [
             'name' => ['index', 'payment', 'blog', 'contact', 'about'],
             'ua' => ['Головна', 'Оплата і доставка', 'Блог', 'Контакти', 'Про нас'],
