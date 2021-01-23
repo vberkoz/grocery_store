@@ -9,7 +9,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     display: flex;
     flex-direction: column;
-    overflow-y:scroll;
+    overflow-y: scroll;
 }
 
 nav {min-height: 60px;}

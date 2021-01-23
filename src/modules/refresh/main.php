@@ -118,7 +118,7 @@ return "
     
     <div id='products'>
         <div class='d-flex justify-content-between px-1 pt-3'>
-            <h4 class='pt-2'>$newCap</h4>
+            <h4 class='pt-2'>".($lang == "ua" ? "Нові" : "New")."</h4>
             <div class='pb-2'>
                 <button type='button' class='fruit-prev btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>
@@ -135,7 +135,7 @@ return "
         <div class='fruit d-none'>$new</div>
         
         <div class='d-flex justify-content-between px-1 pt-3'>
-            <h4 class='pt-2'>$popularCap</h4>
+            <h4 class='pt-2'>".($lang == "ua" ? "Популярні" : "Popular")."</h4>
             <div class='pb-2'>
                 <button type='button' class='popular-prev btn btn-outline-primary'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' height='1.2em' fill='currentColor' class='align-middle pb-1'>

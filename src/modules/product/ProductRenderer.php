@@ -5,7 +5,7 @@ include_once ROOT.'/modules/review/Review.php';
 
 class ProductRenderer
 {
-    public static function details($id, $pages, $texts)
+    public static function details($id, $pages)
     {
         $langs = ['ua', 'en'];
         foreach ($langs as $lang) {
@@ -53,30 +53,6 @@ class ProductRenderer
                 'conditions' => "prod_id = $id"
             ])[0]['slug'];
 
-            $logo = $texts[$lang]['logo'];
-            $catBtn = $texts[$lang]['categories'];
-            $search = $texts[$lang]['search'];
-            $cabinet = $texts[$lang]['cabinet'];
-
-            $breadcrumbCap = $texts[$lang]['breadcrumb'];
-            $codeCap = $texts[$lang]['code'];
-            $priceForCap = $texts[$lang]['price_for'];
-            $minOrderCap = $texts[$lang]['min_order'];
-            $addToCartCap = $texts[$lang]['add_to_cart'];
-            $charCap = $texts[$lang]['char'];
-            $charEmptyCap = $texts[$lang]['char_empty'];
-            $usefulCap = $texts[$lang]['useful'];
-            $usefulEmptyCap = $texts[$lang]['useful_empty'];
-            $reviewsCap = $texts[$lang]['reviews'];
-            $reviewsEmptyCap = $texts[$lang]['reviews_empty'];
-            $writeCap = $texts[$lang]['write'];
-            $yourReviewCap = $texts[$lang]['your_review'];
-            $reviewerNameCap = $texts[$lang]['reviewer_name'];
-            $reviewerEmailCap = $texts[$lang]['reviewer_email'];
-            $reviewerMsgCap = $texts[$lang]['reviewer_msg'];
-            $cancelCap = $texts[$lang]['cancel'];
-            $saveCap = $texts[$lang]['save'];
-
             $menu = '';
             $menuMobile = '';
             foreach ($pages['name'] as $k => $name) {
@@ -92,7 +68,11 @@ class ProductRenderer
                     $desc .= "<p>$i</p>";
                 }
             } else {
-                $desc = $usefulEmptyCap;
+                if ($lang == 'ua') {
+                    $desc .= "<div class='my-4'><h5 class='text-center'>Інформація відсутня</h5><p class='text-center'>Ми працюємо над вдосконаленням нашого сервісу.<br>Інформація про товар незабаром з'явиться.</p></div>";
+                } else {
+                    $desc .= "<div class='my-4'><h5 class='text-center'>No information available</h5><p class='text-center'>We are working to improve our service.<br>Product information will appear soon.</p></div>";
+                }
             }
             $prod['desc'] = $desc;
 
@@ -105,7 +85,11 @@ class ProductRenderer
                 }
                 $char .= "</ul>";
             } else {
-                $char .= $charEmptyCap;
+                if ($lang == 'ua') {
+                    $char .= "<div class='my-4'><h5 class='text-center'>Характеристики відсутні</h5><p class='text-center'>Ми працюємо над вдосконаленням нашого сервісу.<br>Характеристики товару незабаром з'являться.</p></div>";
+                } else {
+                    $char .= "<div class='my-4'><h5 class='text-center'>No characteristics</h5><p class='text-center'>We are working to improve our service.<br>Product characteristics will appear soon.</p></div>";
+                }
             }
             $prod['char'] = $char;
 
@@ -118,7 +102,11 @@ class ProductRenderer
                     $reviews .= "<p><strong>$name</strong><br>$text</p>";
                 }
             } else {
-                $reviews = $reviewsEmptyCap;
+                if ($lang == 'ua') {
+                    $reviews .= "<div class='my-4'><h5 class='text-center'>Відгуків ще немає</h5><p class='text-center'>Поділіться своїми думками про цей товар</p></div>";
+                } else {
+                    $reviews .= "<div class='my-4'><h5 class='text-center'>There are no reviews yet</h5><p class='text-center'>Share your thoughts on this product</p></div>";
+                }
             }
 
             $details = include('details.php');

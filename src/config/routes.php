@@ -2,6 +2,7 @@
 
 return array(
     'categories/index' => 'category.index',
+    'categories/list' => 'category.list',
     'categories/update' => 'category.update',
     'categories/destroy' => 'category.destroy',
     'category/store' => 'category.store',

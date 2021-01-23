@@ -59,16 +59,16 @@ return $header = "
     <nav class='navbar navbar-expand-md navbar-light px-md-0'>
         <div class='container-fluid'>
             <a class='navbar-brand mb-1 d-none d-md-inline-block' href='$dir/index.html'>
-                <img src='$assets/images/logo.jpg' height='29' alt='$logo'>
+                <img src='$assets/images/logo.jpg' height='29' alt='".($lang == "ua" ? "Вітамін+" : "Vitamin+")."'>
             </a>
             
             <div id='category' class='dropdown'>
-                <button id='category_btn' class='btn btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>$catBtn</button>
+                <button id='category_btn' class='btn btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>".($lang == "ua" ? "Категорії" : "Categories")."</button>
                 <div id='category_dd' class='dropdown-menu'></div>
             </div>
             
             <div id='search' class='dropdown'>
-                <input id='search_input' type='search' class='form-control mx-2 dropdown-toggle' placeholder='$search' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)'>
+                <input id='search_input' type='search' class='form-control mx-2 dropdown-toggle' placeholder='".($lang == "ua" ? "Пошук" : "Search")."' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' autocomplete='off' onkeyup='search(this)'>
                 <div id='search_dd' class='dropdown-menu mx-2'></div>
             </div>
             
@@ -77,7 +77,7 @@ return $header = "
                     <span class='navbar-toggler-icon'></span>
                 </button>
                 <div id='menu_dd' class='dropdown-menu'>
-                    $menuMobile<a class='dropdown-item' href='$dir/cabinet.html'>$cabinet</a>
+                    $menuMobile<a class='dropdown-item' href='$dir/cabinet.html'>".($lang == "ua" ? "Кабінет" : "Cabinet")."</a>
                 </div>
             </div>
             

@@ -36,12 +36,13 @@
 
     const init = () => {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', domain + 'categories/index')
+        xhr.open('GET', domain + 'categories/list')
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.send();
         xhr.onload = () => {
             initialState = JSON.parse(xhr.response);
             currentState = JSON.parse(JSON.stringify(initialState));
+            console.log(initialState);
             let tr = document.createElement('tr');
             tr.innerHTML = tableHeader;
             table.appendChild(tr);
@@ -50,10 +51,17 @@
                 tr.innerHTML = `
                     <tr>
                         <td><input type="checkbox" data-id="${i.id}" onclick="checkForDestroy(this)"></td>
-                        <td><input type="text" value="${i.title}" data-id="${i.id}" name="title" onkeyup="changeValue(this)"></td>
-                        <td><input type="text" value="${i.slug}" data-id="${i.id}" name="slug" onkeyup="changeValue(this)"></td>
+                        <td>
+                            <input type="text" value="${i.title_ua}" data-id="${i.id}" name="title_ua" onkeyup="changeValue(this)">
+                            <input type="text" value="${i.title_en}" data-id="${i.id}" name="title_en" onkeyup="changeValue(this)">
+                        </td>
+                        <td>
+                            <input type="text" value="${i.slug_ua}" data-id="${i.id}" name="slug_ua" onkeyup="changeValue(this)">
+                            <input type="text" value="${i.slug_en}" data-id="${i.id}" name="slug_en" onkeyup="changeValue(this)">
+                        </td>
                         <td><input type="checkbox" ${i.visible === "1" ? "checked" : ""} data-id="${i.id}" name="visible" onclick="changeValue(this)"></td>
-                    </tr>`;
+                    </tr>
+                `;
                 table.appendChild(tr);
             });
         }
@@ -65,8 +73,10 @@
         currentState.map(i => {
             if (i.id === e.getAttribute('data-id')) {
                 switch (e.getAttribute('name')) {
-                    case 'title': i.title = e.value; break;
-                    case 'slug': i.slug = e.value; break;
+                    case 'title_ua': i.title_ua = e.value; break;
+                    case 'slug_ua': i.slug_ua = e.value; break;
+                    case 'title_en': i.title_en = e.value; break;
+                    case 'slug_en': i.slug_en = e.value; break;
                     case 'visible': i.visible = e.checked ? '1' : '0'; break;
                 }
             }
@@ -78,8 +88,10 @@
         let equal = true;
         if (initialState.length === currentState.length) {
             initialState.forEach((v, i) => {
-                equal ? equal = v.title === currentState[i].title : null;
-                equal ? equal = v.slug === currentState[i].slug : null;
+                equal ? equal = v.title_ua === currentState[i].title_ua : null;
+                equal ? equal = v.slug_ua === currentState[i].slug_ua : null;
+                equal ? equal = v.title_en === currentState[i].title_en : null;
+                equal ? equal = v.slug_en === currentState[i].slug_en : null;
                 equal ? equal = v.visible === currentState[i].visible : null;
             });
             return equal;
@@ -111,10 +123,17 @@
             tr.innerHTML = `
                 <tr>
                     <td><input type="checkbox" data-id="${i.id}" onclick="checkForDestroy(this)"></td>
-                    <td><input type="text" value="${i.title}" data-id="${i.id}" name="title" onkeyup="changeValue(this)"></td>
-                    <td><input type="text" value="${i.slug}" data-id="${i.id}" name="slug" onkeyup="changeValue(this)"></td>
+                    <td>
+                        <input type="text" value="${i.title_ua}" data-id="${i.id}" name="title_ua" onkeyup="changeValue(this)">
+                        <input type="text" value="${i.title_en}" data-id="${i.id}" name="title_en" onkeyup="changeValue(this)">
+                    </td>
+                    <td>
+                        <input type="text" value="${i.slug_ua}" data-id="${i.id}" name="slug_ua" onkeyup="changeValue(this)">
+                        <input type="text" value="${i.slug_en}" data-id="${i.id}" name="slug_en" onkeyup="changeValue(this)">
+                    </td>
                     <td><input type="checkbox" ${i.visible === "1" ? "checked" : ""} data-id="${i.id}" name="visible" onclick="changeValue(this)"></td>
-                </tr>`;
+                </tr>
+            `;
             table.appendChild(tr);
         }
     }

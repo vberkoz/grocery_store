@@ -18,9 +18,7 @@ CREATE TABLE `001_cart_products` (
   `price` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`cart_id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `001_cart_products_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `001_carts` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `001_cart_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+  KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `001_cart_products` (`id`, `cart_id`, `product_id`, `quantity`, `client`, `restaurant`, `price`) VALUES
@@ -344,7 +342,13 @@ INSERT INTO `001_cart_products` (`id`, `cart_id`, `product_id`, `quantity`, `cli
 (420,	92,	131,	1,	0,	0,	55),
 (421,	92,	112,	1,	0,	0,	55),
 (422,	92,	196,	1,	0,	0,	15),
-(423,	92,	166,	1,	0,	0,	55);
+(423,	92,	166,	1,	0,	0,	55),
+(426,	95,	15,	1,	0,	0,	28.5),
+(427,	95,	41,	1,	0,	0,	50),
+(428,	95,	77,	1,	0,	0,	145),
+(429,	95,	97,	1,	0,	0,	12),
+(430,	95,	147,	1,	0,	0,	42),
+(431,	95,	159,	1,	0,	0,	8);
 
 DROP TABLE IF EXISTS `001_carts`;
 CREATE TABLE `001_carts` (
@@ -393,7 +397,8 @@ INSERT INTO `001_carts` (`id`, `hash`, `user_id`, `name`, `phone`, `address`, `m
 (88,	'95217e42066d',	0,	'Ніна',	'0956805244',	'28червня,14/1',	'',	0,	0,	0,	'2020-12-08 15:36:42'),
 (90,	'201c2222ff71',	0,	'Ніна',	'0956805244',	'28червнЯ 14/1',	'',	0,	0,	0,	'2020-12-14 22:12:04'),
 (91,	'ce69a10c577b',	18,	'Дмитро',	'0635631780',	'Герцена 43А',	'',	0,	0,	0,	'2020-12-17 00:52:19'),
-(92,	'ea3c0d15ed9a',	0,	'Ніна',	'0956805244',	'28 червня 14/1',	'На понеділок',	0,	0,	0,	'2020-12-19 23:14:30');
+(92,	'ea3c0d15ed9a',	0,	'Ніна',	'0956805244',	'28 червня 14/1',	'На понеділок',	0,	0,	0,	'2020-12-19 23:14:30'),
+(95,	'3aab398c5be2',	8,	'Василь Сергійович',	'0668132356',	'Кутозова буд. 4, підїзд 10, кв. 90',	'Відсутнє',	6,	285.5,	0,	'2021-01-23 14:27:01');
 
 DROP TABLE IF EXISTS `001_categories`;
 CREATE TABLE `001_categories` (
@@ -409,7 +414,8 @@ INSERT INTO `001_categories` (`id`, `visible`) VALUES
 (4,	1),
 (5,	1),
 (6,	1),
-(7,	1);
+(7,	1),
+(13,	0);
 
 DROP TABLE IF EXISTS `001_category_en_details`;
 CREATE TABLE `001_category_en_details` (
@@ -429,7 +435,8 @@ INSERT INTO `001_category_en_details` (`id`, `cat_id`, `title`, `slug`) VALUES
 (4,	4,	'Grocery',	'grocery'),
 (5,	5,	'Greens',	'greens'),
 (6,	6,	'Dried Fruit',	'dried-fruit'),
-(7,	7,	'Nuts',	'nuts');
+(7,	7,	'Nuts',	'nuts'),
+(13,	13,	'8caf54522b4a',	'8caf54522b4a');
 
 DROP TABLE IF EXISTS `001_category_ua_details`;
 CREATE TABLE `001_category_ua_details` (
@@ -449,7 +456,8 @@ INSERT INTO `001_category_ua_details` (`id`, `cat_id`, `title`, `slug`) VALUES
 (4,	4,	'Бакалія',	'bakaliya'),
 (5,	5,	'Зелень',	'zelen'),
 (6,	6,	'Сухофрукти',	'suhofrukti'),
-(7,	7,	'Горіхи',	'gorihi');
+(7,	7,	'Горіхи',	'gorihi'),
+(13,	13,	'8caf54522b4a',	'8caf54522b4a');
 
 DROP TABLE IF EXISTS `001_discounts`;
 CREATE TABLE `001_discounts` (
@@ -689,7 +697,9 @@ INSERT INTO `001_product_en_details` (`id`, `prod_id`, `title`, `slug`, `img`, `
 (454,	243,	'Seasoning in Korean',	'seasoning-in-korean',	'seasoning-in-korean.jpg',	'',	'',	'kg'),
 (455,	244,	'Turmeric',	'turmeric',	'turmeric.jpg',	'',	'',	'kg'),
 (456,	245,	'Persimmon',	'persimmon',	'persimmon.jpg',	'',	'',	'kg'),
-(457,	246,	'Apple Green',	'apple-green',	'apple-green.jpg',	'',	'',	'kg');
+(457,	246,	'Apple Green',	'apple-green',	'apple-green.jpg',	'[\"Green apples with a sweet and sour taste.\", \"Apples contain a lot of fiber, which helps with digestion and cleansing of the body. In addition, due to the pectin in apples, they normalize blood cholesterol levels. These fruits are also useful for gallbladder problems: apples are a mild cholagogue. Apples are rich in iron and vitamin C.\", \"Green apples are best for baking and roasting, as they become sweet during cooking. They also taste good in salads, especially with chicken.\"]',	'{\n\"Caloric content (per 100 g)\": \"47 kcal\",\n\"Storage conditions\": \"4-6 months\",\n\"Shelf life\": \"from 0 to +4; humidity 90 - 95%\"\n}',	'kg'),
+(458,	247,	'New product dc5065467432',	'new-product-dc5065467432',	'new-product-dc5065467432.jpg',	'',	'',	'kg'),
+(459,	248,	'New product 226ba9e48e5e',	'new-product-226ba9e48e5e',	'new-product-226ba9e48e5e.jpg',	'',	'',	'kg');
 
 DROP TABLE IF EXISTS `001_product_ua_details`;
 CREATE TABLE `001_product_ua_details` (
@@ -917,7 +927,9 @@ INSERT INTO `001_product_ua_details` (`id`, `prod_id`, `title`, `slug`, `img`, `
 (454,	243,	'Приправа по-корейськи',	'priprava-po-korejski',	'priprava-po-korejski.jpg',	'',	'',	'кг'),
 (455,	244,	'Куркума',	'kurkuma',	'kurkuma.jpg',	'',	'',	'кг'),
 (456,	245,	'Хурма',	'hurma',	'hurma.jpg',	'',	'',	'кг'),
-(457,	246,	'Яблуко Зелене',	'yabluko-zelene',	'yabluko-zelene.jpg',	'',	'',	'кг');
+(457,	246,	'Яблуко Зелене',	'yabluko-zelene',	'yabluko-zelene.jpg',	'[\"Зелені яблука з кисло-солодким смаком.\", \"Яблука містять багато клітковини, яка допомагає з травленням і очищенням організму. Крім цього, завдяки пектину у складі яблука нормалізують рівень холестерину у крові. Корисні ці фрукти і при проблемах з жовчним міхуром: яблука є легким жовчогінним засобом. Багато у яблуках заліза і вітаміну С.\", \"Зелені яблука є найкращими для випічки і запікання, адже під час термічної обробки вони стають солодкими. Смакують вони і у салатах, особливо з куркою.\"]',	'{\n\"Калорійність (на 100г)\": \"47 ккал\",\n\"Умови зберігання\": \"4-6 місяців\",\n\"Термін зберігання\": \"від 0 до +4; вологість 90 - 95%\"\n}',	'кг'),
+(458,	247,	'Новий товар dc5065467432',	'novij-tovar-dc5065467432',	'novij-tovar-dc5065467432.jpg',	'',	'',	'кг'),
+(459,	248,	'Новий товар 226ba9e48e5e',	'novij-tovar-226ba9e48e5e',	'novij-tovar-226ba9e48e5e.jpg',	'',	'',	'кг');
 
 DROP TABLE IF EXISTS `001_products`;
 CREATE TABLE `001_products` (
@@ -1144,7 +1156,8 @@ INSERT INTO `001_products` (`id`, `cat_id`, `code`, `def_img`, `price`, `visible
 (243,	4,	'933aeb3685ef',	'933aeb3685ef.jpg',	122,	1,	1,	0.1),
 (244,	4,	'440b29866844',	'440b29866844.jpg',	90,	1,	1,	1),
 (245,	2,	'f783789cdcc4',	'f783789cdcc4.jpg',	45,	1,	1,	1),
-(246,	2,	'7f86f1f49b30',	'7f86f1f49b30.jpg',	11,	1,	1,	1);
+(246,	2,	'7f86f1f49b30',	'7f86f1f49b30.jpg',	11,	1,	1,	1),
+(248,	1,	'226ba9e48e5e',	'226ba9e48e5e.jpg',	1,	1,	1,	0.1);
 
 DROP TABLE IF EXISTS `001_reviews`;
 CREATE TABLE `001_reviews` (
@@ -1187,4 +1200,4 @@ INSERT INTO `001_users` (`id`, `email`, `username`, `phone`, `address`, `discoun
 (18,	'jyveslovo@gmail.com',	'Дмитро',	'0635631780',	'Герцена 43А',	0,	'$2y$10$kdkfm.v/mj5rVU/x/sZjZ.i0DvXETVYd1x5LIuGqa/UWdORJ1655u',	'client',	NULL),
 (19,	'1997rf1997@gmail.com',	'Дмитро Ткачук',	'0976865464',	'Альпійська 31',	0,	'$2y$10$.l8FBEURHJ26ljVAghomEuVYfxQs/mLs7s/i1M9xYHro5XMOcTHwK',	'client',	NULL);
 
--- 2021-01-08 10:41:30
+-- 2021-01-23 14:28:31

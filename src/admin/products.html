@@ -239,6 +239,11 @@
     }
 
     const textArea = (title, value, name) => {
+        let instruction = '';
+        switch (name) {
+            case 'desc_ua': instruction = `Зразок:<br><br>[<br>"Параграф1",<br>"Параграф2",<br>"Параграф3"<br>]`; break;
+            case 'char_ua': instruction = `Зразок:<br><br>{<br>"Характеристика1": "Значення1",<br>"Характеристика2": "Значення2",<br>"Характеристика3": "Значення3"<br>}`;
+        }
         return `
             <tr>
                 <td style="text-align: right">${title}</td>
@@ -247,6 +252,7 @@
                         style="width: 100%; resize: vertical; font-family: Arial,serif; "
                         onkeyup="changeValue(this)">${value}</textarea>
                 </td>
+                <td>${instruction}</td>
             </tr>
         `;
     }

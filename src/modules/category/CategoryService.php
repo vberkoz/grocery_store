@@ -7,7 +7,32 @@ class CategoryService
     {
         return Utils::storage([
             'columns' => 'id, title, slug',
-            'table' => '001_category_'.$lang.'_details',
+            'table' => '001_category_'.$lang.'_details'
+        ]);
+    }
+
+    public static function list()
+    {
+        return Utils::storage([
+            'columns' => '
+                001_categories.id,
+                001_categories.visible,
+                001_category_ua_details.title AS title_ua,
+                001_category_ua_details.slug AS slug_ua,
+                001_category_en_details.title AS title_en,
+                001_category_en_details.slug AS slug_en
+            ',
+            'table' => '001_categories',
+            'joins' => [
+                [
+                    'table' => '001_category_ua_details',
+                    'expresion' => '001_category_ua_details.cat_id = 001_categories.id'
+                ],
+                [
+                    'table' => '001_category_en_details',
+                    'expresion' => '001_category_en_details.cat_id = 001_categories.id'
+                ],
+            ]
         ]);
     }
 }

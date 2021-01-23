@@ -5,7 +5,7 @@ include_once ROOT.'/modules/product/Product.php';
 
 class CategoryRenderer
 {
-    public static function details($cat_id, $pages, $texts)
+    public static function details($cat_id, $pages)
     {
         $langs = ['ua', 'en'];
         foreach ($langs as $lang) {
@@ -54,11 +54,6 @@ class CategoryRenderer
                 'table' => '001_category_'.($lang == 'ua' ? 'en' : 'ua').'_details',
                 'conditions' => "id = $cat_id"
             ])[0]['slug'];
-
-            $logo = $texts[$lang]['logo'];
-            $catBtn = $texts[$lang]['categories'];
-            $search = $texts[$lang]['search'];
-            $cabinet = $texts[$lang]['cabinet'];
 
             $menu = '';
             $menuMobile = '';
