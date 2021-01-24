@@ -45,19 +45,17 @@
 <script>
     const products = document.getElementById('products');
     let tableHeader = `<tr>
-        <th></th>
+        <th>
+            <button onclick="clearSort()"><b>&#215;</b></button><br>
+            <button onclick="clearSearch()" style="margin-top: 3px;"><b>&#215;</b></button>
+        </th>
         <th style="text-align: left;padding: 5px;">
             <button data-sortby="title" onclick="sort(this)" style="width: 100%;"><b>Назва продукту</b></button><br>
-            <input type="text" placeholder="Пошук" style="width: 200px;margin-top: 3px;">
+            <input id="titleSearch" type="text" placeholder="Пошук" onkeyup="search(this)" style="width: 200px;margin-top: 3px;">
         </th>
         <th style="text-align: left;padding: 5px;">
             <button data-sortby="category" onclick="sort(this)" style="width: 100%;"><b>Назва категорії</b></button><br>
-            <select style="width: 200px;height: 21px;margin-top: 3px;">
-                <option selected>Всі категорії</option>
-                <option>Cat 1</option>
-                <option>Cat 2</option>
-                <option>Cat 3</option>
-            </select>
+            <select id="categorySearch" onchange="selectCategory(this)" style="width: 200px;height: 21px;margin-top: 3px;"></select>
         </th>
         <th>
             <button data-sortby="price" onclick="sort(this)" style="margin-bottom: 23px;"><b>Ціна</b></button>
@@ -75,17 +73,19 @@
     let itemsToDestroy = [];
     let uploadCrop;
 
-    currentState.sortBy = {
-        "title": "",
-        "category": "",
-        "price": "",
-        "show": ""
-    };
+    const search = element => {
+        currentState.search.title = element.value.toLowerCase();
+        prepare();
+    }
+
+    const selectCategory = element => {
+        currentState.search.category = element.options[element.selectedIndex].text;
+        prepare();
+    }
 
     const sort = element => {
-        let items = currentState.products.slice();
         let column = element.getAttribute('data-sortby');
-        let object = currentState.sortBy;
+        currentState.lastSort = column;
         switch (currentState.sortBy[column]) {
             case '':
                 currentState.sortBy[column] = 'asc';
@@ -100,46 +100,86 @@
                 element.firstChild.innerHTML = element.firstChild.innerHTML.slice(0, -2);
                 break;
         }
-        for (const property in object) sortBy(items, object[property], property);
-        sortBy(items, currentState.sortBy[column], column);
-        tableHeader = element.parentElement.parentElement.innerHTML;
+        prepare();
+    }
+
+    const prepare = () => {
+        tableHeader = products.firstChild.innerHTML;
+        let items = currentState.products.slice();
+        items = items.filter(i => {
+            let title = i.title.toLowerCase();
+            if (currentState.search.category === "Всі категорії") {
+                if (title.includes(currentState.search.title)) return i;
+            } else {
+                if (title.includes(currentState.search.title) && currentState.search.category === i.category) return i;
+            }
+        });
+        const sortIteration = column => {
+            let order = currentState.sortBy[column];
+            items.sort(function(a, b) {
+                let titleA, titleB = '';
+                switch (column) {
+                    case 'title':
+                        titleA = a.title.toUpperCase(); // ignore upper and lowercase
+                        titleB = b.title.toUpperCase(); // ignore upper and lowercase
+                        switch (order) {
+                            case 'asc': return titleA.localeCompare(titleB);
+                            case 'desc': return titleB.localeCompare(titleA);
+                            default: return 0;
+                        }
+                    case 'category':
+                        titleA = a.category.toUpperCase(); // ignore upper and lowercase
+                        titleB = b.category.toUpperCase(); // ignore upper and lowercase
+                        switch (order) {
+                            case 'asc': return titleA.localeCompare(titleB);
+                            case 'desc': return titleB.localeCompare(titleA);
+                            default: return 0;
+                        }
+                    case 'price':
+                        switch (order) {
+                            case 'asc': return a.price - b.price;
+                            case 'desc': return b.price - a.price;
+                            default: return 0;
+                        }
+                    case 'show':
+                        switch (order) {
+                            case 'asc': return a.visible - b.visible;
+                            case 'desc': return b.visible - a.visible;
+                            default: return 0;
+                        }
+                }
+            });
+        }
+        for (const column in currentState.sortBy) {
+            sortIteration(column);
+        }
+        sortIteration(currentState.lastSort);
         refreshTable(items);
     }
 
-    const sortBy = (items, order, column) => {
-        items.sort(function(a, b) {
-            let titleA, titleB = '';
-            switch (column) {
-                case 'title':
-                    titleA = a.title.toUpperCase(); // ignore upper and lowercase
-                    titleB = b.title.toUpperCase(); // ignore upper and lowercase
-                    switch (order) {
-                        case 'asc': return titleA.localeCompare(titleB);
-                        case 'desc': return titleB.localeCompare(titleA);
-                        default: return 0;
-                    }
-                case 'category':
-                    titleA = a.category.toUpperCase(); // ignore upper and lowercase
-                    titleB = b.category.toUpperCase(); // ignore upper and lowercase
-                    switch (order) {
-                        case 'asc': return titleA.localeCompare(titleB);
-                        case 'desc': return titleB.localeCompare(titleA);
-                        default: return 0;
-                    }
-                case 'price':
-                    switch (order) {
-                        case 'asc': return a.price - b.price;
-                        case 'desc': return b.price - a.price;
-                        default: return 0;
-                    }
-                case 'show':
-                    switch (order) {
-                        case 'asc': return a.visible - b.visible;
-                        case 'desc': return b.visible - a.visible;
-                        default: return 0;
-                    }
+    const clearSort = () => {
+        for (property in currentState.sortBy) {
+            if (currentState.sortBy[property]) {
+                let button = document.querySelectorAll(`[data-sortby="${property}"]`)[0];
+                button.firstChild.innerHTML = button.firstChild.innerHTML.slice(0, -2);
             }
-        });
+        }
+        currentState.sortBy = {
+            "title": "",
+            "category": "",
+            "price": "",
+            "show": ""
+        };
+        currentState.lastSort = "";
+        prepare();
+    }
+
+    const clearSearch = () => {
+        currentState.search = {
+            "title": "",
+            "category": "Всі категорії"
+        };
+        prepare();
     }
 
     const initList = () => {
@@ -148,8 +188,20 @@
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.send();
         xhr.onload = () => {
-            initialState.products = JSON.parse(xhr.response);
-            currentState.products = JSON.parse(xhr.response);
+            initialState = JSON.parse(xhr.response);
+            currentState = JSON.parse(xhr.response);
+            currentState.categories.unshift({"cat_id": "0", "title": "Всі категорії"});
+            currentState.sortBy = {
+                "title": "",
+                "category": "",
+                "price": "",
+                "show": ""
+            };
+            currentState.lastSort = "";
+            currentState.search = {
+                "title": "",
+                "category": "Всі категорії"
+            };
             refreshTable(initialState.products);
         }
     }
@@ -157,6 +209,15 @@
 
     const refreshTable = items => {
         products.innerHTML = tableHeader;
+        let titleSearch = document.getElementById('titleSearch');
+        titleSearch.value = currentState.search.title;
+
+        let options = '';
+        currentState.categories.map(i => {
+            options += `<option ${i.title === currentState.search.category ? 'selected' : ''}>${i.title}</option>`;
+        });
+        let categorySearch = document.getElementById('categorySearch');
+        categorySearch.innerHTML = options;
         items.map(i => {
             tr = document.createElement('tr');
             tr.innerHTML = `
@@ -170,6 +231,7 @@
                 </tr>`;
             products.appendChild(tr);
         });
+        titleSearch.focus();
     }
 
     $('#upload-image').on('update.croppie', async (ev, cropData) => {

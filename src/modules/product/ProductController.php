@@ -9,7 +9,12 @@ class ProductController
 {
     public function index(): bool
     {
-        echo json_encode(Product::selectAll());
+        $products = Product::selectAll();
+        $r = [
+            'products' => $products,
+            'categories' => Category::selectAll()
+        ];
+        echo json_encode($r);
         return true;
     }
 
