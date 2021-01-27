@@ -12,6 +12,7 @@ return array(
     'product/show' => 'product.show',
     'product/store' => 'product.store',
     'product/update' => 'product.update',
+    'product/checkslug' => 'product.checkslug',
 
     'review/store' => 'review.store',
 

@@ -2,11 +2,20 @@
 
 include_once 'Product.php';
 include_once 'ProductRenderer.php';
+include_once 'ProductService.php';
 include_once ROOT.'/modules/category/Category.php';
 include_once ROOT.'/modules/category/CategoryRenderer.php';
 
 class ProductController
 {
+    public function checkslug(): bool
+    {
+        $content = trim(file_get_contents("php://input"));
+        $decoded = json_decode($content, true);
+        echo json_encode(ProductService::checkslug($decoded));
+        return true;
+    }
+
     public function index(): bool
     {
         $products = Product::selectAll();
