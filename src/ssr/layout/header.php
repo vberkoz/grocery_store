@@ -4,6 +4,8 @@ return $header = "
 <!doctype html>
 <html lang='$lang'>
 <head>
+    <link rel='canonical' hreflang='uk-UA' href='https://vplus.in.ua/ua/$pageUa.html' />
+    <link rel='alternate' hreflang='en-UA' href='https://vplus.in.ua/en/$pageEn.html' />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src='https://www.googletagmanager.com/gtag/js?id=G-E41L3TLCDY'></script>
     <script>
@@ -13,7 +15,7 @@ return $header = "
     
       gtag('config', 'G-E41L3TLCDY');
     </script>
-    <meta name='google-site-verification' content='lrzDbr1aKtDgPBksmCagJn25U1AmtBPf_sWedk1D79Y' />
+    <meta name='google-site-verification' content='lJozlFQZ1iAKbFuHdDjzbDyikfQrOIcOyUVar-xDWEU' />
     
     <meta charset='utf-8'>
     <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />

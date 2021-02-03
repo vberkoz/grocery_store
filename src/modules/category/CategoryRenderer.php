@@ -54,6 +54,17 @@ class CategoryRenderer
                 'table' => '001_category_'.($lang == 'ua' ? 'en' : 'ua').'_details',
                 'conditions' => "id = $cat_id"
             ])[0]['slug'];
+            $pageUa = Utils::storage([
+                'columns' => 'slug',
+                'table' => '001_category_ua_details',
+                'conditions' => "id = $cat_id"
+            ])[0]['slug'];
+            $pageEn = Utils::storage([
+                'columns' => 'slug',
+                'table' => '001_category_en_details',
+                'conditions' => "id = $cat_id"
+            ])[0]['slug'];
+
 
             $menu = '';
             $menuMobile = '';
@@ -74,5 +85,7 @@ class CategoryRenderer
             fwrite($handle, $content);
             fclose($handle);
         }
+
+        Utils::generateSitemap();
     }
 }

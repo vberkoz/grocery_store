@@ -52,6 +52,8 @@ class RefreshRenderer
             self::cabinet($lang, $menu, $menuMobile);
         }
 
+        Utils::generateSitemap();
+
         $r = 'Full refresh';
         return json_encode($r);
     }
@@ -66,6 +68,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'cabinet';
+        $pageUa = 'cabinet';
+        $pageEn = 'cabinet';
 
         $details = include('cabinet.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -87,6 +91,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'index';
+        $pageUa = 'index';
+        $pageEn = 'index';
 
         $new = Utils::storage([
             'columns' => '
@@ -163,6 +169,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'payment';
+        $pageUa = 'payment';
+        $pageEn = 'payment';
 
         $details = include('payment.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -184,6 +192,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'blog';
+        $pageUa = 'blog';
+        $pageEn = 'blog';
 
         $details = include('blog.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -205,6 +215,9 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'contact';
+        $pageUa = 'contact';
+        $pageEn = 'contact';
+
 
         $details = include('contact.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -226,6 +239,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'about';
+        $pageUa = 'about';
+        $pageEn = 'about';
 
         $details = include('about.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -247,6 +262,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'cart';
+        $pageUa = 'cart';
+        $pageEn = 'cart';
 
         $details = include('cart.php');
         $header = include(ROOT.'/ssr/layout/header.php');
@@ -268,6 +285,8 @@ class RefreshRenderer
         $assets = '../assets';
         $dir = "/$lang";
         $page = 'checkout';
+        $pageUa = 'checkout';
+        $pageEn = 'checkout';
 
         $details = include('checkout.php');
         $header = include(ROOT.'/ssr/layout/header.php');

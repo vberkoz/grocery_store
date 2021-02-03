@@ -52,6 +52,16 @@ class ProductRenderer
                 'table' => '001_product_'.($lang == 'ua' ? 'en' : 'ua').'_details',
                 'conditions' => "prod_id = $id"
             ])[0]['slug'];
+            $pageUa = Utils::storage([
+                'columns' => 'slug',
+                'table' => '001_product_ua_details',
+                'conditions' => "prod_id = $id"
+            ])[0]['slug'];
+            $pageEn = Utils::storage([
+                'columns' => 'slug',
+                'table' => '001_product_en_details',
+                'conditions' => "prod_id = $id"
+            ])[0]['slug'];
 
             $menu = '';
             $menuMobile = '';
@@ -123,5 +133,7 @@ class ProductRenderer
             $newfile = "$lang/img/".$prod['img'];
             copy($file, $newfile);
         }
+
+        Utils::generateSitemap();
     }
 }
