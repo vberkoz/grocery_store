@@ -2,10 +2,17 @@
 <project version="4">
   <component name="PublishConfigData" serverName="zzz">
     <serverData>
+      <paths name="Network Solutions">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/../vogroup" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="zzz">
         <serverdata>
           <mappings>
-            <mapping deploy="/stage.kl.com.ua" local="$PROJECT_DIR$/src" web="/stage.kl.com.ua" />
+            <mapping deploy="/vplus.in.ua" local="$PROJECT_DIR$/src" web="/vplus.in.ua" />
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/src/App" />

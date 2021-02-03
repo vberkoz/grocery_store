@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="02dae34.netsolhost.com" id="55f41b9a-cd71-462e-a20c-56ac6a1834c1" port="22" nameFormat="DESCRIPTIVE" username="vf_soft_ftp" />
+    </configs>
+  </component>
+</project>

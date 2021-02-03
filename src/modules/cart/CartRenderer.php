@@ -3,6 +3,9 @@
 
 class CartRenderer
 {
+    static public function mailSimple()
+    {}
+
     static public function mailTemplate($data)
     {
         $items = '';

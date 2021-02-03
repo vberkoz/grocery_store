@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="17e35a88-a8ee-4f72-9f81-790713c75456" name="Network Solutions">
+        <fileTransfer accessType="SFTP" host="02dae34.netsolhost.com" port="22" sshConfigId="55f41b9a-cd71-462e-a20c-56ac6a1834c1" sshConfig="vf_soft_ftp@02dae34.netsolhost.com:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

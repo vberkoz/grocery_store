@@ -68,6 +68,7 @@
     const destroyBtn = document.getElementById('destroy');
     const updateBtn = document.getElementById('update_single');
     const domain = 'http://192.168.1.100:8080/api/v1/';
+    // const domain = 'http://vplus.in.ua/api/v1/';
     let initialState = [];
     let currentState = [];
     let itemsToDestroy = [];
@@ -417,8 +418,8 @@
         xhr.send();
         xhr.onload = () => {
             let i = JSON.parse(xhr.response);
-            initialState.push(i);
-            currentState.push(i);
+            initialState.products.push(i);
+            currentState.products.push(i);
             initialState = JSON.parse(JSON.stringify(initialState));
             currentState = JSON.parse(JSON.stringify(initialState));
             products.firstChild.remove();
@@ -426,7 +427,7 @@
             tr.innerHTML = `
                     <tr>
                         <td><input class="cbox" type="checkbox" data-id="${i.id}" onclick="checkForDestroy(this)"></td>
-                        <td><button class="title" data-id="${i.id}" onclick="showProduct(this)">${i.title}</button></td>
+                        <td><button class="title" data-id="${i.id}" onclick="showProduct(this)">${i.title_ua}</button></td>
                         <td><span class="category" data-id="${i.id}">${i.category}</span></td>
                         <td><strong class="price" data-id="${i.id}">${i.price}</strong></td>
                         <td><input class="visible" type="checkbox" ${i.visible === "1" ? "checked" : ""}
@@ -466,9 +467,33 @@
                 i.unit_en = e.options[e.selectedIndex].getAttribute('data-unit');
                 i.unit_ua = e.options[e.selectedIndex].text;
                 break;
+            case 'desc_ua': i.desc_ua = descToArray(e.value);break;
+            case 'desc_en': i.desc_en = descToArray(e.value);break;
+            case 'char_ua': i.char_ua = charToObject(e.value);break;
+            case 'char_en': i.char_en = charToObject(e.value);break;
             default: i[e.getAttribute('name')] = e.value;
         }
         updateBtn.disabled = arrayEquals();
+    }
+
+    const descToArray = desc => {
+        if (desc) return JSON.stringify(desc.split('\n'));
+        return "";
+    }
+
+    const charToObject = char => {
+        if (char) {
+            let charArray = char.split('\n');
+            let charObject = {};
+            charArray.map(i => {
+                if (i) {
+                    let prop = i.split(':');
+                    charObject[prop[0]] = prop[1];
+                }
+            });
+            return JSON.stringify(charObject);
+        }
+        return "";
     }
 
     const arrayEquals = () => {
@@ -491,6 +516,26 @@
             initialState.details = JSON.parse(xhr.response);
             currentState.details = JSON.parse(xhr.response);
             let p = initialState.details.product;
+            if (p.desc_ua) p.desc_ua = JSON.parse(p.desc_ua).join('\n');
+            if (p.desc_en) p.desc_en = JSON.parse(p.desc_en).join('\n');
+
+            const charToStr = char => {
+                if (char) {
+                    char = JSON.parse(char);
+                    let charStr = '';
+                    for (prop in char) {
+                        if (char.hasOwnProperty(prop)) {
+                            charStr += char[prop] + ':' + prop + '\n';
+                        }
+                    }
+                    return charStr;
+                }
+                return "";
+            }
+
+            p.char_ua = charToStr(p.char_ua);
+            p.char_en = charToStr(p.char_en);
+
             let cs = initialState.details.categories;
             let table = document.createElement('table');
             table.innerHTML = `
@@ -547,8 +592,8 @@
     const textArea = (title, value, name, display) => {
         let instruction = '';
         switch (name) {
-            case 'desc_ua': instruction = `Зразок:<br><br>[<br>"Параграф1",<br>"Параграф2",<br>"Параграф3"<br>]`; break;
-            case 'char_ua': instruction = `Зразок:<br><br>{<br>"Характеристика1": "Значення1",<br>"Характеристика2": "Значення2",<br>"Характеристика3": "Значення3"<br>}`;
+            case 'desc_ua': instruction = `Зразок:<br><br>Параграф1<br>Параграф2<br>Параграф3`; break;
+            case 'char_ua': instruction = `Зразок:<br><br>Характеристика1:Значення1<br>Характеристика2:Значення2<br>Характеристика3:Значення3`;
         }
         return `
             <tr style="display: ${display};">
