@@ -3,6 +3,72 @@
 
 class Utils
 {
+    private static function generateXmlElement($ua, $en)
+    {
+        return '
+        <url>
+            <loc>https://vplus.in.ua/ua/' . $ua . '.html</loc>
+            <xhtml:link 
+               rel="alternate"
+               hreflang="en-UA"
+               href="https://vplus.in.ua/en/' . $en . '.html"/>
+            <lastmod>' . date("Y-m-d") . '</lastmod>
+        </url>';
+    }
+
+    public static function generateSitemap()
+    {
+        $content = '<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
+        $content .= self::generateXmlElement('index', 'index');
+
+        $cats = self::storage([
+            'columns' => '001_category_ua_details.slug AS slug_ua, 001_category_en_details.slug AS slug_en',
+            'table' => '001_category_ua_details',
+            'joins' => [
+                [
+                    'table' => '001_category_en_details',
+                    'expresion' => '001_category_ua_details.cat_id = 001_category_en_details.cat_id'
+                ],
+                [
+                    'table' => '001_categories',
+                    'expresion' => '001_category_ua_details.cat_id = 001_categories.id'
+                ]
+            ],
+            'conditions' => '001_categories.visible = 1'
+        ]);
+
+        foreach ($cats as $cat) {
+            $content .= self::generateXmlElement($cat['slug_ua'], $cat['slug_en']);
+        }
+
+        $prods = self::storage([
+            'columns' => '001_product_ua_details.slug AS slug_ua, 001_product_en_details.slug AS slug_en',
+            'table' => '001_product_ua_details',
+            'joins' => [
+                [
+                    'table' => '001_product_en_details',
+                    'expresion' => '001_product_ua_details.prod_id = 001_product_en_details.prod_id'
+                ],
+                [
+                    'table' => '001_products',
+                    'expresion' => '001_product_ua_details.prod_id = 001_products.id'
+                ]
+            ],
+            'conditions' => '001_products.visible = 1'
+        ]);
+
+        foreach ($prods as $prod) {
+            $content .= self::generateXmlElement($prod['slug_ua'], $prod['slug_en']);
+        }
+
+        $content .= '
+</urlset>';
+        $handle = fopen("sitemap.xml",'w+');
+        fwrite($handle, $content);
+        fclose($handle);
+    }
+
     public static function generateDefaultImages()
     {
         $prods = self::storage([
