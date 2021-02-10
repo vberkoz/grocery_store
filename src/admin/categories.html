@@ -26,7 +26,7 @@
 </div>
 <script>
     const table = document.getElementById('categories');
-    const tableHeader = '<th></th><th>Назва</th><th>Слаг</th><th>Показувати</th>';
+    const tableHeader = '<th></th><th>Назва</th><th>Слаг</th><th>Тег title</th><th>Тег meta description</th><th>Показувати</th>';
     const updateBtn = document.getElementById('update');
     const destroyBtn = document.getElementById('destroy');
     const domain = 'http://192.168.1.100:8080/api/v1/';
@@ -52,12 +52,20 @@
                     <tr>
                         <td><input type="checkbox" data-id="${i.id}" onclick="checkForDestroy(this)"></td>
                         <td>
-                            <input type="text" value="${i.title_ua}" data-id="${i.id}" name="title_ua" onkeyup="changeValue(this)">
-                            <input type="text" value="${i.title_en}" data-id="${i.id}" name="title_en" onkeyup="changeValue(this)">
+                            <input type="text" value="${i.title_ua}" data-id="${i.id}" name="title_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                            <input type="text" value="${i.title_en}" data-id="${i.id}" name="title_en" onkeyup="changeValue(this)" style="width: 100px;">
                         </td>
                         <td>
-                            <input type="text" value="${i.slug_ua}" data-id="${i.id}" name="slug_ua" onkeyup="changeValue(this)">
-                            <input type="text" value="${i.slug_en}" data-id="${i.id}" name="slug_en" onkeyup="changeValue(this)">
+                            <input type="text" value="${i.slug_ua}" data-id="${i.id}" name="slug_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                            <input type="text" value="${i.slug_en}" data-id="${i.id}" name="slug_en" onkeyup="changeValue(this)" style="width: 100px;">
+                        </td>
+                        <td>
+                            <input type="text" value="${i.tag_title_ua}" data-id="${i.id}" name="tag_title_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                            <input type="text" value="${i.tag_title_en}" data-id="${i.id}" name="tag_title_en" onkeyup="changeValue(this)" style="width: 100px;">
+                        </td>
+                        <td>
+                            <input type="text" value="${i.tag_meta_desc_ua}" data-id="${i.id}" name="tag_meta_desc_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                            <input type="text" value="${i.tag_meta_desc_en}" data-id="${i.id}" name="tag_meta_desc_en" onkeyup="changeValue(this)" style="width: 100px;">
                         </td>
                         <td><input type="checkbox" ${i.visible === "1" ? "checked" : ""} data-id="${i.id}" name="visible" onclick="changeValue(this)"></td>
                     </tr>
@@ -75,12 +83,19 @@
                 switch (e.getAttribute('name')) {
                     case 'title_ua': i.title_ua = e.value; break;
                     case 'slug_ua': i.slug_ua = e.value; break;
+                    case 'tag_title_ua': i.tag_title_ua = e.value; break;
+                    case 'tag_meta_desc_ua': i.tag_meta_desc_ua = e.value; break;
+
                     case 'title_en': i.title_en = e.value; break;
                     case 'slug_en': i.slug_en = e.value; break;
+                    case 'tag_title_en': i.tag_title_en = e.value; break;
+                    case 'tag_meta_desc_en': i.tag_meta_desc_en = e.value; break;
+
                     case 'visible': i.visible = e.checked ? '1' : '0'; break;
                 }
             }
         });
+        console.log(currentState);
         updateBtn.disabled = arrayEquals();
     }
 
@@ -90,8 +105,14 @@
             initialState.forEach((v, i) => {
                 equal ? equal = v.title_ua === currentState[i].title_ua : null;
                 equal ? equal = v.slug_ua === currentState[i].slug_ua : null;
+                equal ? equal = v.tag_title_ua === currentState[i].tag_title_ua : null;
+                equal ? equal = v.tag_meta_desc_ua === currentState[i].tag_meta_desc_ua : null;
+
                 equal ? equal = v.title_en === currentState[i].title_en : null;
                 equal ? equal = v.slug_en === currentState[i].slug_en : null;
+                equal ? equal = v.tag_title_en === currentState[i].tag_title_en : null;
+                equal ? equal = v.tag_meta_desc_en === currentState[i].tag_meta_desc_en : null;
+
                 equal ? equal = v.visible === currentState[i].visible : null;
             });
             return equal;
@@ -124,12 +145,20 @@
                 <tr>
                     <td><input type="checkbox" data-id="${i.id}" onclick="checkForDestroy(this)"></td>
                     <td>
-                        <input type="text" value="${i.title_ua}" data-id="${i.id}" name="title_ua" onkeyup="changeValue(this)">
-                        <input type="text" value="${i.title_en}" data-id="${i.id}" name="title_en" onkeyup="changeValue(this)">
+                        <input type="text" value="${i.title_ua}" data-id="${i.id}" name="title_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                        <input type="text" value="${i.title_en}" data-id="${i.id}" name="title_en" onkeyup="changeValue(this)" style="width: 100px;">
                     </td>
                     <td>
-                        <input type="text" value="${i.slug_ua}" data-id="${i.id}" name="slug_ua" onkeyup="changeValue(this)">
-                        <input type="text" value="${i.slug_en}" data-id="${i.id}" name="slug_en" onkeyup="changeValue(this)">
+                        <input type="text" value="${i.slug_ua}" data-id="${i.id}" name="slug_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                        <input type="text" value="${i.slug_en}" data-id="${i.id}" name="slug_en" onkeyup="changeValue(this)" style="width: 100px;">
+                    </td>
+                    <td>
+                        <input type="text" value="${i.tag_title_ua}" data-id="${i.id}" name="tag_title_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                        <input type="text" value="${i.tag_title_en}" data-id="${i.id}" name="tag_title_en" onkeyup="changeValue(this)" style="width: 100px;">
+                    </td>
+                    <td>
+                        <input type="text" value="${i.tag_meta_desc_ua}" data-id="${i.id}" name="tag_meta_desc_ua" onkeyup="changeValue(this)" style="width: 100px;">
+                        <input type="text" value="${i.tag_meta_desc_en}" data-id="${i.id}" name="tag_meta_desc_en" onkeyup="changeValue(this)" style="width: 100px;">
                     </td>
                     <td><input type="checkbox" ${i.visible === "1" ? "checked" : ""} data-id="${i.id}" name="visible" onclick="changeValue(this)"></td>
                 </tr>
